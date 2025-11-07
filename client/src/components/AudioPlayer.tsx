@@ -1,6 +1,5 @@
 import { Button } from "@/components/ui/button";
 import { Play, Pause, Volume2 } from "lucide-react";
-import { Slider } from "@/components/ui/slider";
 
 interface AudioPlayerProps {
   isPlaying: boolean;
@@ -31,13 +30,15 @@ export default function AudioPlayer({
       {showVolume && onVolumeChange && (
         <div className="flex items-center gap-3 flex-1 max-w-xs">
           <Volume2 className="h-5 w-5 text-muted-foreground" />
-          <Slider
-            value={[volume]}
-            onValueChange={([value]) => onVolumeChange(value)}
-            min={0}
-            max={100}
-            step={1}
-            className="flex-1"
+          <input
+            type="range"
+            min="0"
+            max="100"
+            step="1"
+            value={volume}
+            onInput={(e) => onVolumeChange(parseInt((e.target as HTMLInputElement).value, 10))}
+            onChange={(e) => onVolumeChange(parseInt(e.target.value, 10))}
+            className="flex-1 h-2 bg-muted rounded-lg appearance-none cursor-pointer [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-4 [&::-webkit-slider-thumb]:h-4 [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-primary [&::-moz-range-thumb]:w-4 [&::-moz-range-thumb]:h-4 [&::-moz-range-thumb]:rounded-full [&::-moz-range-thumb]:bg-primary [&::-moz-range-thumb]:border-0"
             data-testid="slider-volume"
           />
           <span className="text-sm text-muted-foreground w-12 text-right">{volume}%</span>
