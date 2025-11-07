@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Slider } from "@/components/ui/slider";
@@ -6,6 +6,7 @@ import { Copy, Share2, Info } from "lucide-react";
 import WaveformSelector, { WaveformType } from "@/components/WaveformSelector";
 import AudioPlayer from "@/components/AudioPlayer";
 import { useToast } from "@/hooks/use-toast";
+import { useAudioEngine } from "@/hooks/useAudioEngine";
 import {
   Alert,
   AlertDescription,
@@ -15,8 +16,34 @@ import {
 export default function FrequencyFinder() {
   const [frequency, setFrequency] = useState(1000);
   const [waveform, setWaveform] = useState<WaveformType>('sine');
-  const [isPlaying, setIsPlaying] = useState(false);
   const { toast } = useToast();
+  
+  const audioEngine = useAudioEngine({ frequency, waveform, volume: 50 });
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const freq = params.get('freq');
+    const wave = params.get('wave');
+    
+    if (freq) {
+      const parsedFreq = parseInt(freq, 10);
+      if (parsedFreq >= 50 && parsedFreq <= 20000) {
+        setFrequency(parsedFreq);
+      }
+    }
+    
+    if (wave && ['sine', 'square', 'triangle', 'sawtooth', 'filtered', 'noise'].includes(wave)) {
+      setWaveform(wave as WaveformType);
+    }
+  }, []);
+
+  useEffect(() => {
+    audioEngine.updateFrequency(frequency);
+  }, [frequency]);
+
+  useEffect(() => {
+    audioEngine.updateWaveform(waveform);
+  }, [waveform]);
 
   const handleCopySettings = () => {
     const settings = `Frequency: ${frequency}Hz, Waveform: ${waveform}`;
@@ -64,11 +91,8 @@ export default function FrequencyFinder() {
             {/* Audio Player */}
             <div className="flex justify-center">
               <AudioPlayer 
-                isPlaying={isPlaying} 
-                onPlayPause={() => {
-                  setIsPlaying(!isPlaying);
-                  console.log(`Audio ${!isPlaying ? 'started' : 'stopped'} at ${frequency}Hz`);
-                }}
+                isPlaying={audioEngine.isPlaying} 
+                onPlayPause={audioEngine.toggle}
               />
             </div>
 

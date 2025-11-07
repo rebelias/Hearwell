@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Slider } from "@/components/ui/slider";
@@ -7,34 +7,39 @@ import { Copy, Download, Info } from "lucide-react";
 import AudioPlayer from "@/components/AudioPlayer";
 import { useToast } from "@/hooks/use-toast";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import { useNoiseGenerator, NoiseColor } from "@/hooks/useNoiseGenerator";
 
 export default function NoiseGenerator() {
-  const [isPlaying, setIsPlaying] = useState(false);
   const [eqValues, setEqValues] = useState([50, 50, 50, 50, 50, 50, 50, 50]);
   const [selectedPreset, setSelectedPreset] = useState<string | null>(null);
+  const [noiseColor, setNoiseColor] = useState<NoiseColor>('white');
   const [backgrounds, setBackgrounds] = useState({
     sea: false,
     wind: false,
     forest: false,
   });
   const { toast } = useToast();
+  const noiseEngine = useNoiseGenerator();
 
-  const frequencies = ['32', '50', '120', '400', '500', '800', '1k', '4k', '8k', '16k'];
-  const displayFreqs = frequencies.slice(0, 8);
+  const frequencies = ['32', '64', '125', '250', '500', '1k', '2k', '4k'];
   
-  const presets = [
-    { name: 'White', values: [50, 50, 50, 50, 50, 50, 50, 50] },
-    { name: 'Pink', values: [70, 65, 60, 55, 50, 45, 40, 35] },
-    { name: 'Brown', values: [80, 70, 60, 50, 40, 30, 20, 10] },
-    { name: 'Violet', values: [30, 35, 40, 45, 50, 55, 60, 70] },
-    { name: 'Blue', values: [35, 40, 45, 50, 55, 60, 65, 70] },
-    { name: 'Grey', values: [50, 45, 50, 45, 50, 45, 50, 45] },
+  const presets: Array<{ name: string; values: number[]; color: NoiseColor }> = [
+    { name: 'White', values: [50, 50, 50, 50, 50, 50, 50, 50], color: 'white' },
+    { name: 'Pink', values: [70, 65, 60, 55, 50, 45, 40, 35], color: 'pink' },
+    { name: 'Brown', values: [80, 70, 60, 50, 40, 30, 20, 10], color: 'brown' },
+    { name: 'Violet', values: [30, 35, 40, 45, 50, 55, 60, 70], color: 'violet' },
+    { name: 'Blue', values: [35, 40, 45, 50, 55, 60, 65, 70], color: 'blue' },
+    { name: 'Grey', values: [50, 45, 50, 45, 50, 45, 50, 45], color: 'grey' },
   ];
 
   const applyPreset = (preset: typeof presets[0]) => {
     setEqValues(preset.values);
+    setNoiseColor(preset.color);
     setSelectedPreset(preset.name);
-    console.log(`Applied ${preset.name} noise preset`);
+    if (noiseEngine.isPlaying) {
+      noiseEngine.stop();
+      setTimeout(() => noiseEngine.play(preset.values, preset.color), 50);
+    }
   };
 
   const handleEqChange = (index: number, value: number) => {
@@ -42,7 +47,15 @@ export default function NoiseGenerator() {
     newValues[index] = value;
     setEqValues(newValues);
     setSelectedPreset(null);
+    noiseEngine.updateEqualizer(newValues);
   };
+
+  useEffect(() => {
+    if (noiseEngine.isPlaying) {
+      noiseEngine.stop();
+      setTimeout(() => noiseEngine.play(eqValues, noiseColor), 50);
+    }
+  }, [noiseColor]);
 
   const handleSaveSettings = () => {
     toast({
@@ -79,11 +92,8 @@ export default function NoiseGenerator() {
             {/* Audio Player */}
             <div className="flex justify-center">
               <AudioPlayer 
-                isPlaying={isPlaying} 
-                onPlayPause={() => {
-                  setIsPlaying(!isPlaying);
-                  console.log(`Noise generator ${!isPlaying ? 'started' : 'stopped'}`);
-                }}
+                isPlaying={noiseEngine.isPlaying} 
+                onPlayPause={() => noiseEngine.toggle(eqValues, noiseColor)}
               />
             </div>
 
@@ -108,7 +118,7 @@ export default function NoiseGenerator() {
             {/* Equalizer */}
             <div className="space-y-6">
               <div className="grid grid-cols-4 md:grid-cols-8 gap-4">
-                {displayFreqs.map((freq, index) => (
+                {frequencies.map((freq: string, index: number) => (
                   <div key={freq} className="flex flex-col items-center gap-3">
                     <Slider
                       value={[eqValues[index]]}

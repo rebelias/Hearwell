@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Slider } from "@/components/ui/slider";
@@ -8,15 +8,31 @@ import { useToast } from "@/hooks/use-toast";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
-
-type NoiseType = 'white' | 'pink' | 'purple';
+import { useNotchedNoise, NotchNoiseType } from "@/hooks/useNotchedNoise";
 
 export default function NotchedNoise() {
-  const [isPlaying, setIsPlaying] = useState(false);
   const [notchFrequency, setNotchFrequency] = useState(4000);
   const [notchWidth, setNotchWidth] = useState(500);
-  const [noiseType, setNoiseType] = useState<NoiseType>('white');
+  const [noiseType, setNoiseType] = useState<NotchNoiseType>('white');
   const { toast } = useToast();
+  const noiseEngine = useNotchedNoise();
+
+  useEffect(() => {
+    if (noiseEngine.isPlaying) {
+      noiseEngine.updateNotch(notchFrequency, notchWidth);
+    }
+  }, [notchFrequency, notchWidth]);
+
+  const handleNoiseTypeChange = (newType: NotchNoiseType) => {
+    const wasPlaying = noiseEngine.isPlaying;
+    if (wasPlaying) {
+      noiseEngine.stop();
+    }
+    setNoiseType(newType);
+    if (wasPlaying) {
+      noiseEngine.play(notchFrequency, notchWidth, newType);
+    }
+  };
 
   const handleSaveSettings = () => {
     const settings = {
@@ -60,11 +76,8 @@ export default function NotchedNoise() {
             {/* Audio Player */}
             <div className="flex justify-center">
               <AudioPlayer 
-                isPlaying={isPlaying} 
-                onPlayPause={() => {
-                  setIsPlaying(!isPlaying);
-                  console.log(`Notched noise ${!isPlaying ? 'started' : 'stopped'} with notch at ${notchFrequency}Hz`);
-                }}
+                isPlaying={noiseEngine.isPlaying} 
+                onPlayPause={() => noiseEngine.toggle(notchFrequency, notchWidth, noiseType)}
               />
             </div>
 
@@ -118,7 +131,7 @@ export default function NotchedNoise() {
             {/* Noise Type */}
             <div className="space-y-3">
               <span className="text-sm text-muted-foreground">Base Noise Type</span>
-              <RadioGroup value={noiseType} onValueChange={(value) => setNoiseType(value as NoiseType)}>
+              <RadioGroup value={noiseType} onValueChange={(value) => handleNoiseTypeChange(value as NotchNoiseType)}>
                 <div className="flex items-center space-x-2">
                   <RadioGroupItem value="white" id="white" data-testid="radio-white" />
                   <Label htmlFor="white" className="cursor-pointer">White Noise (Equal across all frequencies)</Label>

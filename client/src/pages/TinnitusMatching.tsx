@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Slider } from "@/components/ui/slider";
@@ -6,15 +6,54 @@ import { Copy, Share2, Info } from "lucide-react";
 import WaveformSelector, { WaveformType } from "@/components/WaveformSelector";
 import AudioPlayer from "@/components/AudioPlayer";
 import { useToast } from "@/hooks/use-toast";
+import { useAudioEngine } from "@/hooks/useAudioEngine";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 export default function TinnitusMatching() {
   const [frequency, setFrequency] = useState(4000);
   const [waveform, setWaveform] = useState<WaveformType>('sine');
-  const [isPlaying, setIsPlaying] = useState(false);
   const [volume, setVolume] = useState(50);
   const { toast } = useToast();
+  
+  const audioEngine = useAudioEngine({ frequency, waveform, volume });
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const freq = params.get('freq');
+    const wave = params.get('wave');
+    const vol = params.get('vol');
+    
+    if (freq) {
+      const parsedFreq = parseInt(freq, 10);
+      if (parsedFreq >= 50 && parsedFreq <= 20000) {
+        setFrequency(parsedFreq);
+      }
+    }
+    
+    if (wave && ['sine', 'square', 'triangle', 'sawtooth', 'filtered', 'noise'].includes(wave)) {
+      setWaveform(wave as WaveformType);
+    }
+    
+    if (vol) {
+      const parsedVol = parseInt(vol, 10);
+      if (parsedVol >= 0 && parsedVol <= 100) {
+        setVolume(parsedVol);
+      }
+    }
+  }, []);
+
+  useEffect(() => {
+    audioEngine.updateFrequency(frequency);
+  }, [frequency]);
+
+  useEffect(() => {
+    audioEngine.updateVolume(volume);
+  }, [volume]);
+
+  useEffect(() => {
+    audioEngine.updateWaveform(waveform);
+  }, [waveform]);
 
   const handleSaveSettings = () => {
     const settings = {
@@ -74,11 +113,8 @@ export default function TinnitusMatching() {
                 {/* Audio Player */}
                 <div className="flex justify-center">
                   <AudioPlayer 
-                    isPlaying={isPlaying} 
-                    onPlayPause={() => {
-                      setIsPlaying(!isPlaying);
-                      console.log(`Tinnitus tone ${!isPlaying ? 'started' : 'stopped'} at ${frequency}Hz`);
-                    }}
+                    isPlaying={audioEngine.isPlaying} 
+                    onPlayPause={audioEngine.toggle}
                     volume={volume}
                     onVolumeChange={setVolume}
                     showVolume

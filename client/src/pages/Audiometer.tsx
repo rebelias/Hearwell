@@ -1,10 +1,12 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Info, Download } from "lucide-react";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { useToast } from "@/hooks/use-toast";
+import { useAudiometerEngine } from "@/hooks/useAudiometerEngine";
+import AudiogramChart from "@/components/AudiogramChart";
 
 type EarSelection = 'both' | 'left' | 'right';
 type CellState = 'untested' | 'playing' | 'tested';
@@ -13,20 +15,25 @@ export default function Audiometer() {
   const [earSelection, setEarSelection] = useState<EarSelection>('both');
   const [testResults, setTestResults] = useState<Record<string, CellState>>({});
   const { toast } = useToast();
+  const audioEngine = useAudiometerEngine();
+
+  useEffect(() => {
+    return () => {
+      audioEngine.cleanup();
+    };
+  }, []);
 
   const frequencies = [250, 500, 1000, 2000, 4000, 8000];
   const volumes = [-10, 0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100];
 
-  const handleCellClick = (freq: number, vol: number) => {
+  const handleCellClick = async (freq: number, vol: number) => {
     const key = `${freq}-${vol}`;
     const currentState = testResults[key] || 'untested';
     
     if (currentState === 'untested') {
       setTestResults({ ...testResults, [key]: 'playing' });
-      console.log(`Playing ${freq}Hz at ${vol}dB for ${earSelection} ear(s)`);
-      setTimeout(() => {
-        setTestResults(prev => ({ ...prev, [key]: 'tested' }));
-      }, 1000);
+      await audioEngine.playTone(freq, vol, earSelection, 1000);
+      setTestResults(prev => ({ ...prev, [key]: 'tested' }));
     }
   };
 
@@ -181,9 +188,11 @@ export default function Audiometer() {
             </div>
           </CardHeader>
           <CardContent>
-            <div className="h-64 bg-muted/30 rounded-lg flex items-center justify-center">
-              <p className="text-muted-foreground">Audiogram chart will be displayed here</p>
-            </div>
+            <AudiogramChart 
+              testResults={testResults} 
+              frequencies={frequencies}
+              volumes={volumes}
+            />
           </CardContent>
         </Card>
       </div>
