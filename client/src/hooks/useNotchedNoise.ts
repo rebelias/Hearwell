@@ -136,12 +136,40 @@ export function useNotchedNoise() {
     }
   };
 
+  const replaceNoiseSource = (notchFrequency: number, notchWidth: number, noiseType: NotchNoiseType) => {
+    if (!isPlaying || !audioContextRef.current) return;
+
+    const ctx = audioContextRef.current;
+    const oldNode = noiseNodeRef.current;
+
+    const newNode = ctx.createBufferSource();
+    newNode.buffer = createNoiseBuffer(noiseType);
+    newNode.loop = true;
+
+    if (notchFilterRef.current && gainNodeRef.current) {
+      newNode.connect(notchFilterRef.current);
+      newNode.start();
+      
+      noiseNodeRef.current = newNode;
+
+      if (oldNode) {
+        try {
+          oldNode.stop();
+          oldNode.disconnect();
+        } catch (e) {
+          // Already stopped
+        }
+      }
+    }
+  };
+
   return {
     isPlaying,
     play,
     stop,
     toggle: (notchFrequency: number, notchWidth: number, noiseType: NotchNoiseType) => 
       isPlaying ? stop() : play(notchFrequency, notchWidth, noiseType),
-    updateNotch
+    updateNotch,
+    replaceNoiseSource
   };
 }

@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -16,6 +16,7 @@ export default function Audiometer() {
   const [testResults, setTestResults] = useState<Record<string, CellState>>({});
   const { toast } = useToast();
   const audioEngine = useAudiometerEngine();
+  const cancelTokenRef = useRef<number>(0);
 
   useEffect(() => {
     return () => {
@@ -30,14 +31,20 @@ export default function Audiometer() {
     const key = `${freq}-${vol}`;
     const currentState = testResults[key] || 'untested';
     
-    if (currentState === 'untested') {
-      setTestResults({ ...testResults, [key]: 'playing' });
+    if (currentState === 'untested' || currentState === 'tested') {
+      const currentToken = cancelTokenRef.current;
+      setTestResults(prev => ({ ...prev, [key]: 'playing' }));
       await audioEngine.playTone(freq, vol, earSelection, 1000);
-      setTestResults(prev => ({ ...prev, [key]: 'tested' }));
+      
+      if (cancelTokenRef.current === currentToken) {
+        setTestResults(prev => ({ ...prev, [key]: 'tested' }));
+      }
     }
   };
 
   const clearResults = () => {
+    cancelTokenRef.current++;
+    audioEngine.stop();
     setTestResults({});
     toast({
       title: "Results Cleared",

@@ -72,7 +72,12 @@ client/
 - **Interactions**: Custom elevation utilities (hover-elevate, active-elevate-2)
 - **Spacing**: Consistent 8px base unit system
 
-## Recent Changes
+## Recent Changes (November 7, 2025)
+- **Critical Audio Fixes**:
+  - Audiometer: Per-playback node creation ensures immediate left/right ear routing without center bleed
+  - Audiometer: Calibrated gain curve (0.001 at -10 dB to 0.5 max) ensures audibility across full range
+  - Notched Noise: Synchronous noise type switching via replaceNoiseSource method eliminates race conditions
+  - Audiometer UI: Fixed state management to show playing→tested transitions properly
 - Implemented all five core audio tools with Web Audio API
 - Added real-time audiogram chart visualization
 - Integrated URL parameter support for shareable settings

@@ -7,6 +7,7 @@ export function useAudiometerEngine() {
   const oscillatorRef = useRef<OscillatorNode | null>(null);
   const gainNodeRef = useRef<GainNode | null>(null);
   const pannerRef = useRef<StereoPannerNode | null>(null);
+  const timeoutIdRef = useRef<NodeJS.Timeout | null>(null);
 
   const initAudioContext = () => {
     if (!audioContextRef.current) {
@@ -75,25 +76,48 @@ export function useAudiometerEngine() {
 
       oscillator.start();
 
-      setTimeout(() => {
-        if (oscillatorRef.current) {
-          try {
-            oscillatorRef.current.stop();
-          } catch (e) {
-            // Already stopped
-          }
+      const timeoutId = setTimeout(() => {
+        try {
+          oscillator.stop();
+          oscillator.disconnect();
+        } catch (e) {
+          // Already stopped
+        }
+        
+        try {
+          gainNode.disconnect();
+          panner.disconnect();
+        } catch (e) {
+          // Already disconnected
+        }
+        
+        if (oscillatorRef.current === oscillator) {
           oscillatorRef.current = null;
         }
-        if (gainNodeRef.current) {
-          gainNodeRef.current.disconnect();
+        if (gainNodeRef.current === gainNode) {
           gainNodeRef.current = null;
         }
+        if (pannerRef.current === panner) {
+          pannerRef.current = null;
+        }
+        
+        if (timeoutIdRef.current === timeoutId) {
+          timeoutIdRef.current = null;
+        }
+        
         resolve();
       }, duration);
+      
+      timeoutIdRef.current = timeoutId;
     });
   };
 
-  const cleanup = () => {
+  const stop = () => {
+    if (timeoutIdRef.current) {
+      clearTimeout(timeoutIdRef.current);
+      timeoutIdRef.current = null;
+    }
+
     if (oscillatorRef.current) {
       try {
         oscillatorRef.current.stop();
@@ -108,6 +132,14 @@ export function useAudiometerEngine() {
       gainNodeRef.current = null;
     }
 
+    if (pannerRef.current) {
+      pannerRef.current.disconnect();
+      pannerRef.current = null;
+    }
+  };
+
+  const cleanup = () => {
+    stop();
     if (audioContextRef.current) {
       audioContextRef.current.close();
       audioContextRef.current = null;
@@ -116,6 +148,7 @@ export function useAudiometerEngine() {
 
   return {
     playTone,
+    stop,
     cleanup
   };
 }

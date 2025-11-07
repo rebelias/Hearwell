@@ -24,13 +24,9 @@ export default function NotchedNoise() {
   }, [notchFrequency, notchWidth]);
 
   const handleNoiseTypeChange = (newType: NotchNoiseType) => {
-    const wasPlaying = noiseEngine.isPlaying;
-    if (wasPlaying) {
-      noiseEngine.stop();
-    }
     setNoiseType(newType);
-    if (wasPlaying) {
-      noiseEngine.play(notchFrequency, notchWidth, newType);
+    if (noiseEngine.isPlaying) {
+      noiseEngine.replaceNoiseSource(notchFrequency, notchWidth, newType);
     }
   };
 
