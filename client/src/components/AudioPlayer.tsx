@@ -34,6 +34,7 @@ export default function AudioPlayer({
           <Slider
             value={[volume]}
             onValueChange={([value]) => onVolumeChange(value)}
+            min={1}
             max={100}
             step={1}
             className="flex-1"

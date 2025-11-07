@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Slider } from "@/components/ui/slider";
-import { Checkbox } from "@/components/ui/checkbox";
 import { Copy, Download, Info } from "lucide-react";
 import AudioPlayer from "@/components/AudioPlayer";
 import { useToast } from "@/hooks/use-toast";
@@ -13,11 +12,6 @@ export default function NoiseGenerator() {
   const [eqValues, setEqValues] = useState([50, 50, 50, 50, 50, 50, 50, 50]);
   const [selectedPreset, setSelectedPreset] = useState<string | null>(null);
   const [noiseColor, setNoiseColor] = useState<NoiseColor>('white');
-  const [backgrounds, setBackgrounds] = useState({
-    sea: false,
-    wind: false,
-    forest: false,
-  });
   const { toast } = useToast();
   const noiseEngine = useNoiseGenerator();
 
@@ -68,9 +62,9 @@ export default function NoiseGenerator() {
     <div className="min-h-screen bg-background">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="mb-8">
-          <h1 className="font-display font-bold text-3xl md:text-4xl mb-2">White Noise Generator</h1>
+          <h1 className="font-display font-bold text-3xl md:text-4xl mb-2">Noise Generator</h1>
           <p className="text-muted-foreground">
-            Create custom colored noise with equalizer and ambient backgrounds
+            Create custom colored noise with 8-band equalizer
           </p>
         </div>
 
@@ -79,7 +73,7 @@ export default function NoiseGenerator() {
           <AlertTitle>How to Use</AlertTitle>
           <AlertDescription>
             Click PLAY and adjust the equalizer sliders to create a pleasing noise. Use presets for standard 
-            colored noise types, or add background ambience for depth.
+            colored noise types like white, pink, brown, violet, blue, or grey noise.
           </AlertDescription>
         </Alert>
 
@@ -117,69 +111,24 @@ export default function NoiseGenerator() {
 
             {/* Equalizer */}
             <div className="space-y-6">
-              <div className="grid grid-cols-4 md:grid-cols-8 gap-4">
+              <div className="space-y-4">
                 {frequencies.map((freq: string, index: number) => (
-                  <div key={freq} className="flex flex-col items-center gap-3">
-                    <Slider
-                      value={[eqValues[index]]}
-                      onValueChange={([value]) => handleEqChange(index, value)}
-                      min={0}
-                      max={100}
-                      step={1}
-                      orientation="vertical"
-                      className="h-32"
-                      data-testid={`slider-eq-${freq}`}
-                    />
-                    <span className="text-xs text-muted-foreground font-medium">{freq}Hz</span>
-                    <span className="text-xs text-muted-foreground">{eqValues[index]}</span>
+                  <div key={freq} className="space-y-2">
+                    <div className="flex items-center justify-between gap-4">
+                      <span className="text-sm text-muted-foreground font-medium min-w-[60px]">{freq}Hz</span>
+                      <Slider
+                        value={[eqValues[index]]}
+                        onValueChange={([value]) => handleEqChange(index, value)}
+                        min={0}
+                        max={100}
+                        step={1}
+                        className="flex-1"
+                        data-testid={`slider-eq-${freq}`}
+                      />
+                      <span className="text-sm text-muted-foreground min-w-[40px] text-right">{eqValues[index]}</span>
+                    </div>
                   </div>
                 ))}
-              </div>
-            </div>
-
-            {/* Background Additions */}
-            <div className="space-y-3 pt-6 border-t">
-              <span className="text-sm text-muted-foreground">Background Ambience</span>
-              <div className="flex flex-wrap gap-4">
-                <div className="flex items-center space-x-2">
-                  <Checkbox
-                    id="sea"
-                    checked={backgrounds.sea}
-                    onCheckedChange={(checked) => 
-                      setBackgrounds({ ...backgrounds, sea: checked as boolean })
-                    }
-                    data-testid="checkbox-sea"
-                  />
-                  <label htmlFor="sea" className="text-sm cursor-pointer">
-                    Sea Waves
-                  </label>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <Checkbox
-                    id="wind"
-                    checked={backgrounds.wind}
-                    onCheckedChange={(checked) => 
-                      setBackgrounds({ ...backgrounds, wind: checked as boolean })
-                    }
-                    data-testid="checkbox-wind"
-                  />
-                  <label htmlFor="wind" className="text-sm cursor-pointer">
-                    Wind
-                  </label>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <Checkbox
-                    id="forest"
-                    checked={backgrounds.forest}
-                    onCheckedChange={(checked) => 
-                      setBackgrounds({ ...backgrounds, forest: checked as boolean })
-                    }
-                    data-testid="checkbox-forest"
-                  />
-                  <label htmlFor="forest" className="text-sm cursor-pointer">
-                    Forest
-                  </label>
-                </div>
               </div>
             </div>
 
