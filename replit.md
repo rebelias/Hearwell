@@ -78,6 +78,12 @@ client/
   - Audiometer: Calibrated gain curve (0.001 at -10 dB to 0.5 max) ensures audibility across full range
   - Notched Noise: Synchronous noise type switching via replaceNoiseSource method eliminates race conditions
   - Audiometer UI: Fixed state management to show playing→tested transitions properly
+  - Audiometer Timeout Management: Independent timeout resolution prevents race conditions during rapid clicks
+- **UX Improvements**:
+  - Noise Generator: Changed EQ sliders from vertical to horizontal layout for better usability
+  - Noise Generator: Updated page title from "White Noise Generator" to "Noise Generator"
+  - Tinnitus Matching: Fixed volume slider allowing full 0-100% range (removed min constraint)
+  - Removed non-functional background ambience controls (sea/wind/forest)
 - Implemented all five core audio tools with Web Audio API
 - Added real-time audiogram chart visualization
 - Integrated URL parameter support for shareable settings
