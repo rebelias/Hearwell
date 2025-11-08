@@ -72,7 +72,19 @@ client/
 - **Interactions**: Custom elevation utilities (hover-elevate, active-elevate-2)
 - **Spacing**: Consistent 8px base unit system
 
-## Recent Changes (November 7, 2025)
+## Recent Changes
+
+### November 8, 2025
+- **Mobile Responsiveness Overhaul** (Galaxy S25 Ultra optimization):
+  - Progressive font scaling: All headings and body text use responsive breakpoints (text-2xl sm:text-3xl md:text-4xl)
+  - Reduced mobile spacing: Container padding py-6 sm:py-8 md:py-12 (was fixed py-12)
+  - Optimized card spacing: space-y-6 sm:space-y-8 (was fixed space-y-8)
+  - Smaller mobile typography: text-xs sm:text-sm for labels, text-sm sm:text-base for body text
+  - Frequency displays scale appropriately: text-xl sm:text-2xl md:text-3xl
+  - Maintained 64px touch targets for buttons and sliders
+  - Applied across all pages: Home, FrequencyFinder, TinnitusMatching, NoiseGenerator, NotchedNoise
+
+### November 7, 2025
 - **Critical Audio Fixes**:
   - Audiometer: Per-playback node creation ensures immediate left/right ear routing without center bleed
   - Audiometer: Calibrated gain curve (0.001 at -10 dB to 0.5 max) ensures audibility across full range
@@ -88,7 +100,6 @@ client/
 - Added real-time audiogram chart visualization
 - Integrated URL parameter support for shareable settings
 - Created custom audio engine hooks for each tool type
-- Optimized mobile responsiveness across all pages
 
 ## Usage
 1. Navigate to any tool from the home page
