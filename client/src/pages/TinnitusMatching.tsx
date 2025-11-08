@@ -80,18 +80,18 @@ export default function TinnitusMatching() {
 
   return (
     <div className="min-h-screen bg-background">
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="mb-8">
-          <h1 className="font-display font-bold text-3xl md:text-4xl mb-2">Tinnitus Matching Tool</h1>
-          <p className="text-muted-foreground">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 md:py-12">
+        <div className="mb-6 sm:mb-8">
+          <h1 className="font-display font-bold text-2xl sm:text-3xl md:text-4xl mb-2">Tinnitus Matching Tool</h1>
+          <p className="text-sm sm:text-base text-muted-foreground">
             Match and share your exact tinnitus tone with others
           </p>
         </div>
 
-        <Alert className="mb-8">
+        <Alert className="mb-6 sm:mb-8">
           <Info className="h-4 w-4" />
-          <AlertTitle>How to Match Your Tinnitus</AlertTitle>
-          <AlertDescription>
+          <AlertTitle className="text-sm sm:text-base">How to Match Your Tinnitus</AlertTitle>
+          <AlertDescription className="text-xs sm:text-sm">
             Click PLAY and adjust the frequency slider until it matches your tinnitus. Select the waveform 
             that best represents the quality of your tinnitus sound, then save or share your settings.
           </AlertDescription>
@@ -106,10 +106,10 @@ export default function TinnitusMatching() {
           <TabsContent value="match" className="space-y-6">
             <Card>
               <CardHeader>
-                <CardTitle>Tone Controls</CardTitle>
-                <CardDescription>Fine-tune your tinnitus tone match</CardDescription>
+                <CardTitle className="text-lg sm:text-xl">Tone Controls</CardTitle>
+                <CardDescription className="text-xs sm:text-sm">Fine-tune your tinnitus tone match</CardDescription>
               </CardHeader>
-              <CardContent className="space-y-8">
+              <CardContent className="space-y-6 sm:space-y-8">
                 {/* Audio Player */}
                 <div className="flex justify-center">
                   <AudioPlayer 
@@ -122,10 +122,10 @@ export default function TinnitusMatching() {
                 </div>
 
                 {/* Frequency Slider */}
-                <div className="space-y-4">
+                <div className="space-y-3 sm:space-y-4">
                   <div className="flex justify-between items-center">
-                    <span className="text-sm text-muted-foreground">Frequency</span>
-                    <span className="text-2xl font-display font-bold text-primary" data-testid="text-frequency">
+                    <span className="text-xs sm:text-sm text-muted-foreground">Frequency</span>
+                    <span className="text-xl sm:text-2xl md:text-3xl font-display font-bold text-primary" data-testid="text-frequency">
                       {frequency} Hz
                     </span>
                   </div>

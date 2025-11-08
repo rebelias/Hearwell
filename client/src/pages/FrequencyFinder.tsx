@@ -65,18 +65,18 @@ export default function FrequencyFinder() {
 
   return (
     <div className="min-h-screen bg-background">
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="mb-8">
-          <h1 className="font-display font-bold text-3xl md:text-4xl mb-2">Tinnitus Frequency Finder</h1>
-          <p className="text-muted-foreground">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 md:py-12">
+        <div className="mb-6 sm:mb-8">
+          <h1 className="font-display font-bold text-2xl sm:text-3xl md:text-4xl mb-2">Tinnitus Frequency Finder</h1>
+          <p className="text-sm sm:text-base text-muted-foreground">
             Find the frequency that matches your tinnitus by adjusting the slider
           </p>
         </div>
 
-        <Alert className="mb-8">
+        <Alert className="mb-6 sm:mb-8">
           <Info className="h-4 w-4" />
-          <AlertTitle>Instructions</AlertTitle>
-          <AlertDescription>
+          <AlertTitle className="text-sm sm:text-base">Instructions</AlertTitle>
+          <AlertDescription className="text-xs sm:text-sm">
             Click PLAY and adjust the frequency slider until you find the tone that matches your tinnitus. 
             Then select the waveform quality that most closely matches how your tinnitus sounds.
           </AlertDescription>
@@ -84,10 +84,10 @@ export default function FrequencyFinder() {
 
         <Card>
           <CardHeader>
-            <CardTitle>Frequency Control</CardTitle>
-            <CardDescription>Adjust the frequency from 50Hz to 20,000Hz</CardDescription>
+            <CardTitle className="text-lg sm:text-xl">Frequency Control</CardTitle>
+            <CardDescription className="text-xs sm:text-sm">Adjust the frequency from 50Hz to 20,000Hz</CardDescription>
           </CardHeader>
-          <CardContent className="space-y-8">
+          <CardContent className="space-y-6 sm:space-y-8">
             {/* Audio Player */}
             <div className="flex justify-center">
               <AudioPlayer 
@@ -97,10 +97,10 @@ export default function FrequencyFinder() {
             </div>
 
             {/* Frequency Slider */}
-            <div className="space-y-4">
+            <div className="space-y-3 sm:space-y-4">
               <div className="flex justify-between items-center">
-                <span className="text-sm text-muted-foreground">Frequency</span>
-                <span className="text-2xl font-display font-bold text-primary" data-testid="text-frequency">
+                <span className="text-xs sm:text-sm text-muted-foreground">Frequency</span>
+                <span className="text-xl sm:text-2xl md:text-3xl font-display font-bold text-primary" data-testid="text-frequency">
                   {frequency} Hz
                 </span>
               </div>

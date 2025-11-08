@@ -44,18 +44,18 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-background">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 md:py-12">
         {/* Hero Section */}
-        <div className="text-center mb-16">
-          <div className="flex justify-center mb-6">
-            <div className="p-4 bg-primary/10 rounded-2xl">
-              <Sparkles className="h-12 w-12 text-primary" />
+        <div className="text-center mb-8 sm:mb-12 md:mb-16">
+          <div className="flex justify-center mb-4 sm:mb-6">
+            <div className="p-3 sm:p-4 bg-primary/10 rounded-2xl">
+              <Sparkles className="h-10 w-10 sm:h-12 sm:w-12 text-primary" />
             </div>
           </div>
-          <h1 className="font-display font-bold text-4xl md:text-5xl lg:text-6xl mb-4">
+          <h1 className="font-display font-bold text-2xl sm:text-3xl md:text-4xl lg:text-5xl mb-3 sm:mb-4 px-2">
             Comprehensive Hearing Health Tools
           </h1>
-          <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto mb-8">
+          <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto mb-6 sm:mb-8 px-2">
             Professional-grade tools for tinnitus management and hearing assessment. 
             No downloads required, just headphones and your device.
           </p>

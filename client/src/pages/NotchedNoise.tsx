@@ -45,18 +45,18 @@ export default function NotchedNoise() {
 
   return (
     <div className="min-h-screen bg-background">
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="mb-8">
-          <h1 className="font-display font-bold text-3xl md:text-4xl mb-2">Notched Noise Generator</h1>
-          <p className="text-muted-foreground">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 md:py-12">
+        <div className="mb-6 sm:mb-8">
+          <h1 className="font-display font-bold text-2xl sm:text-3xl md:text-4xl mb-2">Notched Noise Generator</h1>
+          <p className="text-sm sm:text-base text-muted-foreground">
             Therapeutic noise with your tinnitus frequency removed
           </p>
         </div>
 
-        <Alert className="mb-8">
+        <Alert className="mb-6 sm:mb-8">
           <Info className="h-4 w-4" />
-          <AlertTitle>How Notched Noise Works</AlertTitle>
-          <AlertDescription>
+          <AlertTitle className="text-sm sm:text-base">How Notched Noise Works</AlertTitle>
+          <AlertDescription className="text-xs sm:text-sm">
             Notched noise therapy plays white noise with your tinnitus frequency "notched out" (removed). 
             Theory suggests this may help reduce tinnitus perception over time by retraining your brain.
             Set the notch frequency to match your tinnitus frequency.
@@ -65,10 +65,10 @@ export default function NotchedNoise() {
 
         <Card>
           <CardHeader>
-            <CardTitle>Notch Settings</CardTitle>
-            <CardDescription>Configure the frequency notch and noise type</CardDescription>
+            <CardTitle className="text-lg sm:text-xl">Notch Settings</CardTitle>
+            <CardDescription className="text-xs sm:text-sm">Configure the frequency notch and noise type</CardDescription>
           </CardHeader>
-          <CardContent className="space-y-8">
+          <CardContent className="space-y-6 sm:space-y-8">
             {/* Audio Player */}
             <div className="flex justify-center">
               <AudioPlayer 
@@ -78,10 +78,10 @@ export default function NotchedNoise() {
             </div>
 
             {/* Notch Frequency */}
-            <div className="space-y-4">
+            <div className="space-y-3 sm:space-y-4">
               <div className="flex justify-between items-center">
-                <span className="text-sm text-muted-foreground">Notch Frequency (Your Tinnitus)</span>
-                <span className="text-2xl font-display font-bold text-primary" data-testid="text-notch-frequency">
+                <span className="text-xs sm:text-sm text-muted-foreground">Notch Frequency (Your Tinnitus)</span>
+                <span className="text-xl sm:text-2xl md:text-3xl font-display font-bold text-primary" data-testid="text-notch-frequency">
                   {notchFrequency} Hz
                 </span>
               </div>

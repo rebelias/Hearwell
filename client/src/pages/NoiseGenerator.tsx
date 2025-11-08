@@ -60,18 +60,18 @@ export default function NoiseGenerator() {
 
   return (
     <div className="min-h-screen bg-background">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="mb-8">
-          <h1 className="font-display font-bold text-3xl md:text-4xl mb-2">Noise Generator</h1>
-          <p className="text-muted-foreground">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 md:py-12">
+        <div className="mb-6 sm:mb-8">
+          <h1 className="font-display font-bold text-2xl sm:text-3xl md:text-4xl mb-2">Noise Generator</h1>
+          <p className="text-sm sm:text-base text-muted-foreground">
             Create custom colored noise with 8-band equalizer
           </p>
         </div>
 
-        <Alert className="mb-8">
+        <Alert className="mb-6 sm:mb-8">
           <Info className="h-4 w-4" />
-          <AlertTitle>How to Use</AlertTitle>
-          <AlertDescription>
+          <AlertTitle className="text-sm sm:text-base">How to Use</AlertTitle>
+          <AlertDescription className="text-xs sm:text-sm">
             Click PLAY and adjust the equalizer sliders to create a pleasing noise. Use presets for standard 
             colored noise types like white, pink, brown, violet, blue, or grey noise.
           </AlertDescription>
@@ -79,10 +79,10 @@ export default function NoiseGenerator() {
 
         <Card>
           <CardHeader>
-            <CardTitle>Equalizer Settings</CardTitle>
-            <CardDescription>Adjust 8-band equalizer to customize your noise</CardDescription>
+            <CardTitle className="text-lg sm:text-xl">Equalizer Settings</CardTitle>
+            <CardDescription className="text-xs sm:text-sm">Adjust 8-band equalizer to customize your noise</CardDescription>
           </CardHeader>
-          <CardContent className="space-y-8">
+          <CardContent className="space-y-6 sm:space-y-8">
             {/* Audio Player */}
             <div className="flex justify-center">
               <AudioPlayer 
