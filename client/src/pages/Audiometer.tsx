@@ -52,6 +52,42 @@ export default function Audiometer() {
     });
   };
 
+  const handleDownload = () => {
+    const getLowestTestedVolume = (freq: number): number | null => {
+      for (const vol of volumes) {
+        const key = `${freq}-${vol}`;
+        if (testResults[key] === 'tested') {
+          return vol;
+        }
+      }
+      return null;
+    };
+
+    let csvContent = "Frequency (Hz),Hearing Threshold (dB)\n";
+    
+    frequencies.forEach(freq => {
+      const threshold = getLowestTestedVolume(freq);
+      if (threshold !== null) {
+        csvContent += `${freq},${threshold}\n`;
+      }
+    });
+
+    const blob = new Blob([csvContent], { type: 'text/csv' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = `audiogram-results-${new Date().toISOString().split('T')[0]}.csv`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+
+    toast({
+      title: "Results Downloaded",
+      description: "Your audiogram results have been saved as CSV",
+    });
+  };
+
   const getCellStyle = (state: CellState) => {
     switch (state) {
       case 'playing':
@@ -187,7 +223,7 @@ export default function Audiometer() {
                 <Button variant="outline" onClick={clearResults} data-testid="button-clear">
                   Clear Results
                 </Button>
-                <Button variant="outline" className="gap-2" data-testid="button-download">
+                <Button variant="outline" onClick={handleDownload} className="gap-2" data-testid="button-download">
                   <Download className="h-4 w-4" />
                   Download
                 </Button>

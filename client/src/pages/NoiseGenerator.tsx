@@ -7,6 +7,7 @@ import AudioPlayer from "@/components/AudioPlayer";
 import { useToast } from "@/hooks/use-toast";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { useNoiseGenerator, NoiseColor } from "@/hooks/useNoiseGenerator";
+import { exportAudioAsWav, downloadBlob } from "@/lib/audioExport";
 
 export default function NoiseGenerator() {
   const [eqValues, setEqValues] = useState([50, 50, 50, 50, 50, 50, 50, 50]);
@@ -56,6 +57,120 @@ export default function NoiseGenerator() {
       title: "Settings Saved",
       description: "Your noise settings have been copied to clipboard",
     });
+  };
+
+  const handleDownload = async () => {
+    try {
+      const duration = 30; // 30 seconds of audio
+
+      const blob = await exportAudioAsWav(duration, (offlineCtx) => {
+        // Create noise buffer
+        const createNoiseBuffer = (type: NoiseColor) => {
+          const bufferSize = offlineCtx.sampleRate * 2;
+          const buffer = offlineCtx.createBuffer(1, bufferSize, offlineCtx.sampleRate);
+          const output = buffer.getChannelData(0);
+
+          if (type === 'white') {
+            for (let i = 0; i < bufferSize; i++) {
+              output[i] = Math.random() * 2 - 1;
+            }
+          } else if (type === 'pink') {
+            let b0 = 0, b1 = 0, b2 = 0, b3 = 0, b4 = 0, b5 = 0, b6 = 0;
+            for (let i = 0; i < bufferSize; i++) {
+              const white = Math.random() * 2 - 1;
+              b0 = 0.99886 * b0 + white * 0.0555179;
+              b1 = 0.99332 * b1 + white * 0.0750759;
+              b2 = 0.96900 * b2 + white * 0.1538520;
+              b3 = 0.86650 * b3 + white * 0.3104856;
+              b4 = 0.55000 * b4 + white * 0.5329522;
+              b5 = -0.7616 * b5 - white * 0.0168980;
+              output[i] = b0 + b1 + b2 + b3 + b4 + b5 + b6 + white * 0.5362;
+              output[i] *= 0.11;
+              b6 = white * 0.115926;
+            }
+          } else if (type === 'brown') {
+            let lastOut = 0;
+            for (let i = 0; i < bufferSize; i++) {
+              const white = Math.random() * 2 - 1;
+              output[i] = (lastOut + (0.02 * white)) / 1.02;
+              lastOut = output[i];
+              output[i] *= 3.5;
+            }
+          } else if (type === 'violet') {
+            let lastOut = 0;
+            for (let i = 0; i < bufferSize; i++) {
+              const white = Math.random() * 2 - 1;
+              const current = white - lastOut;
+              output[i] = current;
+              lastOut = white;
+              output[i] *= 0.3;
+            }
+          } else if (type === 'blue') {
+            let lastOut = 0;
+            for (let i = 0; i < bufferSize; i++) {
+              const white = Math.random() * 2 - 1;
+              const current = (white + lastOut) / 2;
+              output[i] = current - lastOut;
+              lastOut = current;
+              output[i] *= 0.5;
+            }
+          } else if (type === 'grey') {
+            for (let i = 0; i < bufferSize; i++) {
+              output[i] = Math.random() * 2 - 1;
+            }
+          }
+
+          return buffer;
+        };
+
+        // Create nodes
+        const noiseBuffer = createNoiseBuffer(noiseColor);
+        const noiseNode = offlineCtx.createBufferSource();
+        noiseNode.buffer = noiseBuffer;
+        noiseNode.loop = true;
+
+        const gainNode = offlineCtx.createGain();
+        gainNode.gain.value = 0.3;
+
+        // Create 8-band EQ
+        const frequencies = [32, 64, 125, 250, 500, 1000, 2000, 4000];
+        const filterNodes: BiquadFilterNode[] = [];
+
+        frequencies.forEach((freq, index) => {
+          const filter = offlineCtx.createBiquadFilter();
+          filter.type = 'peaking';
+          filter.frequency.value = freq;
+          filter.Q.value = 1.0;
+          filter.gain.value = (eqValues[index] - 50) * 0.24;
+          filterNodes.push(filter);
+        });
+
+        // Connect nodes
+        let currentNode: AudioNode = noiseNode;
+        filterNodes.forEach(filter => {
+          currentNode.connect(filter);
+          currentNode = filter;
+        });
+        currentNode.connect(gainNode);
+        gainNode.connect(offlineCtx.destination);
+
+        noiseNode.start(0);
+      });
+
+      const filename = `noise-${noiseColor}-${new Date().toISOString().split('T')[0]}.wav`;
+      downloadBlob(blob, filename);
+
+      toast({
+        title: "Audio Downloaded",
+        description: `30 seconds of ${noiseColor} noise saved as WAV file`,
+      });
+    } catch (error) {
+      toast({
+        title: "Download Failed",
+        description: "Unable to export audio. Please try again.",
+        variant: "destructive",
+      });
+    }
   };
 
   return (
@@ -138,7 +253,7 @@ export default function NoiseGenerator() {
                 <Copy className="h-4 w-4" />
                 Save Settings
               </Button>
-              <Button variant="outline" className="gap-2" data-testid="button-download">
+              <Button variant="outline" onClick={handleDownload} className="gap-2" data-testid="button-download">
                 <Download className="h-4 w-4" />
                 Download
               </Button>

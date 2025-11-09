@@ -9,6 +9,7 @@ import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
 import { useNotchedNoise, NotchNoiseType } from "@/hooks/useNotchedNoise";
+import { exportAudioAsWav, downloadBlob } from "@/lib/audioExport";
 
 export default function NotchedNoise() {
   const [notchFrequency, setNotchFrequency] = useState(4000);
@@ -41,6 +42,88 @@ export default function NotchedNoise() {
       title: "Settings Saved",
       description: "Your notched noise settings have been copied",
     });
+  };
+
+  const handleDownload = async () => {
+    try {
+      const duration = 30; // 30 seconds of audio
+
+      const blob = await exportAudioAsWav(duration, (offlineCtx) => {
+        // Create noise buffer
+        const createNoiseBuffer = (type: NotchNoiseType) => {
+          const bufferSize = offlineCtx.sampleRate * 2;
+          const buffer = offlineCtx.createBuffer(1, bufferSize, offlineCtx.sampleRate);
+          const output = buffer.getChannelData(0);
+
+          if (type === 'white') {
+            for (let i = 0; i < bufferSize; i++) {
+              output[i] = Math.random() * 2 - 1;
+            }
+          } else if (type === 'pink') {
+            let b0 = 0, b1 = 0, b2 = 0, b3 = 0, b4 = 0, b5 = 0, b6 = 0;
+            for (let i = 0; i < bufferSize; i++) {
+              const white = Math.random() * 2 - 1;
+              b0 = 0.99886 * b0 + white * 0.0555179;
+              b1 = 0.99332 * b1 + white * 0.0750759;
+              b2 = 0.96900 * b2 + white * 0.1538520;
+              b3 = 0.86650 * b3 + white * 0.3104856;
+              b4 = 0.55000 * b4 + white * 0.5329522;
+              b5 = -0.7616 * b5 - white * 0.0168980;
+              output[i] = b0 + b1 + b2 + b3 + b4 + b5 + b6 + white * 0.5362;
+              output[i] *= 0.11;
+              b6 = white * 0.115926;
+            }
+          } else if (type === 'purple') {
+            let lastOut = 0;
+            for (let i = 0; i < bufferSize; i++) {
+              const white = Math.random() * 2 - 1;
+              const current = white - lastOut;
+              output[i] = current;
+              lastOut = white;
+              output[i] *= 0.3;
+            }
+          }
+
+          return buffer;
+        };
+
+        // Create nodes
+        const noiseBuffer = createNoiseBuffer(noiseType);
+        const noiseNode = offlineCtx.createBufferSource();
+        noiseNode.buffer = noiseBuffer;
+        noiseNode.loop = true;
+
+        const gainNode = offlineCtx.createGain();
+        gainNode.gain.value = 0.3;
+
+        // Create notch filter
+        const notchFilter = offlineCtx.createBiquadFilter();
+        notchFilter.type = 'notch';
+        notchFilter.frequency.value = notchFrequency;
+        notchFilter.Q.value = notchFrequency / notchWidth;
+
+        // Connect nodes
+        noiseNode.connect(notchFilter);
+        notchFilter.connect(gainNode);
+        gainNode.connect(offlineCtx.destination);
+
+        noiseNode.start(0);
+      });
+
+      const filename = `notched-noise-${notchFrequency}Hz-${new Date().toISOString().split('T')[0]}.wav`;
+      downloadBlob(blob, filename);
+
+      toast({
+        title: "Audio Downloaded",
+        description: `30 seconds of notched ${noiseType} noise saved as WAV file`,
+      });
+    } catch (error) {
+      toast({
+        title: "Download Failed",
+        description: "Unable to export audio. Please try again.",
+        variant: "destructive",
+      });
+    }
   };
 
   return (
@@ -149,7 +232,7 @@ export default function NotchedNoise() {
                 <Copy className="h-4 w-4" />
                 Save Settings
               </Button>
-              <Button variant="outline" className="gap-2" data-testid="button-download">
+              <Button variant="outline" onClick={handleDownload} className="gap-2" data-testid="button-download">
                 <Download className="h-4 w-4" />
                 Download Audio
               </Button>
