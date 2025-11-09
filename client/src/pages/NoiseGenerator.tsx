@@ -2,12 +2,18 @@ import { useState, useEffect } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Slider } from "@/components/ui/slider";
-import { Copy, Download, Info } from "lucide-react";
+import { Copy, Download, Info, HelpCircle } from "lucide-react";
 import AudioPlayer from "@/components/AudioPlayer";
 import { useToast } from "@/hooks/use-toast";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { useNoiseGenerator, NoiseColor } from "@/hooks/useNoiseGenerator";
 import { exportAudioAsWav, downloadBlob } from "@/lib/audioExport";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 export default function NoiseGenerator() {
   const [eqValues, setEqValues] = useState([50, 50, 50, 50, 50, 50, 50, 50]);

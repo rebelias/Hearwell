@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Slider } from "@/components/ui/slider";
-import { Copy, Download, Info } from "lucide-react";
+import { Copy, Download, Info, HelpCircle } from "lucide-react";
 import AudioPlayer from "@/components/AudioPlayer";
 import { useToast } from "@/hooks/use-toast";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
@@ -10,6 +10,12 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
 import { useNotchedNoise, NotchNoiseType } from "@/hooks/useNotchedNoise";
 import { exportAudioAsWav, downloadBlob } from "@/lib/audioExport";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 export default function NotchedNoise() {
   const [notchFrequency, setNotchFrequency] = useState(4000);

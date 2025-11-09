@@ -14,6 +14,7 @@ export function useAudioEngine(options: AudioEngineOptions = {}) {
   const oscillatorRef = useRef<OscillatorNode | null>(null);
   const gainNodeRef = useRef<GainNode | null>(null);
   const noiseNodeRef = useRef<AudioBufferSourceNode | null>(null);
+  const filterNodeRef = useRef<BiquadFilterNode | null>(null);
   
   const {
     frequency = 1000,
@@ -104,7 +105,21 @@ export function useAudioEngine(options: AudioEngineOptions = {}) {
       oscillatorRef.current = ctx.createOscillator();
       oscillatorRef.current.type = waveform === 'filtered' ? 'sine' : waveform;
       oscillatorRef.current.frequency.value = frequency;
-      oscillatorRef.current.connect(gainNodeRef.current);
+      
+      // Apply low-pass filter for 'filtered' waveform
+      if (waveform === 'filtered') {
+        if (!filterNodeRef.current) {
+          filterNodeRef.current = ctx.createBiquadFilter();
+          filterNodeRef.current.type = 'lowpass';
+          filterNodeRef.current.frequency.value = 1000; // 1kHz cutoff for softer sound
+          filterNodeRef.current.Q.value = 1;
+        }
+        oscillatorRef.current.connect(filterNodeRef.current);
+        filterNodeRef.current.connect(gainNodeRef.current);
+      } else {
+        oscillatorRef.current.connect(gainNodeRef.current);
+      }
+      
       oscillatorRef.current.start();
     }
 

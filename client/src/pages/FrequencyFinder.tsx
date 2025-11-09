@@ -2,11 +2,17 @@ import { useState, useEffect } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Slider } from "@/components/ui/slider";
-import { Copy, Share2, Info } from "lucide-react";
+import { Copy, Share2, Info, HelpCircle } from "lucide-react";
 import WaveformSelector, { WaveformType } from "@/components/WaveformSelector";
 import AudioPlayer from "@/components/AudioPlayer";
 import { useToast } from "@/hooks/use-toast";
 import { useAudioEngine } from "@/hooks/useAudioEngine";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 import {
   Alert,
   AlertDescription,
@@ -64,30 +70,31 @@ export default function FrequencyFinder() {
   };
 
   return (
-    <div className="min-h-screen bg-background">
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 md:py-12">
-        <div className="mb-6 sm:mb-8">
-          <h1 className="font-display font-bold text-2xl sm:text-3xl md:text-4xl mb-2">Tinnitus Frequency Finder</h1>
-          <p className="text-sm sm:text-base text-muted-foreground">
-            Find the frequency that matches your tinnitus by adjusting the slider
-          </p>
-        </div>
+    <TooltipProvider>
+      <div className="min-h-screen bg-background">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 md:py-12">
+          <div className="mb-6 sm:mb-8">
+            <h1 className="font-display font-bold text-2xl sm:text-3xl md:text-4xl mb-2">Tinnitus Frequency Finder</h1>
+            <p className="text-sm sm:text-base text-muted-foreground">
+              Find the frequency that matches your tinnitus by adjusting the slider
+            </p>
+          </div>
 
-        <Alert className="mb-6 sm:mb-8">
-          <Info className="h-4 w-4" />
-          <AlertTitle className="text-sm sm:text-base">Instructions</AlertTitle>
-          <AlertDescription className="text-xs sm:text-sm">
-            Click PLAY and adjust the frequency slider until you find the tone that matches your tinnitus. 
-            Then select the waveform quality that most closely matches how your tinnitus sounds.
-          </AlertDescription>
-        </Alert>
+          <Alert className="mb-6 sm:mb-8">
+            <Info className="h-4 w-4" />
+            <AlertTitle className="text-sm sm:text-base">Instructions</AlertTitle>
+            <AlertDescription className="text-xs sm:text-sm">
+              Click PLAY and adjust the frequency slider until you find the tone that matches your tinnitus. 
+              Then select the waveform quality that most closely matches how your tinnitus sounds.
+            </AlertDescription>
+          </Alert>
 
-        <Card>
-          <CardHeader>
-            <CardTitle className="text-lg sm:text-xl">Frequency Control</CardTitle>
-            <CardDescription className="text-xs sm:text-sm">Adjust the frequency from 50Hz to 20,000Hz</CardDescription>
-          </CardHeader>
-          <CardContent className="space-y-6 sm:space-y-8">
+          <Card>
+            <CardHeader>
+              <CardTitle className="text-lg sm:text-xl">Frequency Control</CardTitle>
+              <CardDescription className="text-xs sm:text-sm">Adjust the frequency from 50Hz to 20,000Hz</CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-6 sm:space-y-8">
             {/* Audio Player */}
             <div className="flex justify-center">
               <AudioPlayer 
@@ -99,7 +106,17 @@ export default function FrequencyFinder() {
             {/* Frequency Slider */}
             <div className="space-y-3 sm:space-y-4">
               <div className="flex justify-between items-center">
-                <span className="text-xs sm:text-sm text-muted-foreground">Frequency</span>
+                <div className="flex items-center gap-2">
+                  <span className="text-xs sm:text-sm text-muted-foreground">Frequency (Hz)</span>
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <HelpCircle className="h-3 w-3 sm:h-4 sm:w-4 text-muted-foreground cursor-help" />
+                    </TooltipTrigger>
+                    <TooltipContent className="max-w-xs">
+                      <p className="text-xs sm:text-sm">Frequency is the pitch of sound measured in Hertz (Hz). Lower numbers = deeper sounds (like thunder), higher numbers = sharper sounds (like a whistle)</p>
+                    </TooltipContent>
+                  </Tooltip>
+                </div>
                 <span className="text-xl sm:text-2xl md:text-3xl font-display font-bold text-primary" data-testid="text-frequency">
                   {frequency} Hz
                 </span>
@@ -124,7 +141,17 @@ export default function FrequencyFinder() {
 
             {/* Waveform Selector */}
             <div className="space-y-3">
-              <span className="text-sm text-muted-foreground">Tone Quality</span>
+              <div className="flex items-center gap-2">
+                <span className="text-sm text-muted-foreground">Tone Quality (Waveform)</span>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <HelpCircle className="h-3 w-3 sm:h-4 sm:w-4 text-muted-foreground cursor-help" />
+                  </TooltipTrigger>
+                  <TooltipContent className="max-w-xs">
+                    <p className="text-xs sm:text-sm">Different waveforms create different sound qualities. Sine = pure tone, Square = buzzy, Triangle = hollow, Sawtooth = harsh, Filtered = softer, Noise = static-like</p>
+                  </TooltipContent>
+                </Tooltip>
+              </div>
               <WaveformSelector value={waveform} onChange={setWaveform} />
             </div>
 
@@ -160,5 +187,6 @@ export default function FrequencyFinder() {
         </Card>
       </div>
     </div>
+    </TooltipProvider>
   );
 }
