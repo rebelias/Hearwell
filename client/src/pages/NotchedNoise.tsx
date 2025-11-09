@@ -133,14 +133,15 @@ export default function NotchedNoise() {
   };
 
   return (
-    <div className="min-h-screen bg-background">
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 md:py-12">
-        <div className="mb-6 sm:mb-8">
-          <h1 className="font-display font-bold text-2xl sm:text-3xl md:text-4xl mb-2">Notched Noise Generator</h1>
-          <p className="text-sm sm:text-base text-muted-foreground">
-            Therapeutic noise with your tinnitus frequency removed
-          </p>
-        </div>
+    <TooltipProvider>
+      <div className="min-h-screen bg-background">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 md:py-12">
+          <div className="mb-6 sm:mb-8">
+            <h1 className="font-display font-bold text-2xl sm:text-3xl md:text-4xl mb-2">Notched Noise Generator</h1>
+            <p className="text-sm sm:text-base text-muted-foreground">
+              Therapeutic noise with your tinnitus frequency removed
+            </p>
+          </div>
 
         <Alert className="mb-6 sm:mb-8">
           <Info className="h-4 w-4" />
@@ -169,7 +170,17 @@ export default function NotchedNoise() {
             {/* Notch Frequency */}
             <div className="space-y-3 sm:space-y-4">
               <div className="flex justify-between items-center">
-                <span className="text-xs sm:text-sm text-muted-foreground">Notch Frequency (Your Tinnitus)</span>
+                <div className="flex items-center gap-2">
+                  <span className="text-xs sm:text-sm text-muted-foreground">Notch Frequency (Your Tinnitus)</span>
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <HelpCircle className="h-3.5 w-3.5 text-muted-foreground cursor-help" />
+                    </TooltipTrigger>
+                    <TooltipContent className="max-w-xs">
+                      <p>Set this to match the pitch of your tinnitus ringing. The noise generator will remove this frequency range, potentially helping your brain "forget" the tinnitus over time.</p>
+                    </TooltipContent>
+                  </Tooltip>
+                </div>
                 <span className="text-xl sm:text-2xl md:text-3xl font-display font-bold text-primary" data-testid="text-notch-frequency">
                   {notchFrequency} Hz
                 </span>
@@ -194,7 +205,17 @@ export default function NotchedNoise() {
             {/* Notch Width */}
             <div className="space-y-4">
               <div className="flex justify-between items-center">
-                <span className="text-sm text-muted-foreground">Notch Width</span>
+                <div className="flex items-center gap-2">
+                  <span className="text-sm text-muted-foreground">Notch Width</span>
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <HelpCircle className="h-3.5 w-3.5 text-muted-foreground cursor-help" />
+                    </TooltipTrigger>
+                    <TooltipContent className="max-w-xs">
+                      <p>How wide of a frequency range to remove around your tinnitus frequency. Wider = more frequencies removed, narrower = more precise targeting.</p>
+                    </TooltipContent>
+                  </Tooltip>
+                </div>
                 <span className="text-lg font-semibold" data-testid="text-notch-width">
                   ±{notchWidth} Hz
                 </span>
@@ -262,7 +283,8 @@ export default function NotchedNoise() {
             </p>
           </CardContent>
         </Card>
+        </div>
       </div>
-    </div>
+    </TooltipProvider>
   );
 }

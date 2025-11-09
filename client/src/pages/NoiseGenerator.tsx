@@ -180,14 +180,15 @@ export default function NoiseGenerator() {
   };
 
   return (
-    <div className="min-h-screen bg-background">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 md:py-12">
-        <div className="mb-6 sm:mb-8">
-          <h1 className="font-display font-bold text-2xl sm:text-3xl md:text-4xl mb-2">Noise Generator</h1>
-          <p className="text-sm sm:text-base text-muted-foreground">
-            Create custom colored noise with 8-band equalizer
-          </p>
-        </div>
+    <TooltipProvider>
+      <div className="min-h-screen bg-background">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 md:py-12">
+          <div className="mb-6 sm:mb-8">
+            <h1 className="font-display font-bold text-2xl sm:text-3xl md:text-4xl mb-2">Noise Generator</h1>
+            <p className="text-sm sm:text-base text-muted-foreground">
+              Create custom colored noise with 8-band equalizer
+            </p>
+          </div>
 
         <Alert className="mb-6 sm:mb-8">
           <Info className="h-4 w-4" />
@@ -200,7 +201,17 @@ export default function NoiseGenerator() {
 
         <Card>
           <CardHeader>
-            <CardTitle className="text-lg sm:text-xl">Equalizer Settings</CardTitle>
+            <div className="flex items-center gap-2">
+              <CardTitle className="text-lg sm:text-xl">Equalizer Settings</CardTitle>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <HelpCircle className="h-4 w-4 text-muted-foreground cursor-help" />
+                </TooltipTrigger>
+                <TooltipContent className="max-w-xs">
+                  <p>Equalizer adjusts which pitches are louder or quieter. Think of it like adjusting bass/treble on a stereo - low frequencies (left) sound deeper, high frequencies (right) sound sharper.</p>
+                </TooltipContent>
+              </Tooltip>
+            </div>
             <CardDescription className="text-xs sm:text-sm">Adjust 8-band equalizer to customize your noise</CardDescription>
           </CardHeader>
           <CardContent className="space-y-6 sm:space-y-8">
@@ -214,7 +225,21 @@ export default function NoiseGenerator() {
 
             {/* Presets */}
             <div className="space-y-3">
-              <span className="text-sm text-muted-foreground">Colored Noise Presets</span>
+              <div className="flex items-center gap-2">
+                <span className="text-sm text-muted-foreground">Colored Noise Presets</span>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <HelpCircle className="h-4 w-4 text-muted-foreground cursor-help" />
+                  </TooltipTrigger>
+                  <TooltipContent className="max-w-xs">
+                    <p><strong>White:</strong> All pitches equal (like TV static)</p>
+                    <p><strong>Pink:</strong> More bass, sounds softer (like rain)</p>
+                    <p><strong>Brown:</strong> Deep rumble, mostly bass (like thunder)</p>
+                    <p><strong>Violet/Blue:</strong> High-pitched hiss</p>
+                    <p><strong>Grey:</strong> Balanced for human ears</p>
+                  </TooltipContent>
+                </Tooltip>
+              </div>
               <div className="flex flex-wrap gap-2">
                 {presets.map((preset) => (
                   <Button
@@ -282,7 +307,8 @@ export default function NoiseGenerator() {
             </p>
           </CardContent>
         </Card>
+        </div>
       </div>
-    </div>
+    </TooltipProvider>
   );
 }

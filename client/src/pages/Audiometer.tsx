@@ -2,11 +2,17 @@ import { useState, useEffect, useRef } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Info, Download } from "lucide-react";
+import { Info, Download, HelpCircle } from "lucide-react";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { useToast } from "@/hooks/use-toast";
 import { useAudiometerEngine } from "@/hooks/useAudiometerEngine";
 import AudiogramChart from "@/components/AudiogramChart";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 type EarSelection = 'both' | 'left' | 'right';
 type CellState = 'untested' | 'playing' | 'tested';
@@ -100,14 +106,15 @@ export default function Audiometer() {
   };
 
   return (
-    <div className="min-h-screen bg-background">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="mb-8">
-          <h1 className="font-display font-bold text-3xl md:text-4xl mb-2">Online Audiometer</h1>
-          <p className="text-muted-foreground">
-            Professional hearing test with interactive audiogram
-          </p>
-        </div>
+    <TooltipProvider>
+      <div className="min-h-screen bg-background">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+          <div className="mb-8">
+            <h1 className="font-display font-bold text-3xl md:text-4xl mb-2">Online Audiometer</h1>
+            <p className="text-muted-foreground">
+              Professional hearing test with interactive audiogram
+            </p>
+          </div>
 
         <Alert className="mb-8">
           <Info className="h-4 w-4" />
@@ -121,7 +128,17 @@ export default function Audiometer() {
         {/* Ear Selection */}
         <Card className="mb-6">
           <CardHeader>
-            <CardTitle>Select Ear to Test</CardTitle>
+            <div className="flex items-center gap-2">
+              <CardTitle>Select Ear to Test</CardTitle>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <HelpCircle className="h-4 w-4 text-muted-foreground cursor-help" />
+                </TooltipTrigger>
+                <TooltipContent className="max-w-xs">
+                  <p>Test one ear at a time for accurate results, or both ears together for a quick check. The audiogram chart will show different colors for each ear.</p>
+                </TooltipContent>
+              </Tooltip>
+            </div>
           </CardHeader>
           <CardContent className="flex gap-3">
             <Button
@@ -154,7 +171,17 @@ export default function Audiometer() {
         {/* Testing Board */}
         <Card className="mb-6">
           <CardHeader>
-            <CardTitle>Testing Board</CardTitle>
+            <div className="flex items-center gap-2">
+              <CardTitle>Testing Board</CardTitle>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <HelpCircle className="h-4 w-4 text-muted-foreground cursor-help" />
+                </TooltipTrigger>
+                <TooltipContent className="max-w-xs">
+                  <p>Start from the top row (quietest) and click down until you can barely hear the tone. Each column tests a different pitch - low pitches on the left, high pitches on the right.</p>
+                </TooltipContent>
+              </Tooltip>
+            </div>
             <CardDescription>Click cells to test each frequency at different volumes</CardDescription>
           </CardHeader>
           <CardContent>
@@ -238,7 +265,8 @@ export default function Audiometer() {
             />
           </CardContent>
         </Card>
+        </div>
       </div>
-    </div>
+    </TooltipProvider>
   );
 }
