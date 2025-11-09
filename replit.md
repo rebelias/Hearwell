@@ -37,6 +37,10 @@ All audio functionality uses custom React hooks wrapping the Web Audio API:
 - **Shareable Settings**: URL parameters for sharing tinnitus tone settings
 - **Interactive Audiogram**: Real-time chart visualization of hearing test results
 - **Multiple Waveforms**: Sine, square, triangle, sawtooth, filtered, and noise options
+- **Download Functionality**: Export test results and audio files
+  - Audiometer: CSV export of hearing test results
+  - Noise Generator: 30-second WAV audio export with custom EQ settings
+  - Notched Noise: 30-second WAV audio export with notch filter applied
 
 ## Project Structure
 
@@ -54,6 +58,8 @@ client/
 │   │   ├── useAudiometerEngine.ts # Audiometer tone playback
 │   │   ├── useNoiseGenerator.ts   # Noise generation with EQ
 │   │   └── useNotchedNoise.ts     # Notched noise generation
+│   ├── lib/
+│   │   └── audioExport.ts         # WAV audio export utility
 │   ├── pages/
 │   │   ├── Home.tsx               # Landing page with tool cards
 │   │   ├── FrequencyFinder.tsx    # Tinnitus frequency identification
@@ -73,6 +79,17 @@ client/
 - **Spacing**: Consistent 8px base unit system
 
 ## Recent Changes
+
+### November 9, 2025
+- **Download Functionality Implementation**:
+  - Created `audioExport.ts` utility for WAV audio export
+  - Audiometer: Export hearing test results as CSV file with frequency/threshold data
+  - Noise Generator: Export 30-second WAV audio files with custom EQ settings applied
+  - Notched Noise: Export 30-second WAV audio files with notch filter applied
+  - All audio exports use OfflineAudioContext for non-real-time rendering at 48kHz stereo
+  - Fixed AudioContext resource leak by using default sample rate instead of creating disposable contexts
+  - WAV files encoded as 16-bit PCM stereo format
+  - Descriptive filenames include settings and timestamps
 
 ### November 8, 2025
 - **Mobile Responsiveness Overhaul** (Galaxy S25 Ultra optimization):
