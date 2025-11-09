@@ -16,6 +16,7 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
+import ToolLayout from "@/components/ToolLayout";
 
 export default function NotchedNoise() {
   const [notchFrequency, setNotchFrequency] = useState(4000);
@@ -52,10 +53,9 @@ export default function NotchedNoise() {
 
   const handleDownload = async () => {
     try {
-      const duration = 30; // 30 seconds of audio
+      const duration = 30;
 
       const blob = await exportAudioAsWav(duration, (offlineCtx) => {
-        // Create noise buffer
         const createNoiseBuffer = (type: NotchNoiseType) => {
           const bufferSize = offlineCtx.sampleRate * 2;
           const buffer = offlineCtx.createBuffer(1, bufferSize, offlineCtx.sampleRate);
@@ -93,7 +93,6 @@ export default function NotchedNoise() {
           return buffer;
         };
 
-        // Create nodes
         const noiseBuffer = createNoiseBuffer(noiseType);
         const noiseNode = offlineCtx.createBufferSource();
         noiseNode.buffer = noiseBuffer;
@@ -102,13 +101,11 @@ export default function NotchedNoise() {
         const gainNode = offlineCtx.createGain();
         gainNode.gain.value = 0.3;
 
-        // Create notch filter
         const notchFilter = offlineCtx.createBiquadFilter();
         notchFilter.type = 'notch';
         notchFilter.frequency.value = notchFrequency;
         notchFilter.Q.value = notchFrequency / notchWidth;
 
-        // Connect nodes
         noiseNode.connect(notchFilter);
         notchFilter.connect(gainNode);
         gainNode.connect(offlineCtx.destination);
@@ -132,159 +129,164 @@ export default function NotchedNoise() {
     }
   };
 
-  return (
-    <TooltipProvider>
-      <div className="min-h-screen bg-background">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 md:py-12">
-          <div className="mb-6 sm:mb-8">
-            <h1 className="font-display font-bold text-2xl sm:text-3xl md:text-4xl mb-2">Notched Noise Generator</h1>
-            <p className="text-sm sm:text-base text-muted-foreground">
-              Therapeutic noise with your tinnitus frequency removed
+  const leftPanel = (
+    <>
+      <Alert>
+        <Info className="h-4 w-4" />
+        <AlertTitle>How Notched Noise Works</AlertTitle>
+        <AlertDescription className="text-sm">
+          Notched noise therapy plays white noise with your tinnitus frequency "notched out" (removed). 
+          Theory suggests this may help reduce tinnitus perception over time by retraining your brain.
+          Set the notch frequency to match your tinnitus frequency.
+        </AlertDescription>
+      </Alert>
+
+      <Card>
+        <CardHeader>
+          <CardTitle>Notch Settings</CardTitle>
+          <CardDescription>Configure the frequency notch and noise type</CardDescription>
+        </CardHeader>
+        <CardContent className="space-y-4">
+          <div className="flex justify-center">
+            <AudioPlayer 
+              isPlaying={noiseEngine.isPlaying} 
+              onPlayPause={() => noiseEngine.toggle(notchFrequency, notchWidth, noiseType)}
+            />
+          </div>
+
+          <div className="space-y-3">
+            <div className="flex justify-between items-center">
+              <div className="flex items-center gap-2">
+                <span className="text-sm text-muted-foreground">Notch Frequency (Your Tinnitus)</span>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <HelpCircle className="h-4 w-4 text-muted-foreground cursor-help" />
+                  </TooltipTrigger>
+                  <TooltipContent className="max-w-xs">
+                    <p>Set this to match the pitch of your tinnitus ringing. The noise generator will remove this frequency range, potentially helping your brain "forget" the tinnitus over time.</p>
+                  </TooltipContent>
+                </Tooltip>
+              </div>
+              <span className="text-2xl font-display font-bold text-primary" data-testid="text-notch-frequency">
+                {notchFrequency} Hz
+              </span>
+            </div>
+            <Slider
+              value={[notchFrequency]}
+              onValueChange={([value]) => setNotchFrequency(value)}
+              min={250}
+              max={12000}
+              step={50}
+              className="w-full"
+              data-testid="slider-notch-frequency"
+            />
+            <div className="flex justify-between text-xs text-muted-foreground">
+              <span>250 Hz</span>
+              <span>3 kHz</span>
+              <span>6 kHz</span>
+              <span>12 kHz</span>
+            </div>
+          </div>
+
+          <div className="space-y-3">
+            <div className="flex justify-between items-center">
+              <div className="flex items-center gap-2">
+                <span className="text-sm text-muted-foreground">Notch Width</span>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <HelpCircle className="h-4 w-4 text-muted-foreground cursor-help" />
+                  </TooltipTrigger>
+                  <TooltipContent className="max-w-xs">
+                    <p>How wide of a frequency range to remove around your tinnitus frequency. Wider = more frequencies removed, narrower = more precise targeting.</p>
+                  </TooltipContent>
+                </Tooltip>
+              </div>
+              <span className="text-lg font-semibold" data-testid="text-notch-width">
+                ±{notchWidth} Hz
+              </span>
+            </div>
+            <Slider
+              value={[notchWidth]}
+              onValueChange={([value]) => setNotchWidth(value)}
+              min={100}
+              max={2000}
+              step={50}
+              className="w-full"
+              data-testid="slider-notch-width"
+            />
+            <p className="text-xs text-muted-foreground">
+              Frequencies from {notchFrequency - notchWidth}Hz to {notchFrequency + notchWidth}Hz will be removed
             </p>
           </div>
 
-        <Alert className="mb-6 sm:mb-8">
-          <Info className="h-4 w-4" />
-          <AlertTitle className="text-sm sm:text-base">How Notched Noise Works</AlertTitle>
-          <AlertDescription className="text-xs sm:text-sm">
-            Notched noise therapy plays white noise with your tinnitus frequency "notched out" (removed). 
-            Theory suggests this may help reduce tinnitus perception over time by retraining your brain.
-            Set the notch frequency to match your tinnitus frequency.
-          </AlertDescription>
-        </Alert>
-
-        <Card>
-          <CardHeader>
-            <CardTitle className="text-lg sm:text-xl">Notch Settings</CardTitle>
-            <CardDescription className="text-xs sm:text-sm">Configure the frequency notch and noise type</CardDescription>
-          </CardHeader>
-          <CardContent className="space-y-6 sm:space-y-8">
-            {/* Audio Player */}
-            <div className="flex justify-center">
-              <AudioPlayer 
-                isPlaying={noiseEngine.isPlaying} 
-                onPlayPause={() => noiseEngine.toggle(notchFrequency, notchWidth, noiseType)}
-              />
-            </div>
-
-            {/* Notch Frequency */}
-            <div className="space-y-3 sm:space-y-4">
-              <div className="flex justify-between items-center">
-                <div className="flex items-center gap-2">
-                  <span className="text-xs sm:text-sm text-muted-foreground">Notch Frequency (Your Tinnitus)</span>
-                  <Tooltip>
-                    <TooltipTrigger asChild>
-                      <HelpCircle className="h-3.5 w-3.5 text-muted-foreground cursor-help" />
-                    </TooltipTrigger>
-                    <TooltipContent className="max-w-xs">
-                      <p>Set this to match the pitch of your tinnitus ringing. The noise generator will remove this frequency range, potentially helping your brain "forget" the tinnitus over time.</p>
-                    </TooltipContent>
-                  </Tooltip>
-                </div>
-                <span className="text-xl sm:text-2xl md:text-3xl font-display font-bold text-primary" data-testid="text-notch-frequency">
-                  {notchFrequency} Hz
-                </span>
+          <div className="space-y-3">
+            <span className="text-sm text-muted-foreground">Base Noise Type</span>
+            <RadioGroup value={noiseType} onValueChange={(value) => handleNoiseTypeChange(value as NotchNoiseType)}>
+              <div className="flex items-center space-x-2">
+                <RadioGroupItem value="white" id="white" data-testid="radio-white" />
+                <Label htmlFor="white" className="cursor-pointer">White Noise (Equal across all frequencies)</Label>
               </div>
-              <Slider
-                value={[notchFrequency]}
-                onValueChange={([value]) => setNotchFrequency(value)}
-                min={250}
-                max={12000}
-                step={50}
-                className="w-full"
-                data-testid="slider-notch-frequency"
-              />
-              <div className="flex justify-between text-xs text-muted-foreground">
-                <span>250 Hz</span>
-                <span>3 kHz</span>
-                <span>6 kHz</span>
-                <span>12 kHz</span>
+              <div className="flex items-center space-x-2">
+                <RadioGroupItem value="pink" id="pink" data-testid="radio-pink" />
+                <Label htmlFor="pink" className="cursor-pointer">Pink Noise (Softer, more low-frequency)</Label>
               </div>
-            </div>
-
-            {/* Notch Width */}
-            <div className="space-y-4">
-              <div className="flex justify-between items-center">
-                <div className="flex items-center gap-2">
-                  <span className="text-sm text-muted-foreground">Notch Width</span>
-                  <Tooltip>
-                    <TooltipTrigger asChild>
-                      <HelpCircle className="h-3.5 w-3.5 text-muted-foreground cursor-help" />
-                    </TooltipTrigger>
-                    <TooltipContent className="max-w-xs">
-                      <p>How wide of a frequency range to remove around your tinnitus frequency. Wider = more frequencies removed, narrower = more precise targeting.</p>
-                    </TooltipContent>
-                  </Tooltip>
-                </div>
-                <span className="text-lg font-semibold" data-testid="text-notch-width">
-                  ±{notchWidth} Hz
-                </span>
+              <div className="flex items-center space-x-2">
+                <RadioGroupItem value="purple" id="purple" data-testid="radio-purple" />
+                <Label htmlFor="purple" className="cursor-pointer">Purple Noise (Higher frequency emphasis)</Label>
               </div>
-              <Slider
-                value={[notchWidth]}
-                onValueChange={([value]) => setNotchWidth(value)}
-                min={100}
-                max={2000}
-                step={50}
-                className="w-full"
-                data-testid="slider-notch-width"
-              />
-              <p className="text-xs text-muted-foreground">
-                Frequencies from {notchFrequency - notchWidth}Hz to {notchFrequency + notchWidth}Hz will be removed
-              </p>
-            </div>
+            </RadioGroup>
+          </div>
 
-            {/* Noise Type */}
-            <div className="space-y-3">
-              <span className="text-sm text-muted-foreground">Base Noise Type</span>
-              <RadioGroup value={noiseType} onValueChange={(value) => handleNoiseTypeChange(value as NotchNoiseType)}>
-                <div className="flex items-center space-x-2">
-                  <RadioGroupItem value="white" id="white" data-testid="radio-white" />
-                  <Label htmlFor="white" className="cursor-pointer">White Noise (Equal across all frequencies)</Label>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <RadioGroupItem value="pink" id="pink" data-testid="radio-pink" />
-                  <Label htmlFor="pink" className="cursor-pointer">Pink Noise (Softer, more low-frequency)</Label>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <RadioGroupItem value="purple" id="purple" data-testid="radio-purple" />
-                  <Label htmlFor="purple" className="cursor-pointer">Purple Noise (Higher frequency emphasis)</Label>
-                </div>
-              </RadioGroup>
-            </div>
+          <div className="flex flex-wrap gap-3 pt-3 border-t">
+            <Button variant="outline" onClick={handleSaveSettings} className="gap-2" data-testid="button-save">
+              <Copy className="h-4 w-4" />
+              Save Settings
+            </Button>
+            <Button variant="outline" onClick={handleDownload} className="gap-2" data-testid="button-download">
+              <Download className="h-4 w-4" />
+              Download Audio
+            </Button>
+          </div>
+        </CardContent>
+      </Card>
+    </>
+  );
 
-            {/* Actions */}
-            <div className="flex flex-wrap gap-3 pt-4 border-t">
-              <Button variant="outline" onClick={handleSaveSettings} className="gap-2" data-testid="button-save">
-                <Copy className="h-4 w-4" />
-                Save Settings
-              </Button>
-              <Button variant="outline" onClick={handleDownload} className="gap-2" data-testid="button-download">
-                <Download className="h-4 w-4" />
-                Download Audio
-              </Button>
-            </div>
-          </CardContent>
-        </Card>
-
-        {/* Treatment Info */}
-        <Card className="mt-8 bg-muted/50">
-          <CardHeader>
-            <CardTitle className="text-lg">Treatment Guidelines</CardTitle>
-          </CardHeader>
-          <CardContent className="text-sm text-muted-foreground space-y-3">
-            <p>
-              For best results, listen to notched noise for 1-2 hours per day at a comfortable volume 
-              (just loud enough to mask your tinnitus). Continue this therapy for several weeks.
-            </p>
-            <p>
-              <strong className="text-foreground">Important:</strong> This is a supplementary treatment approach. 
-              Always consult with a healthcare professional about your tinnitus management plan.
-            </p>
-          </CardContent>
-        </Card>
+  const rightPanel = (
+    <Card className="bg-muted/50">
+      <CardHeader>
+        <CardTitle>Treatment Guidelines</CardTitle>
+      </CardHeader>
+      <CardContent className="text-sm text-muted-foreground space-y-3">
+        <p>
+          For best results, listen to notched noise for 1-2 hours per day at a comfortable volume 
+          (just loud enough to mask your tinnitus). Continue this therapy for several weeks.
+        </p>
+        <p>
+          <strong className="text-foreground">Important:</strong> This is a supplementary treatment approach. 
+          Always consult with a healthcare professional about your tinnitus management plan.
+        </p>
+        <div className="space-y-2 pt-2">
+          <h4 className="font-semibold text-foreground">Usage Tips:</h4>
+          <ul className="list-disc list-inside space-y-1 ml-2 text-xs">
+            <li>Use in a quiet environment for maximum effectiveness</li>
+            <li>Start with shorter sessions (15-30 minutes) and gradually increase</li>
+            <li>Consistency is key - daily sessions work better than occasional use</li>
+            <li>Track your progress over several weeks</li>
+          </ul>
         </div>
-      </div>
+      </CardContent>
+    </Card>
+  );
+
+  return (
+    <TooltipProvider>
+      <ToolLayout
+        title="Notched Noise Generator"
+        description="Therapeutic noise with your tinnitus frequency removed"
+        leftPanel={leftPanel}
+        rightPanel={rightPanel}
+      />
     </TooltipProvider>
   );
 }

@@ -14,6 +14,7 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
+import ToolLayout from "@/components/ToolLayout";
 
 export default function NoiseGenerator() {
   const [eqValues, setEqValues] = useState([50, 50, 50, 50, 50, 50, 50, 50]);
@@ -67,10 +68,9 @@ export default function NoiseGenerator() {
 
   const handleDownload = async () => {
     try {
-      const duration = 30; // 30 seconds of audio
+      const duration = 30;
 
       const blob = await exportAudioAsWav(duration, (offlineCtx) => {
-        // Create noise buffer
         const createNoiseBuffer = (type: NoiseColor) => {
           const bufferSize = offlineCtx.sampleRate * 2;
           const buffer = offlineCtx.createBuffer(1, bufferSize, offlineCtx.sampleRate);
@@ -129,7 +129,6 @@ export default function NoiseGenerator() {
           return buffer;
         };
 
-        // Create nodes
         const noiseBuffer = createNoiseBuffer(noiseColor);
         const noiseNode = offlineCtx.createBufferSource();
         noiseNode.buffer = noiseBuffer;
@@ -138,7 +137,6 @@ export default function NoiseGenerator() {
         const gainNode = offlineCtx.createGain();
         gainNode.gain.value = 0.3;
 
-        // Create 8-band EQ
         const frequencies = [32, 64, 125, 250, 500, 1000, 2000, 4000];
         const filterNodes: BiquadFilterNode[] = [];
 
@@ -151,7 +149,6 @@ export default function NoiseGenerator() {
           filterNodes.push(filter);
         });
 
-        // Connect nodes
         let currentNode: AudioNode = noiseNode;
         filterNodes.forEach(filter => {
           currentNode.connect(filter);
@@ -179,136 +176,134 @@ export default function NoiseGenerator() {
     }
   };
 
-  return (
-    <TooltipProvider>
-      <div className="min-h-screen bg-background">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 md:py-12">
-          <div className="mb-6 sm:mb-8">
-            <h1 className="font-display font-bold text-2xl sm:text-3xl md:text-4xl mb-2">Noise Generator</h1>
-            <p className="text-sm sm:text-base text-muted-foreground">
-              Create custom colored noise with 8-band equalizer
-            </p>
+  const leftPanel = (
+    <>
+      <Alert>
+        <Info className="h-4 w-4" />
+        <AlertTitle>How to Use</AlertTitle>
+        <AlertDescription className="text-sm">
+          Click PLAY and adjust the equalizer sliders to create a pleasing noise. Use presets for standard 
+          colored noise types like white, pink, brown, violet, blue, or grey noise.
+        </AlertDescription>
+      </Alert>
+
+      <Card>
+        <CardHeader>
+          <div className="flex items-center gap-2">
+            <CardTitle>Equalizer Settings</CardTitle>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <HelpCircle className="h-4 w-4 text-muted-foreground cursor-help" />
+              </TooltipTrigger>
+              <TooltipContent className="max-w-xs">
+                <p>Equalizer adjusts which pitches are louder or quieter. Think of it like adjusting bass/treble on a stereo - low frequencies (left) sound deeper, high frequencies (right) sound sharper.</p>
+              </TooltipContent>
+            </Tooltip>
+          </div>
+          <CardDescription>Adjust 8-band equalizer to customize your noise</CardDescription>
+        </CardHeader>
+        <CardContent className="space-y-4">
+          <div className="flex justify-center">
+            <AudioPlayer 
+              isPlaying={noiseEngine.isPlaying} 
+              onPlayPause={() => noiseEngine.toggle(eqValues, noiseColor)}
+            />
           </div>
 
-        <Alert className="mb-6 sm:mb-8">
-          <Info className="h-4 w-4" />
-          <AlertTitle className="text-sm sm:text-base">How to Use</AlertTitle>
-          <AlertDescription className="text-xs sm:text-sm">
-            Click PLAY and adjust the equalizer sliders to create a pleasing noise. Use presets for standard 
-            colored noise types like white, pink, brown, violet, blue, or grey noise.
-          </AlertDescription>
-        </Alert>
-
-        <Card>
-          <CardHeader>
-            <div className="flex items-center gap-2">
-              <CardTitle className="text-lg sm:text-xl">Equalizer Settings</CardTitle>
-              <Tooltip>
-                <TooltipTrigger asChild>
-                  <HelpCircle className="h-4 w-4 text-muted-foreground cursor-help" />
-                </TooltipTrigger>
-                <TooltipContent className="max-w-xs">
-                  <p>Equalizer adjusts which pitches are louder or quieter. Think of it like adjusting bass/treble on a stereo - low frequencies (left) sound deeper, high frequencies (right) sound sharper.</p>
-                </TooltipContent>
-              </Tooltip>
-            </div>
-            <CardDescription className="text-xs sm:text-sm">Adjust 8-band equalizer to customize your noise</CardDescription>
-          </CardHeader>
-          <CardContent className="space-y-6 sm:space-y-8">
-            {/* Audio Player */}
-            <div className="flex justify-center">
-              <AudioPlayer 
-                isPlaying={noiseEngine.isPlaying} 
-                onPlayPause={() => noiseEngine.toggle(eqValues, noiseColor)}
-              />
-            </div>
-
-            {/* Presets */}
-            <div className="space-y-3">
-              <div className="flex items-center gap-2">
-                <span className="text-sm text-muted-foreground">Colored Noise Presets</span>
-                <Tooltip>
-                  <TooltipTrigger asChild>
-                    <HelpCircle className="h-4 w-4 text-muted-foreground cursor-help" />
-                  </TooltipTrigger>
-                  <TooltipContent className="max-w-xs">
-                    <p><strong>White:</strong> All pitches equal (like TV static)</p>
-                    <p><strong>Pink:</strong> More bass, sounds softer (like rain)</p>
-                    <p><strong>Brown:</strong> Deep rumble, mostly bass (like thunder)</p>
-                    <p><strong>Violet/Blue:</strong> High-pitched hiss</p>
-                    <p><strong>Grey:</strong> Balanced for human ears</p>
-                  </TooltipContent>
-                </Tooltip>
+          <div className="space-y-3">
+            {frequencies.map((freq: string, index: number) => (
+              <div key={freq} className="flex items-center gap-3">
+                <span className="text-sm text-muted-foreground font-medium min-w-[50px]">{freq}Hz</span>
+                <Slider
+                  value={[eqValues[index]]}
+                  onValueChange={([value]) => handleEqChange(index, value)}
+                  min={0}
+                  max={100}
+                  step={1}
+                  className="flex-1"
+                  data-testid={`slider-eq-${freq}`}
+                />
+                <span className="text-sm text-muted-foreground min-w-[35px] text-right">{eqValues[index]}</span>
               </div>
-              <div className="flex flex-wrap gap-2">
-                {presets.map((preset) => (
-                  <Button
-                    key={preset.name}
-                    variant={selectedPreset === preset.name ? 'default' : 'outline'}
-                    size="sm"
-                    onClick={() => applyPreset(preset)}
-                    data-testid={`button-preset-${preset.name.toLowerCase()}`}
-                  >
-                    {preset.name}
-                  </Button>
-                ))}
-              </div>
-            </div>
+            ))}
+          </div>
 
-            {/* Equalizer */}
-            <div className="space-y-6">
-              <div className="space-y-4">
-                {frequencies.map((freq: string, index: number) => (
-                  <div key={freq} className="space-y-2">
-                    <div className="flex items-center justify-between gap-4">
-                      <span className="text-sm text-muted-foreground font-medium min-w-[60px]">{freq}Hz</span>
-                      <Slider
-                        value={[eqValues[index]]}
-                        onValueChange={([value]) => handleEqChange(index, value)}
-                        min={0}
-                        max={100}
-                        step={1}
-                        className="flex-1"
-                        data-testid={`slider-eq-${freq}`}
-                      />
-                      <span className="text-sm text-muted-foreground min-w-[40px] text-right">{eqValues[index]}</span>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
+          <div className="flex flex-wrap gap-3 pt-3 border-t">
+            <Button variant="outline" onClick={handleSaveSettings} className="gap-2" data-testid="button-save">
+              <Copy className="h-4 w-4" />
+              Save Settings
+            </Button>
+            <Button variant="outline" onClick={handleDownload} className="gap-2" data-testid="button-download">
+              <Download className="h-4 w-4" />
+              Download
+            </Button>
+          </div>
+        </CardContent>
+      </Card>
+    </>
+  );
 
-            {/* Actions */}
-            <div className="flex flex-wrap gap-3 pt-4 border-t">
-              <Button variant="outline" onClick={handleSaveSettings} className="gap-2" data-testid="button-save">
-                <Copy className="h-4 w-4" />
-                Save Settings
+  const rightPanel = (
+    <>
+      <Card className="bg-muted/50">
+        <CardHeader>
+          <div className="flex items-center gap-2">
+            <CardTitle>Colored Noise Presets</CardTitle>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <HelpCircle className="h-4 w-4 text-muted-foreground cursor-help" />
+              </TooltipTrigger>
+              <TooltipContent className="max-w-xs">
+                <p><strong>White:</strong> All pitches equal (like TV static)</p>
+                <p><strong>Pink:</strong> More bass, sounds softer (like rain)</p>
+                <p><strong>Brown:</strong> Deep rumble, mostly bass (like thunder)</p>
+                <p><strong>Violet/Blue:</strong> High-pitched hiss</p>
+                <p><strong>Grey:</strong> Balanced for human ears</p>
+              </TooltipContent>
+            </Tooltip>
+          </div>
+        </CardHeader>
+        <CardContent className="space-y-3">
+          <div className="grid grid-cols-2 gap-2">
+            {presets.map((preset) => (
+              <Button
+                key={preset.name}
+                variant={selectedPreset === preset.name ? 'default' : 'outline'}
+                onClick={() => applyPreset(preset)}
+                data-testid={`button-preset-${preset.name.toLowerCase()}`}
+              >
+                {preset.name}
               </Button>
-              <Button variant="outline" onClick={handleDownload} className="gap-2" data-testid="button-download">
-                <Download className="h-4 w-4" />
-                Download
-              </Button>
-            </div>
-          </CardContent>
-        </Card>
+            ))}
+          </div>
+        </CardContent>
+      </Card>
 
-        {/* Info Card */}
-        <Card className="mt-8 bg-muted/50">
-          <CardHeader>
-            <CardTitle className="text-lg">About Colored Noise</CardTitle>
-          </CardHeader>
-          <CardContent className="text-sm text-muted-foreground space-y-2">
-            <p>
-              Different colored noises emphasize different frequency ranges. White noise has equal energy 
-              across all frequencies, while pink noise emphasizes lower frequencies for a softer sound.
-            </p>
-            <p>
-              Experiment with the equalizer to find the most pleasing and effective masking sound for your tinnitus.
-            </p>
-          </CardContent>
-        </Card>
-        </div>
-      </div>
+      <Card className="bg-muted/50">
+        <CardHeader>
+          <CardTitle>About Colored Noise</CardTitle>
+        </CardHeader>
+        <CardContent className="text-sm text-muted-foreground space-y-2">
+          <p>
+            Different colored noises emphasize different frequency ranges. White noise has equal energy 
+            across all frequencies, while pink noise emphasizes lower frequencies for a softer sound.
+          </p>
+          <p>
+            Experiment with the equalizer to find the most pleasing and effective masking sound for your tinnitus.
+          </p>
+        </CardContent>
+      </Card>
+    </>
+  );
+
+  return (
+    <TooltipProvider>
+      <ToolLayout
+        title="Noise Generator"
+        description="Create custom colored noise with 8-band equalizer"
+        leftPanel={leftPanel}
+        rightPanel={rightPanel}
+      />
     </TooltipProvider>
   );
 }

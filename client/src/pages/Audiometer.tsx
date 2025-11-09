@@ -13,6 +13,7 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
+import ToolLayout from "@/components/ToolLayout";
 
 type EarSelection = 'both' | 'left' | 'right';
 type CellState = 'untested' | 'playing' | 'tested';
@@ -105,168 +106,164 @@ export default function Audiometer() {
     }
   };
 
-  return (
-    <TooltipProvider>
-      <div className="min-h-screen bg-background">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-          <div className="mb-8">
-            <h1 className="font-display font-bold text-3xl md:text-4xl mb-2">Online Audiometer</h1>
-            <p className="text-muted-foreground">
-              Professional hearing test with interactive audiogram
-            </p>
+  const leftPanel = (
+    <>
+      <Alert>
+        <Info className="h-4 w-4" />
+        <AlertTitle>Before You Begin</AlertTitle>
+        <AlertDescription className="text-sm">
+          Use headphones in a quiet room. Click the cells from top to bottom for each frequency column 
+          until you can just hear the tone. Results will appear on the audiogram below.
+        </AlertDescription>
+      </Alert>
+
+      <Card>
+        <CardHeader>
+          <div className="flex items-center gap-2">
+            <CardTitle>Select Ear to Test</CardTitle>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <HelpCircle className="h-4 w-4 text-muted-foreground cursor-help" />
+              </TooltipTrigger>
+              <TooltipContent className="max-w-xs">
+                <p>Test one ear at a time for accurate results, or both ears together for a quick check. The audiogram chart will show different colors for each ear.</p>
+              </TooltipContent>
+            </Tooltip>
           </div>
+        </CardHeader>
+        <CardContent className="flex gap-3">
+          <Button
+            variant={earSelection === 'both' ? 'default' : 'outline'}
+            onClick={() => setEarSelection('both')}
+            className="flex-1"
+            data-testid="button-test-both"
+          >
+            Test Both Ears
+          </Button>
+          <Button
+            variant={earSelection === 'left' ? 'default' : 'outline'}
+            onClick={() => setEarSelection('left')}
+            className="flex-1 bg-chart-1 hover:bg-chart-1/90"
+            data-testid="button-test-left"
+          >
+            Left Ear
+          </Button>
+          <Button
+            variant={earSelection === 'right' ? 'default' : 'outline'}
+            onClick={() => setEarSelection('right')}
+            className="flex-1 bg-destructive hover:bg-destructive/90"
+            data-testid="button-test-right"
+          >
+            Right Ear
+          </Button>
+        </CardContent>
+      </Card>
 
-        <Alert className="mb-8">
-          <Info className="h-4 w-4" />
-          <AlertTitle>Before You Begin</AlertTitle>
-          <AlertDescription>
-            Use headphones in a quiet room. Click the cells from top to bottom for each frequency column 
-            until you can just hear the tone. Results will appear on the audiogram below.
-          </AlertDescription>
-        </Alert>
-
-        {/* Ear Selection */}
-        <Card className="mb-6">
-          <CardHeader>
-            <div className="flex items-center gap-2">
-              <CardTitle>Select Ear to Test</CardTitle>
-              <Tooltip>
-                <TooltipTrigger asChild>
-                  <HelpCircle className="h-4 w-4 text-muted-foreground cursor-help" />
-                </TooltipTrigger>
-                <TooltipContent className="max-w-xs">
-                  <p>Test one ear at a time for accurate results, or both ears together for a quick check. The audiogram chart will show different colors for each ear.</p>
-                </TooltipContent>
-              </Tooltip>
-            </div>
-          </CardHeader>
-          <CardContent className="flex gap-3">
-            <Button
-              variant={earSelection === 'both' ? 'default' : 'outline'}
-              onClick={() => setEarSelection('both')}
-              className="flex-1"
-              data-testid="button-test-both"
-            >
-              Test Both Ears
-            </Button>
-            <Button
-              variant={earSelection === 'left' ? 'default' : 'outline'}
-              onClick={() => setEarSelection('left')}
-              className="flex-1 bg-chart-1 hover:bg-chart-1/90"
-              data-testid="button-test-left"
-            >
-              Left Ear
-            </Button>
-            <Button
-              variant={earSelection === 'right' ? 'default' : 'outline'}
-              onClick={() => setEarSelection('right')}
-              className="flex-1 bg-destructive hover:bg-destructive/90"
-              data-testid="button-test-right"
-            >
-              Right Ear
-            </Button>
-          </CardContent>
-        </Card>
-
-        {/* Testing Board */}
-        <Card className="mb-6">
-          <CardHeader>
-            <div className="flex items-center gap-2">
-              <CardTitle>Testing Board</CardTitle>
-              <Tooltip>
-                <TooltipTrigger asChild>
-                  <HelpCircle className="h-4 w-4 text-muted-foreground cursor-help" />
-                </TooltipTrigger>
-                <TooltipContent className="max-w-xs">
-                  <p>Start from the top row (quietest) and click down until you can barely hear the tone. Each column tests a different pitch - low pitches on the left, high pitches on the right.</p>
-                </TooltipContent>
-              </Tooltip>
-            </div>
-            <CardDescription>Click cells to test each frequency at different volumes</CardDescription>
-          </CardHeader>
-          <CardContent>
-            <div className="overflow-x-auto">
-              <div className="min-w-[600px]">
-                {/* Header */}
-                <div className="grid grid-cols-7 gap-2 mb-4">
-                  <div className="text-sm font-semibold">Volume (dB)</div>
-                  {frequencies.map(freq => (
-                    <div key={freq} className="text-center text-sm font-semibold">
-                      {freq} Hz
-                    </div>
-                  ))}
-                </div>
-
-                {/* Grid */}
-                {volumes.map(vol => (
-                  <div key={vol} className="grid grid-cols-7 gap-2 mb-2">
-                    <div className="flex items-center">
-                      <Badge variant="outline">{vol}</Badge>
-                    </div>
-                    {frequencies.map(freq => {
-                      const key = `${freq}-${vol}`;
-                      const state = testResults[key] || 'untested';
-                      return (
-                        <button
-                          key={key}
-                          onClick={() => handleCellClick(freq, vol)}
-                          className={`h-10 rounded-md transition-all ${getCellStyle(state)}`}
-                          data-testid={`cell-${freq}-${vol}`}
-                        />
-                      );
-                    })}
+      <Card>
+        <CardHeader>
+          <div className="flex items-center gap-2">
+            <CardTitle>Testing Board</CardTitle>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <HelpCircle className="h-4 w-4 text-muted-foreground cursor-help" />
+              </TooltipTrigger>
+              <TooltipContent className="max-w-xs">
+                <p>Start from the top row (quietest) and click down until you can barely hear the tone. Each column tests a different pitch - low pitches on the left, high pitches on the right.</p>
+              </TooltipContent>
+            </Tooltip>
+          </div>
+          <CardDescription>Click cells to test each frequency at different volumes</CardDescription>
+        </CardHeader>
+        <CardContent>
+          <div className="overflow-x-auto">
+            <div className="min-w-[600px]">
+              <div className="grid grid-cols-7 gap-2 mb-3">
+                <div className="text-sm font-semibold">Volume (dB)</div>
+                {frequencies.map(freq => (
+                  <div key={freq} className="text-center text-sm font-semibold">
+                    {freq} Hz
                   </div>
                 ))}
               </div>
-            </div>
 
-            {/* Legend */}
-            <div className="flex gap-6 mt-6 pt-6 border-t">
-              <div className="flex items-center gap-2">
-                <div className="w-8 h-8 bg-muted rounded" />
-                <span className="text-sm">Not Tested</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <div className="w-8 h-8 bg-primary rounded" />
-                <span className="text-sm">Playing</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <div className="w-8 h-8 bg-secondary rounded" />
-                <span className="text-sm">Tested</span>
-              </div>
+              {volumes.map(vol => (
+                <div key={vol} className="grid grid-cols-7 gap-2 mb-2">
+                  <div className="flex items-center">
+                    <Badge variant="outline">{vol}</Badge>
+                  </div>
+                  {frequencies.map(freq => {
+                    const key = `${freq}-${vol}`;
+                    const state = testResults[key] || 'untested';
+                    return (
+                      <button
+                        key={key}
+                        onClick={() => handleCellClick(freq, vol)}
+                        className={`h-10 rounded-md transition-all ${getCellStyle(state)}`}
+                        data-testid={`cell-${freq}-${vol}`}
+                      />
+                    );
+                  })}
+                </div>
+              ))}
             </div>
-          </CardContent>
-        </Card>
+          </div>
 
-        {/* Results */}
-        <Card>
-          <CardHeader>
-            <div className="flex items-center justify-between">
-              <div>
-                <CardTitle>Results</CardTitle>
-                <CardDescription>Audiogram chart will display your results</CardDescription>
-              </div>
-              <div className="flex gap-2">
-                <Button variant="outline" onClick={clearResults} data-testid="button-clear">
-                  Clear Results
-                </Button>
-                <Button variant="outline" onClick={handleDownload} className="gap-2" data-testid="button-download">
-                  <Download className="h-4 w-4" />
-                  Download
-                </Button>
-              </div>
+          <div className="flex gap-6 mt-4 pt-4 border-t">
+            <div className="flex items-center gap-2">
+              <div className="w-8 h-8 bg-muted rounded" />
+              <span className="text-sm">Not Tested</span>
             </div>
-          </CardHeader>
-          <CardContent>
-            <AudiogramChart 
-              testResults={testResults} 
-              frequencies={frequencies}
-              volumes={volumes}
-            />
-          </CardContent>
-        </Card>
+            <div className="flex items-center gap-2">
+              <div className="w-8 h-8 bg-primary rounded" />
+              <span className="text-sm">Playing</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <div className="w-8 h-8 bg-secondary rounded" />
+              <span className="text-sm">Tested</span>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+    </>
+  );
+
+  const rightPanel = (
+    <Card>
+      <CardHeader>
+        <div className="flex items-center justify-between">
+          <div>
+            <CardTitle>Results</CardTitle>
+            <CardDescription>Audiogram chart will display your results</CardDescription>
+          </div>
+          <div className="flex gap-2">
+            <Button variant="outline" onClick={clearResults} data-testid="button-clear">
+              Clear Results
+            </Button>
+            <Button variant="outline" onClick={handleDownload} className="gap-2" data-testid="button-download">
+              <Download className="h-4 w-4" />
+              Download
+            </Button>
+          </div>
         </div>
-      </div>
+      </CardHeader>
+      <CardContent>
+        <AudiogramChart 
+          testResults={testResults} 
+          frequencies={frequencies}
+          volumes={volumes}
+        />
+      </CardContent>
+    </Card>
+  );
+
+  return (
+    <TooltipProvider>
+      <ToolLayout
+        title="Online Audiometer"
+        description="Professional hearing test with interactive audiogram"
+        leftPanel={leftPanel}
+        rightPanel={rightPanel}
+      />
     </TooltipProvider>
   );
 }
