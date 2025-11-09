@@ -1,6 +1,7 @@
 import { useRef } from 'react';
 
 type EarSelection = 'both' | 'left' | 'right';
+type ToneType = 'pure' | 'warble';
 
 export function useAudiometerEngine() {
   const audioContextRef = useRef<AudioContext | null>(null);
@@ -8,6 +9,8 @@ export function useAudiometerEngine() {
   const gainNodeRef = useRef<GainNode | null>(null);
   const pannerRef = useRef<StereoPannerNode | null>(null);
   const timeoutIdRef = useRef<NodeJS.Timeout | null>(null);
+  const lfoRef = useRef<OscillatorNode | null>(null);
+  const lfoGainRef = useRef<GainNode | null>(null);
 
   const initAudioContext = () => {
     if (!audioContextRef.current) {
@@ -16,7 +19,14 @@ export function useAudiometerEngine() {
     return audioContextRef.current;
   };
 
-  const playTone = (frequency: number, volumeDb: number, earSelection: EarSelection = 'both', duration: number = 1000): Promise<void> => {
+  const playTone = (
+    frequency: number, 
+    volumeDb: number, 
+    earSelection: EarSelection = 'both', 
+    duration: number = 1000,
+    toneType: ToneType = 'pure',
+    calibrationOffset: number = 0
+  ): Promise<void> => {
     return new Promise((resolve) => {
       const ctx = initAudioContext();
       
@@ -32,8 +42,20 @@ export function useAudiometerEngine() {
         }
       }
 
+      if (lfoRef.current) {
+        try {
+          lfoRef.current.stop();
+        } catch (e) {
+          // Already stopped
+        }
+      }
+
       if (gainNodeRef.current) {
         gainNodeRef.current.disconnect();
+      }
+
+      if (lfoGainRef.current) {
+        lfoGainRef.current.disconnect();
       }
 
       if (pannerRef.current) {
@@ -56,6 +78,9 @@ export function useAudiometerEngine() {
       } else {
         gainValue = 0.1 + ((normalizedDb - 40) / 60) * 0.4;
       }
+      
+      // Apply calibration offset
+      gainValue = gainValue * (calibrationOffset > 0 ? calibrationOffset : 1);
       gainNode.gain.value = Math.min(gainValue, 0.5);
 
       if (earSelection === 'left') {
@@ -64,6 +89,22 @@ export function useAudiometerEngine() {
         panner.pan.value = 1;
       } else {
         panner.pan.value = 0;
+      }
+
+      // Add warble modulation if toneType is 'warble'
+      if (toneType === 'warble') {
+        const lfo = ctx.createOscillator();
+        const lfoGain = ctx.createGain();
+        
+        lfo.frequency.value = 4.5; // 4.5 Hz modulation rate
+        lfoGain.gain.value = frequency * 0.05; // ±5% frequency modulation
+        
+        lfo.connect(lfoGain);
+        lfoGain.connect(oscillator.frequency);
+        
+        lfo.start();
+        lfoRef.current = lfo;
+        lfoGainRef.current = lfoGain;
       }
 
       oscillator.connect(gainNode);
@@ -83,12 +124,31 @@ export function useAudiometerEngine() {
         } catch (e) {
           // Already stopped
         }
+
+        if (lfoRef.current) {
+          try {
+            lfoRef.current.stop();
+            lfoRef.current.disconnect();
+          } catch (e) {
+            // Already stopped
+          }
+          lfoRef.current = null;
+        }
         
         try {
           gainNode.disconnect();
           panner.disconnect();
         } catch (e) {
           // Already disconnected
+        }
+
+        if (lfoGainRef.current) {
+          try {
+            lfoGainRef.current.disconnect();
+          } catch (e) {
+            // Already disconnected
+          }
+          lfoGainRef.current = null;
         }
         
         if (oscillatorRef.current === oscillator) {
@@ -127,9 +187,23 @@ export function useAudiometerEngine() {
       oscillatorRef.current = null;
     }
 
+    if (lfoRef.current) {
+      try {
+        lfoRef.current.stop();
+      } catch (e) {
+        // Already stopped
+      }
+      lfoRef.current = null;
+    }
+
     if (gainNodeRef.current) {
       gainNodeRef.current.disconnect();
       gainNodeRef.current = null;
+    }
+
+    if (lfoGainRef.current) {
+      lfoGainRef.current.disconnect();
+      lfoGainRef.current = null;
     }
 
     if (pannerRef.current) {

@@ -2,11 +2,13 @@ import { useState, useEffect, useRef } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Info, Download, HelpCircle } from "lucide-react";
+import { Info, Download, HelpCircle, Settings } from "lucide-react";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { useToast } from "@/hooks/use-toast";
 import { useAudiometerEngine } from "@/hooks/useAudiometerEngine";
 import AudiogramChart from "@/components/AudiogramChart";
+import CalibrationModal from "@/components/CalibrationModal";
+import AudiogramInterpretation from "@/components/AudiogramInterpretation";
 import {
   Tooltip,
   TooltipContent,
@@ -17,13 +19,34 @@ import ToolLayout from "@/components/ToolLayout";
 
 type EarSelection = 'both' | 'left' | 'right';
 type CellState = 'untested' | 'playing' | 'tested';
+type ToneType = 'pure' | 'warble';
 
 export default function Audiometer() {
   const [earSelection, setEarSelection] = useState<EarSelection>('both');
   const [testResults, setTestResults] = useState<Record<string, CellState>>({});
+  const [toneType, setToneType] = useState<ToneType>('pure');
+  const [showCalibration, setShowCalibration] = useState(false);
+  const [calibrationOffset, setCalibrationOffset] = useState(1.0);
+  const [isCalibrated, setIsCalibrated] = useState(false);
+  
   const { toast } = useToast();
   const audioEngine = useAudiometerEngine();
   const cancelTokenRef = useRef<number>(0);
+
+  useEffect(() => {
+    // Check if already calibrated
+    const calibrated = localStorage.getItem('audiometer-calibrated');
+    if (calibrated === 'true') {
+      const savedCalibration = localStorage.getItem('audiometer-calibration');
+      if (savedCalibration) {
+        setCalibrationOffset(parseInt(savedCalibration, 10) / 100);
+        setIsCalibrated(true);
+      }
+    } else if (calibrated === null) {
+      // First time user - show calibration
+      setShowCalibration(true);
+    }
+  }, []);
 
   useEffect(() => {
     return () => {
@@ -41,12 +64,26 @@ export default function Audiometer() {
     if (currentState === 'untested' || currentState === 'tested') {
       const currentToken = cancelTokenRef.current;
       setTestResults(prev => ({ ...prev, [key]: 'playing' }));
-      await audioEngine.playTone(freq, vol, earSelection, 1000);
+      await audioEngine.playTone(freq, vol, earSelection, 1000, toneType, calibrationOffset);
       
       if (cancelTokenRef.current === currentToken) {
         setTestResults(prev => ({ ...prev, [key]: 'tested' }));
       }
     }
+  };
+
+  const handleCalibrationComplete = (calibrationValue: number) => {
+    setCalibrationOffset(calibrationValue);
+    setIsCalibrated(true);
+    setShowCalibration(false);
+    toast({
+      title: "Calibration Complete",
+      description: "Your audiometer is now calibrated for accurate testing",
+    });
+  };
+
+  const handleRecalibrate = () => {
+    setShowCalibration(true);
   };
 
   const clearResults = () => {
@@ -112,50 +149,94 @@ export default function Audiometer() {
         <Info className="h-4 w-4" />
         <AlertTitle>Before You Begin</AlertTitle>
         <AlertDescription className="text-sm">
-          Use headphones in a quiet room. Click the cells from top to bottom for each frequency column 
-          until you can just hear the tone. Results will appear on the audiogram below.
+          Use headphones in a quiet room. 
+          {!isCalibrated && <strong> Click "Calibrate" below for best accuracy.</strong>}
+          {' '}Click the cells from top to bottom for each frequency column 
+          until you can just hear the tone. Results will appear on the audiogram.
         </AlertDescription>
       </Alert>
 
       <Card>
         <CardHeader>
-          <div className="flex items-center gap-2">
-            <CardTitle>Select Ear to Test</CardTitle>
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <HelpCircle className="h-4 w-4 text-muted-foreground cursor-help" />
-              </TooltipTrigger>
-              <TooltipContent className="max-w-xs">
-                <p>Test one ear at a time for accurate results, or both ears together for a quick check. The audiogram chart will show different colors for each ear.</p>
-              </TooltipContent>
-            </Tooltip>
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-2">
+              <CardTitle>Test Settings</CardTitle>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <HelpCircle className="h-4 w-4 text-muted-foreground cursor-help" />
+                </TooltipTrigger>
+                <TooltipContent className="max-w-xs">
+                  <p>Calibration improves accuracy. Warble tones are easier to detect for some users - try both and see which works better for you.</p>
+                </TooltipContent>
+              </Tooltip>
+            </div>
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={handleRecalibrate}
+              className="gap-2"
+              data-testid="button-recalibrate"
+            >
+              <Settings className="h-4 w-4" />
+              {isCalibrated ? 'Recalibrate' : 'Calibrate'}
+            </Button>
           </div>
         </CardHeader>
-        <CardContent className="flex gap-3">
-          <Button
-            variant={earSelection === 'both' ? 'default' : 'outline'}
-            onClick={() => setEarSelection('both')}
-            className="flex-1"
-            data-testid="button-test-both"
-          >
-            Test Both Ears
-          </Button>
-          <Button
-            variant={earSelection === 'left' ? 'default' : 'outline'}
-            onClick={() => setEarSelection('left')}
-            className="flex-1 bg-chart-1 hover:bg-chart-1/90"
-            data-testid="button-test-left"
-          >
-            Left Ear
-          </Button>
-          <Button
-            variant={earSelection === 'right' ? 'default' : 'outline'}
-            onClick={() => setEarSelection('right')}
-            className="flex-1 bg-destructive hover:bg-destructive/90"
-            data-testid="button-test-right"
-          >
-            Right Ear
-          </Button>
+        <CardContent className="space-y-3">
+          <div>
+            <div className="text-sm font-medium mb-2">Tone Type</div>
+            <div className="flex gap-2">
+              <Button
+                variant={toneType === 'pure' ? 'default' : 'outline'}
+                onClick={() => setToneType('pure')}
+                className="flex-1"
+                data-testid="button-tone-pure"
+              >
+                Pure Tone
+              </Button>
+              <Button
+                variant={toneType === 'warble' ? 'default' : 'outline'}
+                onClick={() => setToneType('warble')}
+                className="flex-1"
+                data-testid="button-tone-warble"
+              >
+                Warble Tone
+              </Button>
+            </div>
+            <p className="text-xs text-muted-foreground mt-2">
+              {toneType === 'pure' ? 'Steady pure tone (standard audiometry)' : 'Wobbling tone (easier to detect for some)'}
+            </p>
+          </div>
+
+          <div>
+            <div className="text-sm font-medium mb-2">Ear Selection</div>
+            <div className="flex gap-2">
+              <Button
+                variant={earSelection === 'both' ? 'default' : 'outline'}
+                onClick={() => setEarSelection('both')}
+                className="flex-1"
+                data-testid="button-test-both"
+              >
+                Both
+              </Button>
+              <Button
+                variant={earSelection === 'left' ? 'default' : 'outline'}
+                onClick={() => setEarSelection('left')}
+                className="flex-1"
+                data-testid="button-test-left"
+              >
+                Left
+              </Button>
+              <Button
+                variant={earSelection === 'right' ? 'default' : 'outline'}
+                onClick={() => setEarSelection('right')}
+                className="flex-1"
+                data-testid="button-test-right"
+              >
+                Right
+              </Button>
+            </div>
+          </div>
         </CardContent>
       </Card>
 
@@ -258,12 +339,22 @@ export default function Audiometer() {
 
   return (
     <TooltipProvider>
+      <CalibrationModal 
+        open={showCalibration} 
+        onCalibrationComplete={handleCalibrationComplete}
+      />
       <ToolLayout
         title="Online Audiometer"
-        description="Professional hearing test with interactive audiogram"
+        description="Professional hearing test with interactive audiogram and interpretation"
         leftPanel={leftPanel}
         rightPanel={rightPanel}
-      />
+      >
+        <AudiogramInterpretation 
+          testResults={testResults}
+          frequencies={frequencies}
+          volumes={volumes}
+        />
+      </ToolLayout>
     </TooltipProvider>
   );
 }

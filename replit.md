@@ -82,7 +82,20 @@ client/
 
 ## Recent Changes
 
-### November 9, 2025 (Latest Session)
+### November 9, 2025 (Latest Session - Part 2)
+- **Enhanced Audiometer Features**:
+  - **1kHz Reference Calibration System**: Added CalibrationModal that appears on first use, allows users to adjust 1kHz reference tone to comfortable listening level, stores calibration in localStorage for persistent accuracy improvement
+  - **Warble Tone Support**: Implemented frequency-modulated tones (±5% at 4.5 Hz) in useAudiometerEngine as alternative to pure tones - warble tones are easier to detect for some users, especially those with tinnitus
+  - **Intelligent Audiogram Interpretation**: Created AudiogramInterpretation component that:
+    - Categorizes hearing loss (Normal 0-25dB, Mild 26-40dB, Moderate 41-55dB, Moderate-Severe 56-70dB, Severe 71-90dB, Profound 91+dB)
+    - Provides frequency-specific insights (high-freq vs low-freq loss detection, profile variance analysis)
+    - Displays overall assessment with severity-based color coding (green/yellow/red alerts)
+    - Shows individual frequency results with threshold values and categories
+    - Includes color-coded hearing loss legend and medical disclaimer
+  - **Improved Audiometer UI**: Reorganized left panel with "Test Settings" card containing calibration button, tone type toggle (Pure/Warble), and ear selection - more compact and professional layout
+  - **localStorage Integration**: Calibration persists across sessions, users only need to calibrate once per device/headphones
+
+### November 9, 2025 (Latest Session - Part 1)
 - **Educational Learn Page**:
   - Added comprehensive "Learn" page to navbar with science-based hearing health information
   - Covers tinnitus (pulsatile and non-pulsatile), hyperacusis, hearing loss, SSNHL, and 15+ conditions
