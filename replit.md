@@ -80,12 +80,32 @@ client/
 
 ## Recent Changes
 
-### November 9, 2025
-- **Download Functionality Implementation**:
+### November 9, 2025 (Latest Session)
+- **Accessibility Enhancement - Plain-Language Tooltips**:
+  - Added comprehensive tooltip system across all 5 tools (FrequencyFinder, TinnitusMatching, NoiseGenerator, NotchedNoise, Audiometer)
+  - Technical terms remain visible, with HelpCircle icons providing plain-language explanations
+  - All tooltips use shadcn/ui TooltipProvider, TooltipTrigger, and TooltipContent components
+  - Examples: "4000 Hz" explained as "High pitch - like a bird chirping", "Equalizer" described as "bass/treble on a stereo"
+  - Improves accessibility for non-technical users while maintaining professional terminology
+
+- **Filtered Waveform Implementation**:
+  - Added 1kHz low-pass filter (Q=1) to 'filtered' waveform option in useAudioEngine.ts
+  - Filter creates softer, warmer tone compared to pure sine wave
+  - Both real-time playback and WAV export now apply the same filter
+  - Ensures downloaded audio matches what users hear in-app
+
+- **Download Functionality Improvements**:
+  - TinnitusMatching: Fixed download to handle all waveform types (sine, square, triangle, sawtooth, filtered, noise)
+  - Noise waveform now correctly generates white noise buffer in export
+  - Filtered waveform applies low-pass filter in offline rendering
+  - All exported WAV files faithfully reproduce the live audio experience
+
+- **Download Functionality Implementation** (Earlier in session):
   - Created `audioExport.ts` utility for WAV audio export
   - Audiometer: Export hearing test results as CSV file with frequency/threshold data
   - Noise Generator: Export 30-second WAV audio files with custom EQ settings applied
   - Notched Noise: Export 30-second WAV audio files with notch filter applied
+  - Tinnitus Matching: Export 30-second WAV audio files with exact waveform/frequency/volume
   - All audio exports use OfflineAudioContext for non-real-time rendering at 48kHz stereo
   - Fixed AudioContext resource leak by using default sample rate instead of creating disposable contexts
   - WAV files encoded as 16-bit PCM stereo format
