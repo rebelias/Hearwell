@@ -28,6 +28,7 @@ export default function Navigation() {
     { path: "/noise-generator", label: "Noise Generator" },
     { path: "/tinnitus-matching", label: "Tinnitus Matching" },
     { path: "/notched-noise", label: "Notched Noise" },
+    { path: "/learn", label: "Learn" },
   ];
 
   return (

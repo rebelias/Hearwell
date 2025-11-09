@@ -4,13 +4,14 @@
 HearWell is a comprehensive hearing health web application that provides five professional-grade tools for tinnitus management and hearing assessment. Built with React and TypeScript, it uses the Web Audio API for precise audio tone generation and playback.
 
 ## Current State
-All five core tools are fully implemented and functional:
+All five core tools are fully implemented and functional, plus an educational information hub:
 
 1. **Frequency Finder** - Helps users identify their tinnitus frequency (50Hz - 20kHz)
 2. **Online Audiometer** - Professional hearing test with interactive audiogram visualization
 3. **Noise Generator** - 8-band equalizer for creating custom colored noise (white, pink, brown, violet, blue, grey)
 4. **Tinnitus Matching** - Precise tone matching with frequency, volume, and waveform controls
 5. **Notched Noise Generator** - Therapeutic noise with tinnitus frequency removed
+6. **Learn** - Comprehensive science-based guide covering tinnitus, hearing loss, hyperacusis, and related conditions with authoritative medical links
 
 ## Technical Architecture
 
@@ -66,7 +67,8 @@ client/
 │   │   ├── Audiometer.tsx         # Hearing test with audiogram
 │   │   ├── NoiseGenerator.tsx     # Custom noise with EQ
 │   │   ├── TinnitusMatching.tsx   # Precision tone matching
-│   │   └── NotchedNoise.tsx       # Therapeutic notched noise
+│   │   ├── NotchedNoise.tsx       # Therapeutic notched noise
+│   │   └── Learn.tsx              # Educational info hub with medical guidance
 │   └── index.css                  # Custom design tokens and utilities
 └── design_guidelines.md           # Complete design system documentation
 ```
@@ -81,6 +83,13 @@ client/
 ## Recent Changes
 
 ### November 9, 2025 (Latest Session)
+- **Educational Learn Page**:
+  - Added comprehensive "Learn" page to navbar with science-based hearing health information
+  - Covers tinnitus (pulsatile and non-pulsatile), hyperacusis, hearing loss, SSNHL, and 15+ conditions
+  - Includes urgent care guidelines, symptom-to-diagnosis table, and evidence-based treatment approaches
+  - Links to authoritative medical sources (NIDCD, AAO-HNS, NICE, NIH/NCBI)
+  - Mobile-responsive design with Cards, tables, and color-coded urgency alerts
+
 - **Accessibility Enhancement - Plain-Language Tooltips**:
   - Added comprehensive tooltip system across all 5 tools (FrequencyFinder, TinnitusMatching, NoiseGenerator, NotchedNoise, Audiometer)
   - Technical terms remain visible, with HelpCircle icons providing plain-language explanations

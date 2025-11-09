@@ -10,6 +10,7 @@ import Audiometer from "@/pages/Audiometer";
 import NoiseGenerator from "@/pages/NoiseGenerator";
 import TinnitusMatching from "@/pages/TinnitusMatching";
 import NotchedNoise from "@/pages/NotchedNoise";
+import Learn from "@/pages/Learn";
 import NotFound from "@/pages/not-found";
 
 function Router() {
@@ -21,6 +22,7 @@ function Router() {
       <Route path="/noise-generator" component={NoiseGenerator} />
       <Route path="/tinnitus-matching" component={TinnitusMatching} />
       <Route path="/notched-noise" component={NotchedNoise} />
+      <Route path="/learn" component={Learn} />
       <Route component={NotFound} />
     </Switch>
   );
