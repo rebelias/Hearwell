@@ -1,0 +1,23 @@
+{
+  "title": "Tinnitus-Frequenzfinder",
+  "description": "Finden Sie die Frequenz, die zu Ihrem Tinnitus passt, indem Sie den Schieberegler anpassen",
+  "instructions": "Anweisungen",
+  "instructionsText": "Klicken Sie auf ABSPIELEN und passen Sie den Frequenzschieberegler an, bis Sie den Ton finden, der zu Ihrem Tinnitus passt. Wählen Sie dann die Wellenformqualität aus, die am ehesten der Art entspricht, wie Ihr Tinnitus klingt.",
+  "frequencyControl": "Frequenzsteuerung",
+  "frequencyControlDesc": "Stellen Sie die Frequenz von 50Hz bis 20.000Hz ein",
+  "frequencyHz": "Frequenz (Hz)",
+  "frequencyTooltip": "Frequenz ist die Tonhöhe des Schalls, gemessen in Hertz (Hz). Niedrigere Zahlen = tiefere Töne (wie Donner), höhere Zahlen = schärfere Töne (wie ein Pfiff)",
+  "toneQuality": "Tonqualität (Wellenform)",
+  "toneQualityTooltip": "Verschiedene Wellenformen erzeugen unterschiedliche Klangqualitäten. Sinus = reiner Ton, Quadrat = summend, Dreieck = hohl, Sägezahn = hart, Gefiltert = weicher, Rauschen = statisch",
+  "copySettings": "Einstellungen Kopieren",
+  "shareLink": "Link Teilen",
+  "settingsCopied": "Einstellungen Kopiert",
+  "settingsCopiedDesc": "Ihre Tinnitus-Einstellungen wurden in die Zwischenablage kopiert",
+  "linkCopied": "Link Kopiert",
+  "linkCopiedDesc": "Teilbarer Link in die Zwischenablage kopiert",
+  "currentFrequency": "Aktuelle Frequenz",
+  "waveform": "Wellenform",
+  "aboutTool": "Über Dieses Tool",
+  "aboutToolText1": "Dieser Frequenzfinder hilft Ihnen, die spezifische Tonhöhe Ihres Tinnitus zu identifizieren. Die meisten Menschen erleben Tinnitus im Bereich von 3.000-8.000 Hz, aber es kann erheblich variieren.",
+  "aboutToolText2": "Sobald Sie Ihre Frequenz identifiziert haben, können Sie diese Informationen mit unseren anderen Behandlungstools wie dem Kerbenrauschen-Generator verwenden oder mit Ihrem Gesundheitsdienstleister besprechen."
+}

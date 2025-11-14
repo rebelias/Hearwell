@@ -1,0 +1,28 @@
+{
+  "title": "全面的听力健康工具",
+  "subtitle": "用于耳鸣管理和听力评估的专业级工具。无需下载，只需耳机和您的设备。",
+  "getStarted": "开始",
+  "learnMore": "了解更多",
+  "medicalDisclaimer": "医疗免责声明",
+  "disclaimerText": "在不受控制的环境中进行的在线听力测试不能替代在隔音室中由专业听力师进行的校准测试。此信息不应被视为医疗建议。如果您有医疗问题，请联系当地医生进行诊断和治疗。",
+  "frequencyFinder": {
+    "title": "频率查找器",
+    "description": "使用具有多种波形选项的交互式滑块查找您的耳鸣频率"
+  },
+  "audiometer": {
+    "title": "在线听力计",
+    "description": "完整的听力测试，带有用于专业评估的交互式听力图"
+  },
+  "tonalMasker": {
+    "title": "音调耳鸣掩蔽器",
+    "description": "使用幅度和频率调制进行耳鸣治疗的声学神经调节工具"
+  },
+  "noiseGenerator": {
+    "title": "噪声发生器",
+    "description": "使用8段均衡器和环境背景声音创建自定义白噪声"
+  },
+  "notchedNoise": {
+    "title": "陷波噪声",
+    "description": "生成用于耳鸣治疗的治疗性陷波白噪声"
+  }
+}

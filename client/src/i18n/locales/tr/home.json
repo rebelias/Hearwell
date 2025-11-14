@@ -1,0 +1,28 @@
+{
+  "title": "Kapsamlı İşitme Sağlığı Araçları",
+  "subtitle": "Tinnitus yönetimi ve işitme değerlendirmesi için profesyonel düzeyde araçlar. İndirme gerekmez, sadece kulaklık ve cihazınız.",
+  "getStarted": "Başlayın",
+  "learnMore": "Daha Fazla Bilgi",
+  "medicalDisclaimer": "Tıbbi Sorumluluk Reddi",
+  "disclaimerText": "Kontrolsüz bir ortamda yapılan çevrimiçi bir işitme testi, profesyonel bir odyolog ile ses geçirmez bir kabinde yapılan kalibre edilmiş testlerin yerini alamaz. Bu bilgiler tıbbi tavsiye olarak kabul edilmemelidir. Tıbbi bir sorununuz varsa, teşhis ve tedavi için yerel doktorunuzla iletişime geçin.",
+  "frequencyFinder": {
+    "title": "Frekans Bulucu",
+    "description": "Birden fazla dalga formu seçeneğiyle interaktif bir kaydırıcı kullanarak tinnitus frekansınızı bulun"
+  },
+  "audiometer": {
+    "title": "Çevrimiçi Odyometre",
+    "description": "Profesyonel değerlendirmeler için interaktif odyogram grafiği ile eksiksiz işitme testi"
+  },
+  "tonalMasker": {
+    "title": "Ton Tinnitus Maskesi",
+    "description": "Tinnitus tedavisi için genlik ve frekans modülasyonu kullanan akustik nöromodülasyon aracı"
+  },
+  "noiseGenerator": {
+    "title": "Gürültü Üretici",
+    "description": "8 bantlı ekolayzer ve çevresel arka plan sesleri ile özel beyaz gürültü oluşturun"
+  },
+  "notchedNoise": {
+    "title": "Çentikli Gürültü",
+    "description": "Tinnitus tedavisi için terapötik çentikli beyaz gürültü üretir"
+  }
+}

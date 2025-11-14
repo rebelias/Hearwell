@@ -1,0 +1,28 @@
+{
+  "title": "Umfassende Hörgesundheits-Tools",
+  "subtitle": "Tools auf professionellem Niveau für Tinnitus-Management und Hörtests. Keine Downloads erforderlich, nur Kopfhörer und Ihr Gerät.",
+  "getStarted": "Loslegen",
+  "learnMore": "Mehr Erfahren",
+  "medicalDisclaimer": "Medizinischer Haftungsausschluss",
+  "disclaimerText": "Ein Online-Hörtest in einer unkontrollierten Umgebung kann kalibrierte Tests in einer schalldichten Kabine mit einem professionellen Audiologen nicht ersetzen. Diese Informationen sollten nicht als medizinischer Rat angesehen werden. Wenn Sie ein medizinisches Problem haben, wenden Sie sich bitte an Ihren örtlichen Arzt für Diagnose und Behandlung.",
+  "frequencyFinder": {
+    "title": "Frequenzfinder",
+    "description": "Finden Sie Ihre Tinnitus-Frequenz mit einem interaktiven Schieberegler mit mehreren Wellenformoptionen"
+  },
+  "audiometer": {
+    "title": "Online-Audiometer",
+    "description": "Vollständiger Hörtest mit interaktivem Audiogramm-Diagramm für professionelle Bewertungen"
+  },
+  "tonalMasker": {
+    "title": "Ton-Tinnitus-Maskierer",
+    "description": "Akustisches Neuromodulations-Tool mit Amplituden- und Frequenzmodulation für Tinnitus-Therapie"
+  },
+  "noiseGenerator": {
+    "title": "Rauschgenerator",
+    "description": "Erstellen Sie benutzerdefiniertes weißes Rauschen mit 8-Band-Equalizer und Umgebungsgeräuschen"
+  },
+  "notchedNoise": {
+    "title": "Kerbenrauschen",
+    "description": "Erzeugt therapeutisches weißes Rauschen mit Kerbe zur Tinnitus-Behandlung"
+  }
+}

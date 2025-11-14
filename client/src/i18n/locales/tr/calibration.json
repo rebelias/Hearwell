@@ -1,0 +1,13 @@
+{
+  "title": "Ses Kalibrasyonu",
+  "description": "Doğru işitme testleri için ses çıkışınızı kalibre edin",
+  "instructions": "Talimatlar",
+  "instructionsText": "Tonu zar zor duyulabilir olana kadar kaydırıcıyı ayarlayın. Bu, odyometreyi cihazınıza ve kulaklıklarınıza kalibre eder. Ayarlardan istediğiniz zaman yeniden kalibre edebilirsiniz.",
+  "adjustVolume": "Sesi Ayarla",
+  "adjustVolumeDesc": "Tonu zar zor duyabileceğiniz noktaya kadar kaydırıcıyı hareket ettirin",
+  "playTone": "Ton Çal",
+  "stopTone": "Tonu Durdur",
+  "calibrate": "Kalibre Et",
+  "calibrationComplete": "Kalibrasyon Tamamlandı",
+  "calibrationCompleteDesc": "Odyometreniz artık doğru test için kalibre edildi"
+}

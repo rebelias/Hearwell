@@ -1,0 +1,28 @@
+{
+  "title": "Comprehensive Hearing Health Tools",
+  "subtitle": "Professional-grade tools for tinnitus management and hearing assessment. No downloads required, just headphones and your device.",
+  "getStarted": "Get Started",
+  "learnMore": "Learn More",
+  "medicalDisclaimer": "Medical Disclaimer",
+  "disclaimerText": "An online hearing test performed in an uncontrolled environment cannot replace calibrated tests performed in a sound-proof booth with a professional audiologist. This information should not be considered medical advice. If you have a medical problem, please contact your local physician for diagnosis and treatment.",
+  "frequencyFinder": {
+    "title": "Frequency Finder",
+    "description": "Find your tinnitus frequency using an interactive slider with multiple waveform options"
+  },
+  "audiometer": {
+    "title": "Online Audiometer",
+    "description": "Complete hearing test with interactive audiogram chart for professional assessments"
+  },
+  "tonalMasker": {
+    "title": "Tonal Tinnitus Masker",
+    "description": "Acoustic neuromodulation tool using amplitude and frequency modulation for tinnitus therapy"
+  },
+  "noiseGenerator": {
+    "title": "Noise Generator",
+    "description": "Create custom white noise with 8-band equalizer and ambient background sounds"
+  },
+  "notchedNoise": {
+    "title": "Notched Noise",
+    "description": "Generate therapeutic notched white noise for tinnitus treatment"
+  }
+}

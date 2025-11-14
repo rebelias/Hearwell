@@ -1,0 +1,15 @@
+node_modules
+dist
+build
+coverage
+*.min.js
+*.min.css
+package-lock.json
+pnpm-lock.yaml
+yarn.lock
+.next
+.nuxt
+.vscode
+.idea
+*.log
+

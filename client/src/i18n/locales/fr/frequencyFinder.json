@@ -1,0 +1,23 @@
+{
+  "title": "Détecteur de Fréquence de Tinnitus",
+  "description": "Trouvez la fréquence qui correspond à votre tinnitus en ajustant le curseur",
+  "instructions": "Instructions",
+  "instructionsText": "Cliquez sur LIRE et ajustez le curseur de fréquence jusqu'à trouver le ton qui correspond à votre tinnitus. Ensuite, sélectionnez la qualité de forme d'onde qui correspond le plus à la façon dont votre tinnitus sonne.",
+  "frequencyControl": "Contrôle de Fréquence",
+  "frequencyControlDesc": "Ajustez la fréquence de 50Hz à 20,000Hz",
+  "frequencyHz": "Fréquence (Hz)",
+  "frequencyTooltip": "La fréquence est le ton du son mesuré en Hertz (Hz). Les nombres plus bas = sons plus profonds (comme le tonnerre), les nombres plus élevés = sons plus aigus (comme un sifflet)",
+  "toneQuality": "Qualité du Ton (Forme d'Onde)",
+  "toneQualityTooltip": "Différentes formes d'onde créent différentes qualités sonores. Sinus = ton pur, Carré = bourdonnant, Triangle = creux, Dent de scie = dur, Filtré = plus doux, Bruit = statique",
+  "copySettings": "Copier les Paramètres",
+  "shareLink": "Partager le Lien",
+  "settingsCopied": "Paramètres Copiés",
+  "settingsCopiedDesc": "Vos paramètres de tinnitus ont été copiés dans le presse-papiers",
+  "linkCopied": "Lien Copié",
+  "linkCopiedDesc": "Lien partageable copié dans le presse-papiers",
+  "currentFrequency": "Fréquence Actuelle",
+  "waveform": "Forme d'Onde",
+  "aboutTool": "À Propos de Cet Outil",
+  "aboutToolText1": "Ce détecteur de fréquence vous aide à identifier le ton spécifique de votre tinnitus. La plupart des gens éprouvent un tinnitus dans la plage de 3,000-8,000 Hz, mais cela peut varier considérablement.",
+  "aboutToolText2": "Une fois que vous avez identifié votre fréquence, vous pouvez utiliser ces informations avec nos autres outils de traitement comme le Générateur de Bruit Entaillé ou en discuter avec votre professionnel de la santé."
+}

@@ -1,0 +1,23 @@
+{
+  "title": "Buscador de Frecuencia de Tinnitus",
+  "description": "Encuentra la frecuencia que coincide con tu tinnitus ajustando el control deslizante",
+  "instructions": "Instrucciones",
+  "instructionsText": "Haz clic en REPRODUCIR y ajusta el control deslizante de frecuencia hasta encontrar el tono que coincide con tu tinnitus. Luego selecciona la calidad de forma de onda que más se parezca a cómo suena tu tinnitus.",
+  "frequencyControl": "Control de Frecuencia",
+  "frequencyControlDesc": "Ajusta la frecuencia de 50Hz a 20,000Hz",
+  "frequencyHz": "Frecuencia (Hz)",
+  "frequencyTooltip": "La frecuencia es el tono del sonido medido en Hertz (Hz). Números más bajos = sonidos más profundos (como truenos), números más altos = sonidos más agudos (como un silbido)",
+  "toneQuality": "Calidad del Tono (Forma de Onda)",
+  "toneQualityTooltip": "Diferentes formas de onda crean diferentes cualidades de sonido. Seno = tono puro, Cuadrado = zumbido, Triángulo = hueco, Diente de Sierra = áspero, Filtrado = más suave, Ruido = estático",
+  "copySettings": "Copiar Configuración",
+  "shareLink": "Compartir Enlace",
+  "settingsCopied": "Configuración Copiada",
+  "settingsCopiedDesc": "Tu configuración de tinnitus ha sido copiada al portapapeles",
+  "linkCopied": "Enlace Copiado",
+  "linkCopiedDesc": "Enlace compartible copiado al portapapeles",
+  "currentFrequency": "Frecuencia Actual",
+  "waveform": "Forma de Onda",
+  "aboutTool": "Acerca de Esta Herramienta",
+  "aboutToolText1": "Este buscador de frecuencia te ayuda a identificar el tono específico de tu tinnitus. La mayoría de las personas experimentan tinnitus en el rango de 3,000-8,000 Hz, pero puede variar significativamente.",
+  "aboutToolText2": "Una vez que hayas identificado tu frecuencia, puedes usar esta información con nuestras otras herramientas de tratamiento como el Generador de Ruido con Muesca o discutirlo con tu proveedor de atención médica."
+}

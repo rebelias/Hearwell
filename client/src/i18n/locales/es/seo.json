@@ -1,0 +1,47 @@
+{
+  "home": {
+    "title": "HearWell - Pruebas de Audición Gratuitas en Línea",
+    "description": "Herramientas profesionales de salud auditiva gratuitas. Audiómetro en línea, buscador de frecuencia de tinnitus y generadores de sonido terapéutico. 100% privado, basado en navegador, sin cuenta requerida.",
+    "keywords": "prueba de audición, audiómetro en línea, buscador de frecuencia de tinnitus, terapia de sonido, pérdida auditiva, alivio del tinnitus"
+  },
+  "audiometer": {
+    "title": "Audiómetro en Línea - Prueba Tu Audición",
+    "description": "Prueba de audición profesional en línea con visualización de audiograma en tiempo real. Prueba frecuencias de 250Hz a 10kHz. Audiómetro gratuito, privado y basado en navegador.",
+    "keywords": "audiómetro, prueba de audición, audiograma, pérdida auditiva, evaluación auditiva, audiometría de tonos puros"
+  },
+  "frequencyFinder": {
+    "title": "Buscador de Frecuencia de Tinnitus",
+    "description": "Encuentra la frecuencia de tu tinnitus ajustando tonos de 50Hz a 20kHz. Múltiples formas de onda disponibles. Herramienta gratuita de coincidencia de tinnitus.",
+    "keywords": "frecuencia de tinnitus, tono de tinnitus, coincidencia de tinnitus, sonido de tinnitus, frecuencia auditiva, generador de frecuencia"
+  },
+  "tonalMasker": {
+    "title": "Enmascarador Tonal - Terapia de Neuromodulación Acústica",
+    "description": "Neuromodulación acústica para tinnitus usando modulación AM/FM y terapia de Reinicio Coordinado. Secuencias de tonos aleatorias con sonidos de fondo.",
+    "keywords": "enmascarador tonal, neuromodulación acústica, reinicio coordinado, terapia de tinnitus, modulación AM FM, tratamiento de tinnitus"
+  },
+  "noiseGenerator": {
+    "title": "Generador de Ruido - Ruido de Colores Personalizado",
+    "description": "Crea ruido de colores personalizado con ecualizador de 8 bandas. Presets de ruido blanco, rosa, marrón, violeta, azul y gris. Herramienta gratuita de terapia de sonido.",
+    "keywords": "generador de ruido, ruido blanco, ruido rosa, ruido marrón, ruido de colores, terapia de sonido, sonidos de relajación, ecualizador"
+  },
+  "notchedNoise": {
+    "title": "Generador de Ruido con Muesca - Terapia de Tinnitus",
+    "description": "Generador de ruido terapéutico avanzado con ecualizador de 10 bandas para alivio del tinnitus. Múltiples tipos de ruido, control de amplitud estéreo y muesca específica de frecuencia.",
+    "keywords": "ruido con muesca, terapia de tinnitus, ruido terapéutico, muesca de frecuencia, alivio del tinnitus, terapia de sonido"
+  },
+  "learn": {
+    "title": "Aprende Sobre Salud Auditiva y Tinnitus",
+    "description": "Guía completa sobre salud auditiva, causas, síntomas y tratamientos del tinnitus. Recursos educativos para entender la pérdida auditiva y el manejo del tinnitus.",
+    "keywords": "salud auditiva, educación sobre tinnitus, pérdida auditiva, causas del tinnitus, tratamiento del tinnitus, audiometría, protección auditiva"
+  },
+  "about": {
+    "title": "Acerca de HearWell",
+    "description": "Conoce HearWell, nuestra misión de proporcionar herramientas de salud auditiva gratuitas y accesibles. Proyecto de código abierto dedicado a mejorar la conciencia sobre la salud auditiva.",
+    "keywords": "acerca de hearwell, misión de salud auditiva, herramientas auditivas de código abierto, accesibilidad"
+  },
+  "disclaimer": {
+    "title": "Descargo de Responsabilidad Médica y Términos Legales",
+    "description": "Descargo de responsabilidad médica importante y términos legales para usar HearWell. No es un dispositivo médico, no está aprobado por la FDA. Solo con fines educativos e informativos.",
+    "keywords": "descargo de responsabilidad médica, términos legales, responsabilidad, descargo de prueba de audición, descargo de tinnitus"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "title": "音频校准",
+  "description": "校准您的音频输出以进行准确的听力测试",
+  "instructions": "说明",
+  "instructionsText": "调整滑块直到音调刚好能听到。这会将听力计校准到您的设备和耳机。您可以随时从设置中重新校准。",
+  "adjustVolume": "调整音量",
+  "adjustVolumeDesc": "移动滑块直到您刚好能听到音调",
+  "playTone": "播放音调",
+  "stopTone": "停止音调",
+  "calibrate": "校准",
+  "calibrationComplete": "校准完成",
+  "calibrationCompleteDesc": "您的听力计现已校准以进行准确测试"
+}

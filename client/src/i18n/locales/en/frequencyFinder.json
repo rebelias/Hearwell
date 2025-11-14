@@ -1,0 +1,23 @@
+{
+  "title": "Tinnitus Frequency Finder",
+  "description": "Find the frequency that matches your tinnitus by adjusting the slider",
+  "instructions": "Instructions",
+  "instructionsText": "Click PLAY and adjust the frequency slider until you find the tone that matches your tinnitus. Then select the waveform quality that most closely matches how your tinnitus sounds.",
+  "frequencyControl": "Frequency Control",
+  "frequencyControlDesc": "Adjust the frequency from 50Hz to 20,000Hz",
+  "frequencyHz": "Frequency (Hz)",
+  "frequencyTooltip": "Frequency is the pitch of sound measured in Hertz (Hz). Lower numbers = deeper sounds (like thunder), higher numbers = sharper sounds (like a whistle)",
+  "toneQuality": "Tone Quality (Waveform)",
+  "toneQualityTooltip": "Different waveforms create different sound qualities. Sine = pure tone, Square = buzzy, Triangle = hollow, Sawtooth = harsh, Filtered = softer, Noise = static-like",
+  "copySettings": "Copy Settings",
+  "shareLink": "Share Link",
+  "settingsCopied": "Settings Copied",
+  "settingsCopiedDesc": "Your tinnitus settings have been copied to clipboard",
+  "linkCopied": "Link Copied",
+  "linkCopiedDesc": "Shareable link copied to clipboard",
+  "currentFrequency": "Current Frequency",
+  "waveform": "Waveform",
+  "aboutTool": "About This Tool",
+  "aboutToolText1": "This frequency finder helps you identify the specific pitch of your tinnitus. Most people experience tinnitus in the range of 3,000-8,000 Hz, but it can vary significantly.",
+  "aboutToolText2": "Once you've identified your frequency, you can use this information with our other treatment tools like the Notched Noise Generator or discuss it with your healthcare provider."
+}

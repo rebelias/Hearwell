@@ -1,0 +1,13 @@
+{
+  "title": "Calibration Audio",
+  "description": "Calibrez votre sortie audio pour des tests auditifs précis",
+  "instructions": "Instructions",
+  "instructionsText": "Ajustez le curseur jusqu'à ce que le ton soit à peine audible. Cela calibre l'audiomètre à votre appareil et vos écouteurs. Vous pouvez recalibrer à tout moment depuis les paramètres.",
+  "adjustVolume": "Ajuster le Volume",
+  "adjustVolumeDesc": "Déplacez le curseur jusqu'à ce que vous puissiez à peine entendre le ton",
+  "playTone": "Jouer le Ton",
+  "stopTone": "Arrêter le Ton",
+  "calibrate": "Calibrer",
+  "calibrationComplete": "Calibration Terminée",
+  "calibrationCompleteDesc": "Votre audiomètre est maintenant calibré pour des tests précis"
+}

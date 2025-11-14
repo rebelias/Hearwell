@@ -1,0 +1,23 @@
+{
+  "title": "Tinnitus Frekans Bulucu",
+  "description": "Kaydırıcıyı ayarlayarak tinnitus'unuza uyan frekansı bulun",
+  "instructions": "Talimatlar",
+  "instructionsText": "OYUNAT'a tıklayın ve tinnitus'unuza uyan tonu bulana kadar frekans kaydırıcısını ayarlayın. Ardından tinnitus'unuzun nasıl ses çıkardığına en yakın dalga formu kalitesini seçin.",
+  "frequencyControl": "Frekans Kontrolü",
+  "frequencyControlDesc": "Frekansı 50Hz'den 20,000Hz'ye ayarlayın",
+  "frequencyHz": "Frekans (Hz)",
+  "frequencyTooltip": "Frekans, Hertz (Hz) cinsinden ölçülen ses perdesidir. Düşük sayılar = daha derin sesler (gök gürültüsü gibi), yüksek sayılar = daha keskin sesler (düdük gibi)",
+  "toneQuality": "Ton Kalitesi (Dalga Formu)",
+  "toneQualityTooltip": "Farklı dalga formları farklı ses kaliteleri oluşturur. Sinüs = saf ton, Kare = vızıltılı, Üçgen = boş, Testere dişi = sert, Filtrelenmiş = daha yumuşak, Gürültü = statik benzeri",
+  "copySettings": "Ayarları Kopyala",
+  "shareLink": "Bağlantıyı Paylaş",
+  "settingsCopied": "Ayarlar Kopyalandı",
+  "settingsCopiedDesc": "Tinnitus ayarlarınız panoya kopyalandı",
+  "linkCopied": "Bağlantı Kopyalandı",
+  "linkCopiedDesc": "Paylaşılabilir bağlantı panoya kopyalandı",
+  "currentFrequency": "Mevcut Frekans",
+  "waveform": "Dalga Formu",
+  "aboutTool": "Bu Araç Hakkında",
+  "aboutToolText1": "Bu frekans bulucu, tinnitus'unuzun belirli perdesini belirlemenize yardımcı olur. Çoğu insan tinnitus'u 3,000-8,000 Hz aralığında yaşar, ancak bu önemli ölçüde değişebilir.",
+  "aboutToolText2": "Frekansınızı belirledikten sonra, bu bilgiyi Çentikli Gürültü Üreticisi gibi diğer tedavi araçlarımızla kullanabilir veya sağlık hizmeti sağlayıcınızla görüşebilirsiniz."
+}

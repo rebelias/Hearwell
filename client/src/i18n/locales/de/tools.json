@@ -1,0 +1,22 @@
+{
+  "equalizerSettings": "Equalizer-Einstellungen",
+  "adjust8BandEqualizer": "Stellen Sie den 8-Band-Equalizer ein, um Ihr Rauschen anzupassen",
+  "coloredNoisePresets": "Farbiges Rauschen Voreinstellungen",
+  "presets": "Voreinstellungen",
+  "white": "Weiß",
+  "pink": "Rosa",
+  "brown": "Braun",
+  "violet": "Violett",
+  "blue": "Blau",
+  "grey": "Grau",
+  "saveSettings": "Einstellungen Speichern",
+  "startTool": "Werkzeug Starten",
+  "howToUse": "Verwendung",
+  "frequency": "Frequenz",
+  "waveform": "Wellenform",
+  "volume": "Lautstärke",
+  "earSelection": "Ohr-Auswahl",
+  "left": "Links",
+  "right": "Rechts",
+  "both": "Beide"
+}

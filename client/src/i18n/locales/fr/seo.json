@@ -1,0 +1,47 @@
+{
+  "home": {
+    "title": "HearWell - Tests Auditifs Gratuits en Ligne",
+    "description": "Outils de santé auditive professionnels gratuits. Audiomètre en ligne, détecteur de fréquence d'acouphènes et générateurs de sons thérapeutiques. 100% privé, basé sur navigateur, aucun compte requis.",
+    "keywords": "test auditif, audiomètre en ligne, détecteur de fréquence d'acouphènes, thérapie sonore, perte auditive, soulagement des acouphènes"
+  },
+  "audiometer": {
+    "title": "Audiomètre en Ligne - Testez Votre Audition",
+    "description": "Test auditif professionnel en ligne avec visualisation d'audiogramme en temps réel. Testez les fréquences de 250Hz à 10kHz. Audiomètre gratuit, privé et basé sur navigateur.",
+    "keywords": "audiomètre, test auditif, audiogramme, perte auditive, évaluation auditive, audiométrie tonale pure"
+  },
+  "frequencyFinder": {
+    "title": "Détecteur de Fréquence d'Acouphènes",
+    "description": "Trouvez la fréquence de vos acouphènes en ajustant les tons de 50Hz à 20kHz. Plusieurs formes d'onde disponibles. Outil gratuit de correspondance d'acouphènes.",
+    "keywords": "fréquence d'acouphènes, tonalité d'acouphènes, correspondance d'acouphènes, son d'acouphènes, fréquence auditive, générateur de fréquence"
+  },
+  "tonalMasker": {
+    "title": "Masque Tonal - Thérapie de Neuromodulation Acoustique",
+    "description": "Neuromodulation acoustique pour acouphènes utilisant la modulation AM/FM et la thérapie de Réinitialisation Coordonnée. Séquences de tons aléatoires avec sons d'ambiance.",
+    "keywords": "masque tonal, neuromodulation acoustique, réinitialisation coordonnée, thérapie d'acouphènes, modulation AM FM, traitement des acouphènes"
+  },
+  "noiseGenerator": {
+    "title": "Générateur de Bruit - Bruit Coloré Personnalisé",
+    "description": "Créez du bruit coloré personnalisé avec égaliseur 8 bandes. Préréglages de bruit blanc, rose, brun, violet, bleu et gris. Outil gratuit de thérapie sonore.",
+    "keywords": "générateur de bruit, bruit blanc, bruit rose, bruit brun, bruit coloré, thérapie sonore, sons de relaxation, égaliseur"
+  },
+  "notchedNoise": {
+    "title": "Générateur de Bruit Encoche - Thérapie d'Acouphènes",
+    "description": "Générateur de bruit thérapeutique avancé avec égaliseur 10 bandes pour soulager les acouphènes. Plusieurs types de bruit, contrôle de largeur stéréo et encoche spécifique de fréquence.",
+    "keywords": "bruit encoche, thérapie d'acouphènes, bruit thérapeutique, encoche de fréquence, soulagement des acouphènes, thérapie sonore"
+  },
+  "learn": {
+    "title": "Apprendre Sur la Santé Auditive et les Acouphènes",
+    "description": "Guide complet sur la santé auditive, les causes, symptômes et traitements des acouphènes. Ressources éducatives pour comprendre la perte auditive et la gestion des acouphènes.",
+    "keywords": "santé auditive, éducation sur les acouphènes, perte auditive, causes des acouphènes, traitement des acouphènes, audiométrie, protection auditive"
+  },
+  "about": {
+    "title": "À Propos de HearWell",
+    "description": "Découvrez HearWell, notre mission de fournir des outils de santé auditive gratuits et accessibles. Projet open source dédié à améliorer la sensibilisation à la santé auditive.",
+    "keywords": "à propos de hearwell, mission de santé auditive, outils auditifs open source, accessibilité"
+  },
+  "disclaimer": {
+    "title": "Avertissement Médical et Conditions Légales",
+    "description": "Avertissement médical important et conditions légales pour utiliser HearWell. Pas un dispositif médical, pas approuvé par la FDA. À des fins éducatives et informatives uniquement.",
+    "keywords": "avertissement médical, conditions légales, responsabilité, avertissement de test auditif, avertissement d'acouphènes"
+  }
+}

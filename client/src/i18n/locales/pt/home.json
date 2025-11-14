@@ -1,0 +1,28 @@
+{
+  "title": "Ferramentas Abrangentes de Saúde Auditiva",
+  "subtitle": "Ferramentas de nível profissional para gerenciamento de zumbido e avaliação auditiva. Nenhum download necessário, apenas fones de ouvido e seu dispositivo.",
+  "getStarted": "Começar",
+  "learnMore": "Saber Mais",
+  "medicalDisclaimer": "Aviso Médico",
+  "disclaimerText": "Um teste auditivo online realizado em um ambiente não controlado não pode substituir testes calibrados realizados em uma cabine à prova de som com um audiologista profissional. Estas informações não devem ser consideradas como aconselhamento médico. Se você tiver um problema médico, entre em contato com seu médico local para diagnóstico e tratamento.",
+  "frequencyFinder": {
+    "title": "Localizador de Frequência",
+    "description": "Encontre a frequência do seu zumbido usando um controle deslizante interativo com múltiplas opções de forma de onda"
+  },
+  "audiometer": {
+    "title": "Audiômetro Online",
+    "description": "Teste auditivo completo com gráfico de audiograma interativo para avaliações profissionais"
+  },
+  "tonalMasker": {
+    "title": "Mascarador Tonal de Zumbido",
+    "description": "Ferramenta de neuromodulação acústica usando modulação de amplitude e frequência para terapia de zumbido"
+  },
+  "noiseGenerator": {
+    "title": "Gerador de Ruído",
+    "description": "Crie ruído branco personalizado com equalizador de 8 bandas e sons de fundo ambientais"
+  },
+  "notchedNoise": {
+    "title": "Ruído com Entalhe",
+    "description": "Gera ruído branco terapêutico com entalhe para tratamento de zumbido"
+  }
+}

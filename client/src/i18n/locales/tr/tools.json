@@ -1,0 +1,22 @@
+{
+  "equalizerSettings": "Ekolayzer Ayarları",
+  "adjust8BandEqualizer": "Gürültünüzü özelleştirmek için 8 bantlı ekolayzeyi ayarlayın",
+  "coloredNoisePresets": "Renkli Gürültü Ön Ayarları",
+  "presets": "Ön Ayarlar",
+  "white": "Beyaz",
+  "pink": "Pembe",
+  "brown": "Kahverengi",
+  "violet": "Mor",
+  "blue": "Mavi",
+  "grey": "Gri",
+  "saveSettings": "Ayarları Kaydet",
+  "startTool": "Aracı Başlat",
+  "howToUse": "Nasıl Kullanılır",
+  "frequency": "Frekans",
+  "waveform": "Dalga Formu",
+  "volume": "Ses",
+  "earSelection": "Kulak Seçimi",
+  "left": "Sol",
+  "right": "Sağ",
+  "both": "Her İkisi"
+}

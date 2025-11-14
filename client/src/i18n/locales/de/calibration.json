@@ -1,0 +1,13 @@
+{
+  "title": "Audio-Kalibrierung",
+  "description": "Kalibrieren Sie Ihre Audioausgabe für genaue Hörtests",
+  "instructions": "Anweisungen",
+  "instructionsText": "Stellen Sie den Schieberegler ein, bis der Ton gerade noch hörbar ist. Dies kalibriert das Audiometer an Ihr Gerät und Ihre Kopfhörer. Sie können jederzeit über die Einstellungen neu kalibrieren.",
+  "adjustVolume": "Lautstärke Anpassen",
+  "adjustVolumeDesc": "Bewegen Sie den Schieberegler, bis Sie den Ton gerade noch hören können",
+  "playTone": "Ton Abspielen",
+  "stopTone": "Ton Stoppen",
+  "calibrate": "Kalibrieren",
+  "calibrationComplete": "Kalibrierung Abgeschlossen",
+  "calibrationCompleteDesc": "Ihr Audiometer ist jetzt für genaue Tests kalibriert"
+}

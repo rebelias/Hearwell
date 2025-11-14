@@ -1,0 +1,23 @@
+{
+  "title": "耳鸣频率查找器",
+  "description": "通过调整滑块找到与您的耳鸣匹配的频率",
+  "instructions": "说明",
+  "instructionsText": "点击播放并调整频率滑块，直到找到与您的耳鸣匹配的音调。然后选择最接近您的耳鸣声音的波形质量。",
+  "frequencyControl": "频率控制",
+  "frequencyControlDesc": "将频率从50Hz调整到20,000Hz",
+  "frequencyHz": "频率 (Hz)",
+  "frequencyTooltip": "频率是以赫兹(Hz)为单位测量的音高。较小的数字 = 更深沉的声音（如雷声），较大的数字 = 更尖锐的声音（如口哨）",
+  "toneQuality": "音质（波形）",
+  "toneQualityTooltip": "不同的波形产生不同的音质。正弦波 = 纯音，方波 = 嗡嗡声，三角波 = 空洞，锯齿波 = 刺耳，滤波 = 更柔和，噪声 = 类似静电",
+  "copySettings": "复制设置",
+  "shareLink": "分享链接",
+  "settingsCopied": "设置已复制",
+  "settingsCopiedDesc": "您的耳鸣设置已复制到剪贴板",
+  "linkCopied": "链接已复制",
+  "linkCopiedDesc": "可分享的链接已复制到剪贴板",
+  "currentFrequency": "当前频率",
+  "waveform": "波形",
+  "aboutTool": "关于此工具",
+  "aboutToolText1": "此频率查找器帮助您识别耳鸣的特定音高。大多数人在3,000-8,000 Hz范围内经历耳鸣，但这可能会有很大差异。",
+  "aboutToolText2": "一旦您确定了频率，可以将此信息与我们的其他治疗工具（如陷波噪声发生器）一起使用，或与您的医疗保健提供者讨论。"
+}

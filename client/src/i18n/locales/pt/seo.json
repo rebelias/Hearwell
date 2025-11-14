@@ -1,0 +1,47 @@
+{
+  "home": {
+    "title": "HearWell - Testes Auditivos Gratuitos Online",
+    "description": "Ferramentas profissionais de saúde auditiva gratuitas. Audiômetro online, localizador de frequência de zumbido e geradores de som terapêutico. 100% privado, baseado em navegador, sem conta necessária.",
+    "keywords": "teste auditivo, audiômetro online, localizador de frequência de zumbido, terapia sonora, perda auditiva, alívio do zumbido"
+  },
+  "audiometer": {
+    "title": "Audiômetro Online - Teste Sua Audição",
+    "description": "Teste auditivo profissional online com visualização de audiograma em tempo real. Teste frequências de 250Hz a 10kHz. Audiômetro gratuito, privado e baseado em navegador.",
+    "keywords": "audiômetro, teste auditivo, audiograma, perda auditiva, avaliação auditiva, audiometria de tom puro"
+  },
+  "frequencyFinder": {
+    "title": "Localizador de Frequência de Zumbido",
+    "description": "Encontre a frequência do seu zumbido ajustando tons de 50Hz a 20kHz. Várias formas de onda disponíveis. Ferramenta gratuita de correspondência de zumbido.",
+    "keywords": "frequência de zumbido, tom de zumbido, correspondência de zumbido, som de zumbido, frequência auditiva, gerador de frequência"
+  },
+  "tonalMasker": {
+    "title": "Mascarador Tonal - Terapia de Neuromodulação Acústica",
+    "description": "Neuromodulação acústica para zumbido usando modulação AM/FM e terapia de Reinicialização Coordenada. Sequências de tons aleatórias com sons de fundo.",
+    "keywords": "mascarador tonal, neuromodulação acústica, reinicialização coordenada, terapia de zumbido, modulação AM FM, tratamento de zumbido"
+  },
+  "noiseGenerator": {
+    "title": "Gerador de Ruído - Ruído Colorido Personalizado",
+    "description": "Crie ruído colorido personalizado com equalizador de 8 bandas. Predefinições de ruído branco, rosa, marrom, violeta, azul e cinza. Ferramenta gratuita de terapia sonora.",
+    "keywords": "gerador de ruído, ruído branco, ruído rosa, ruído marrom, ruído colorido, terapia sonora, sons de relaxamento, equalizador"
+  },
+  "notchedNoise": {
+    "title": "Gerador de Ruído com Entalhe - Terapia de Zumbido",
+    "description": "Gerador de ruído terapêutico avançado com equalizador de 10 bandas para alívio do zumbido. Vários tipos de ruído, controle de largura estéreo e entalhe específico de frequência.",
+    "keywords": "ruído com entalhe, terapia de zumbido, ruído terapêutico, entalhe de frequência, alívio do zumbido, terapia sonora"
+  },
+  "learn": {
+    "title": "Aprenda Sobre Saúde Auditiva e Zumbido",
+    "description": "Guia completo sobre saúde auditiva, causas, sintomas e tratamentos do zumbido. Recursos educacionais para entender a perda auditiva e o gerenciamento do zumbido.",
+    "keywords": "saúde auditiva, educação sobre zumbido, perda auditiva, causas do zumbido, tratamento do zumbido, audiometria, proteção auditiva"
+  },
+  "about": {
+    "title": "Sobre HearWell",
+    "description": "Conheça o HearWell, nossa missão de fornecer ferramentas de saúde auditiva gratuitas e acessíveis. Projeto de código aberto dedicado a melhorar a conscientização sobre saúde auditiva.",
+    "keywords": "sobre hearwell, missão de saúde auditiva, ferramentas auditivas de código aberto, acessibilidade"
+  },
+  "disclaimer": {
+    "title": "Aviso Médico e Termos Legais",
+    "description": "Aviso médico importante e termos legais para usar o HearWell. Não é um dispositivo médico, não aprovado pela FDA. Apenas para fins educacionais e informativos.",
+    "keywords": "aviso médico, termos legais, responsabilidade, aviso de teste auditivo, aviso de zumbido"
+  }
+}

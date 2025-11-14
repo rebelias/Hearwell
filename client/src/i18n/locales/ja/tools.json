@@ -1,0 +1,22 @@
+{
+  "equalizerSettings": "イコライザー設定",
+  "adjust8BandEqualizer": "8バンドイコライザーを調整してノイズをカスタマイズ",
+  "coloredNoisePresets": "カラーノイズプリセット",
+  "presets": "プリセット",
+  "white": "白",
+  "pink": "ピンク",
+  "brown": "茶色",
+  "violet": "紫",
+  "blue": "青",
+  "grey": "グレー",
+  "saveSettings": "設定を保存",
+  "startTool": "ツールを開始",
+  "howToUse": "使い方",
+  "frequency": "周波数",
+  "waveform": "波形",
+  "volume": "音量",
+  "earSelection": "耳の選択",
+  "left": "左",
+  "right": "右",
+  "both": "両方"
+}

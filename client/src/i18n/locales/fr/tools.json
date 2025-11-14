@@ -1,0 +1,22 @@
+{
+  "equalizerSettings": "Paramètres de l'Égaliseur",
+  "adjust8BandEqualizer": "Ajustez l'égaliseur 8 bandes pour personnaliser votre bruit",
+  "coloredNoisePresets": "Préréglages de Bruit Coloré",
+  "presets": "Préréglages",
+  "white": "Blanc",
+  "pink": "Rose",
+  "brown": "Brun",
+  "violet": "Violet",
+  "blue": "Bleu",
+  "grey": "Gris",
+  "saveSettings": "Enregistrer les Paramètres",
+  "startTool": "Démarrer l'Outil",
+  "howToUse": "Comment Utiliser",
+  "frequency": "Fréquence",
+  "waveform": "Forme d'Onde",
+  "volume": "Volume",
+  "earSelection": "Sélection d'Oreille",
+  "left": "Gauche",
+  "right": "Droite",
+  "both": "Les Deux"
+}

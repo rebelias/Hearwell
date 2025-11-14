@@ -1,0 +1,22 @@
+{
+  "equalizerSettings": "Equalizer Settings",
+  "adjust8BandEqualizer": "Adjust 8-band equalizer to customize your noise",
+  "coloredNoisePresets": "Colored Noise Presets",
+  "presets": "Presets",
+  "white": "White",
+  "pink": "Pink",
+  "brown": "Brown",
+  "violet": "Violet",
+  "blue": "Blue",
+  "grey": "Grey",
+  "saveSettings": "Save Settings",
+  "startTool": "Start Tool",
+  "howToUse": "How to Use",
+  "frequency": "Frequency",
+  "waveform": "Waveform",
+  "volume": "Volume",
+  "earSelection": "Ear Selection",
+  "left": "Left",
+  "right": "Right",
+  "both": "Both"
+}

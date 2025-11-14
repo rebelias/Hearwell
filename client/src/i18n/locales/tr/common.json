@@ -1,0 +1,21 @@
+{
+  "appName": "HearWell",
+  "loading": "Yükleniyor...",
+  "save": "Kaydet",
+  "download": "İndir",
+  "play": "Oynat",
+  "pause": "Duraklat",
+  "stop": "Durdur",
+  "volume": "Ses",
+  "settings": "Ayarlar",
+  "close": "Kapat",
+  "cancel": "İptal",
+  "confirm": "Onayla",
+  "accept": "Kabul Et",
+  "reject": "Reddet",
+  "copy": "Kopyala",
+  "share": "Paylaş",
+  "clear": "Temizle",
+  "reset": "Sıfırla",
+  "apply": "Uygula"
+}

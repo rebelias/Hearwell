@@ -1,0 +1,13 @@
+{
+  "title": "オーディオキャリブレーション",
+  "description": "正確な聴力テストのためにオーディオ出力をキャリブレート",
+  "instructions": "説明",
+  "instructionsText": "音がかろうじて聞こえるまでスライダーを調整します。これにより、オーディオメーターがデバイスとヘッドフォンにキャリブレートされます。設定からいつでも再キャリブレートできます。",
+  "adjustVolume": "音量を調整",
+  "adjustVolumeDesc": "音がかろうじて聞こえるまでスライダーを動かします",
+  "playTone": "音を再生",
+  "stopTone": "音を停止",
+  "calibrate": "キャリブレート",
+  "calibrationComplete": "キャリブレーション完了",
+  "calibrationCompleteDesc": "オーディオメーターが正確なテストのためにキャリブレートされました"
+}

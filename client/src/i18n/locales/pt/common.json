@@ -1,0 +1,21 @@
+{
+  "appName": "HearWell",
+  "loading": "Carregando...",
+  "save": "Salvar",
+  "download": "Baixar",
+  "play": "Reproduzir",
+  "pause": "Pausar",
+  "stop": "Parar",
+  "volume": "Volume",
+  "settings": "Configurações",
+  "close": "Fechar",
+  "cancel": "Cancelar",
+  "confirm": "Confirmar",
+  "accept": "Aceitar",
+  "reject": "Rejeitar",
+  "copy": "Copiar",
+  "share": "Compartilhar",
+  "clear": "Limpar",
+  "reset": "Redefinir",
+  "apply": "Aplicar"
+}

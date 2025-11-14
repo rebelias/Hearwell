@@ -1,0 +1,47 @@
+{
+  "home": {
+    "title": "HearWell - Ücretsiz Online İşitme Testleri ve Tinnitus Araçları",
+    "description": "Ücretsiz, profesyonel düzeyde işitme sağlığı araçları. Online odyometre, tinnitus frekans bulucu ve terapötik ses üreticileri. %100 gizli, tarayıcı tabanlı, hesap gerektirmez.",
+    "keywords": "işitme testi, online odyometre, tinnitus frekans bulucu, ses terapisi, işitme kaybı, tinnitus rahatlaması"
+  },
+  "audiometer": {
+    "title": "Online Odyometre - İşitmenizi Test Edin",
+    "description": "Gerçek zamanlı odyogram görselleştirmeli profesyonel online işitme testi. 250Hz'den 10kHz'e kadar frekansları test edin. Ücretsiz, gizli, tarayıcı tabanlı odyometre.",
+    "keywords": "odyometre, işitme testi, odyogram, işitme kaybı, işitme değerlendirmesi, saf ton odyometrisi"
+  },
+  "frequencyFinder": {
+    "title": "Tinnitus Frekans Bulucu",
+    "description": "50Hz'den 20kHz'e kadar tonları ayarlayarak tinnitus frekansınızı bulun. Birden fazla dalga formu mevcuttur. Ücretsiz tinnitus eşleştirme aracı.",
+    "keywords": "tinnitus frekansı, tinnitus perdesi, tinnitus eşleştirmesi, tinnitus sesi, işitme frekansı, frekans üreteci"
+  },
+  "tonalMasker": {
+    "title": "Tonal Maskeleyici - Akustik Nöromodülasyon Terapisi",
+    "description": "AM/FM modülasyonu ve Koordineli Sıfırlama terapisi kullanan tinnitus için akustik nöromodülasyon. Arka plan sesleriyle rastgele ton dizileri.",
+    "keywords": "tonal maskeleyici, akustik nöromodülasyon, koordineli sıfırlama, tinnitus terapisi, AM FM modülasyonu, tinnitus tedavisi"
+  },
+  "noiseGenerator": {
+    "title": "Gürültü Üreteci - Özel Renkli Gürültü",
+    "description": "8 bantlı ekolayzır ile özel renkli gürültü oluşturun. Beyaz, pembe, kahverengi, mor, mavi ve gri gürültü ön ayarları. Ücretsiz ses terapisi ve rahatlama aracı.",
+    "keywords": "gürültü üreteci, beyaz gürültü, pembe gürültü, kahverengi gürültü, renkli gürültü, ses terapisi, rahatlama sesleri, ekolayzır"
+  },
+  "notchedNoise": {
+    "title": "Çentikli Gürültü Üreteci - Tinnitus Terapisi",
+    "description": "Tinnitus rahatlaması için 10 bantlı ekolayzırlı gelişmiş terapötik gürültü üreteci. Birden fazla gürültü türü, stereo genişlik kontrolü ve frekansa özgü çentikleme.",
+    "keywords": "çentikli gürültü, tinnitus terapisi, terapötik gürültü, frekans çentikleme, tinnitus rahatlaması, ses terapisi"
+  },
+  "learn": {
+    "title": "İşitme Sağlığı ve Tinnitus Hakkında Bilgi Edinin",
+    "description": "İşitme sağlığı, tinnitus nedenleri, semptomları ve tedavileri hakkında kapsamlı kılavuz. İşitme kaybını ve tinnitus yönetimini anlamak için eğitim kaynakları.",
+    "keywords": "işitme sağlığı, tinnitus eğitimi, işitme kaybı, tinnitus nedenleri, tinnitus tedavisi, odyometri, işitme koruması"
+  },
+  "about": {
+    "title": "HearWell Hakkında",
+    "description": "HearWell hakkında, ücretsiz, erişilebilir işitme sağlığı araçları sağlama misyonumuz hakkında bilgi edinin. İşitme sağlığı farkındalığını artırmaya adanmış açık kaynaklı proje.",
+    "keywords": "hearwell hakkında, işitme sağlığı misyonu, açık kaynak işitme araçları, erişilebilirlik"
+  },
+  "disclaimer": {
+    "title": "Tıbbi Sorumluluk Reddi ve Yasal Şartlar",
+    "description": "HearWell'i kullanmak için önemli tıbbi sorumluluk reddi ve yasal şartlar. Tıbbi cihaz değildir, FDA onaylı değildir. Yalnızca eğitim ve bilgilendirme amaçlıdır.",
+    "keywords": "tıbbi sorumluluk reddi, yasal şartlar, sorumluluk, işitme testi sorumluluk reddi, tinnitus sorumluluk reddi"
+  }
+}

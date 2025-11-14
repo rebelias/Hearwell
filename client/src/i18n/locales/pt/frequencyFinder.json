@@ -1,0 +1,23 @@
+{
+  "title": "Localizador de Frequência de Zumbido",
+  "description": "Encontre a frequência que corresponde ao seu zumbido ajustando o controle deslizante",
+  "instructions": "Instruções",
+  "instructionsText": "Clique em REPRODUZIR e ajuste o controle deslizante de frequência até encontrar o tom que corresponde ao seu zumbido. Em seguida, selecione a qualidade da forma de onda que mais se assemelha ao som do seu zumbido.",
+  "frequencyControl": "Controle de Frequência",
+  "frequencyControlDesc": "Ajuste a frequência de 50Hz a 20.000Hz",
+  "frequencyHz": "Frequência (Hz)",
+  "frequencyTooltip": "Frequência é o tom do som medido em Hertz (Hz). Números mais baixos = sons mais profundos (como trovão), números mais altos = sons mais agudos (como um apito)",
+  "toneQuality": "Qualidade do Tom (Forma de Onda)",
+  "toneQualityTooltip": "Diferentes formas de onda criam diferentes qualidades de som. Seno = tom puro, Quadrado = zumbido, Triângulo = oco, Dente de Serra = áspero, Filtrado = mais suave, Ruído = estático",
+  "copySettings": "Copiar Configurações",
+  "shareLink": "Compartilhar Link",
+  "settingsCopied": "Configurações Copiadas",
+  "settingsCopiedDesc": "Suas configurações de zumbido foram copiadas para a área de transferência",
+  "linkCopied": "Link Copiado",
+  "linkCopiedDesc": "Link compartilhável copiado para a área de transferência",
+  "currentFrequency": "Frequência Atual",
+  "waveform": "Forma de Onda",
+  "aboutTool": "Sobre Esta Ferramenta",
+  "aboutToolText1": "Este localizador de frequência ajuda você a identificar o tom específico do seu zumbido. A maioria das pessoas experimenta zumbido na faixa de 3.000-8.000 Hz, mas pode variar significativamente.",
+  "aboutToolText2": "Depois de identificar sua frequência, você pode usar essas informações com nossas outras ferramentas de tratamento, como o Gerador de Ruído com Entalhe, ou discutir com seu provedor de saúde."
+}

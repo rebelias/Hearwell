@@ -1,0 +1,47 @@
+{
+  "home": {
+    "title": "HearWell - Free Online Hearing Tests & Tinnitus Tools",
+    "description": "Free, professional-grade hearing health tools. Online audiometer, tinnitus frequency finder, and therapeutic sound generators. 100% private, browser-based, no account required.",
+    "keywords": "hearing test, online audiometer, tinnitus frequency finder, sound therapy, hearing loss, tinnitus relief"
+  },
+  "audiometer": {
+    "title": "Online Audiometer - Test Your Hearing",
+    "description": "Professional online hearing test with real-time audiogram visualization. Test frequencies from 250Hz to 10kHz. Free, private, browser-based audiometer.",
+    "keywords": "audiometer, hearing test, audiogram, hearing loss, hearing assessment, pure tone audiometry"
+  },
+  "frequencyFinder": {
+    "title": "Tinnitus Frequency Finder",
+    "description": "Find your tinnitus frequency by adjusting tones from 50Hz to 20kHz. Multiple waveforms available. Free, private, browser-based tinnitus matching tool.",
+    "keywords": "tinnitus frequency, tinnitus pitch, tinnitus matching, tinnitus sound, hearing frequency, frequency generator"
+  },
+  "tonalMasker": {
+    "title": "Tonal Masker - Acoustic Neuromodulation Therapy",
+    "description": "Acoustic neuromodulation for tinnitus using AM/FM modulation and Coordinated Reset therapy. Randomized tone sequences with background sounds.",
+    "keywords": "tonal masker, acoustic neuromodulation, coordinated reset, tinnitus therapy, AM FM modulation, tinnitus treatment"
+  },
+  "noiseGenerator": {
+    "title": "Noise Generator - Custom Colored Noise",
+    "description": "Create custom colored noise with 8-band equalizer. White, pink, brown, violet, blue, and grey noise presets. Free sound therapy and relaxation tool.",
+    "keywords": "noise generator, white noise, pink noise, brown noise, colored noise, sound therapy, relaxation sounds, equalizer"
+  },
+  "notchedNoise": {
+    "title": "Notched Noise Generator - Tinnitus Therapy",
+    "description": "Advanced therapeutic noise generator with 10-band equalizer for tinnitus relief. Multiple noise types, stereo width control, and frequency-specific notching.",
+    "keywords": "notched noise, tinnitus therapy, therapeutic noise, frequency notching, tinnitus relief, sound therapy"
+  },
+  "learn": {
+    "title": "Learn About Hearing Health & Tinnitus",
+    "description": "Comprehensive guide to hearing health, tinnitus causes, symptoms, and treatments. Educational resources for understanding hearing loss and tinnitus management.",
+    "keywords": "hearing health, tinnitus education, hearing loss, tinnitus causes, tinnitus treatment, audiometry, hearing protection"
+  },
+  "about": {
+    "title": "About HearWell",
+    "description": "Learn about HearWell, our mission to provide free, accessible hearing health tools. Open-source project dedicated to improving hearing health awareness.",
+    "keywords": "about hearwell, hearing health mission, open source hearing tools, accessibility"
+  },
+  "disclaimer": {
+    "title": "Medical Disclaimer & Legal Terms",
+    "description": "Important medical disclaimer and legal terms for using HearWell. Not a medical device, not FDA approved. Educational and informational purposes only.",
+    "keywords": "medical disclaimer, legal terms, liability, hearing test disclaimer, tinnitus disclaimer"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "title": "Audio Calibration",
+  "description": "Calibrate your audio output for accurate hearing tests",
+  "instructions": "Instructions",
+  "instructionsText": "Adjust the slider until the tone is just barely audible. This calibrates the audiometer to your device and headphones. You can recalibrate anytime from the settings.",
+  "adjustVolume": "Adjust Volume",
+  "adjustVolumeDesc": "Move the slider until you can just barely hear the tone",
+  "playTone": "Play Tone",
+  "stopTone": "Stop Tone",
+  "calibrate": "Calibrate",
+  "calibrationComplete": "Calibration Complete",
+  "calibrationCompleteDesc": "Your audiometer is now calibrated for accurate testing"
+}

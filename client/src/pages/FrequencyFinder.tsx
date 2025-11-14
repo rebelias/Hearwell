@@ -1,48 +1,60 @@
-import { useState, useEffect } from "react";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Slider } from "@/components/ui/slider";
-import { Copy, Share2, Info, HelpCircle } from "lucide-react";
-import WaveformSelector, { WaveformType } from "@/components/WaveformSelector";
-import AudioPlayer from "@/components/AudioPlayer";
-import { useToast } from "@/hooks/use-toast";
-import { useAudioEngine } from "@/hooks/useAudioEngine";
+import { useState, useEffect } from 'react';
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { Slider } from '@/components/ui/slider';
+import { Copy, Share2, Info, HelpCircle } from 'lucide-react';
+import WaveformSelector, { WaveformType } from '@/components/WaveformSelector';
+import AudioPlayer from '@/components/AudioPlayer';
+import { useToast } from '@/hooks/use-toast';
+import { useAudioEngine } from '@/hooks/useAudioEngine';
+import { useTranslation } from 'react-i18next';
+import SEO from '@/components/SEO';
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
-} from "@/components/ui/tooltip";
-import {
-  Alert,
-  AlertDescription,
-  AlertTitle,
-} from "@/components/ui/alert";
-import ToolLayout from "@/components/ToolLayout";
+} from '@/components/ui/tooltip';
+import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
+import ToolLayout from '@/components/ToolLayout';
 
 export default function FrequencyFinder() {
-  const [frequency, setFrequency] = useState(1000);
-  const [waveform, setWaveform] = useState<WaveformType>('sine');
-  const { toast } = useToast();
-  
-  const audioEngine = useAudioEngine({ frequency, waveform, volume: 50 });
-
-  useEffect(() => {
+  const { t } = useTranslation(['frequencyFinder', 'common']);
+  const [frequency, setFrequency] = useState(() => {
     const params = new URLSearchParams(window.location.search);
     const freq = params.get('freq');
-    const wave = params.get('wave');
-    
     if (freq) {
       const parsedFreq = parseInt(freq, 10);
       if (parsedFreq >= 50 && parsedFreq <= 20000) {
-        setFrequency(parsedFreq);
+        return parsedFreq;
       }
     }
-    
-    if (wave && ['sine', 'square', 'triangle', 'sawtooth', 'filtered', 'noise'].includes(wave)) {
-      setWaveform(wave as WaveformType);
+    return 1000;
+  });
+
+  const [waveform, setWaveform] = useState<WaveformType>(() => {
+    const params = new URLSearchParams(window.location.search);
+    const wave = params.get('wave');
+    if (
+      wave &&
+      ['sine', 'square', 'triangle', 'sawtooth', 'filtered', 'noise'].includes(
+        wave
+      )
+    ) {
+      return wave as WaveformType;
     }
-  }, []);
+    return 'sine';
+  });
+
+  const { toast } = useToast();
+
+  const audioEngine = useAudioEngine({ frequency, waveform, volume: 50 });
 
   useEffect(() => {
     audioEngine.updateFrequency(frequency);
@@ -55,18 +67,22 @@ export default function FrequencyFinder() {
   const handleCopySettings = () => {
     const settings = `Frequency: ${frequency}Hz, Waveform: ${waveform}`;
     navigator.clipboard.writeText(settings);
+    // Save frequency to localStorage for Tonal Masker tool
+    localStorage.setItem('tinnitus-frequency', frequency.toString());
     toast({
-      title: "Settings Copied",
-      description: "Your tinnitus settings have been copied to clipboard",
+      title: t('frequencyFinder:settingsCopied'),
+      description: t('frequencyFinder:settingsCopiedDesc'),
     });
   };
 
   const handleShare = () => {
     const url = `${window.location.origin}/frequency-finder?freq=${frequency}&wave=${waveform}`;
     navigator.clipboard.writeText(url);
+    // Save frequency to localStorage for Tonal Masker tool
+    localStorage.setItem('tinnitus-frequency', frequency.toString());
     toast({
-      title: "Link Copied",
-      description: "Shareable link copied to clipboard",
+      title: t('frequencyFinder:linkCopied'),
+      description: t('frequencyFinder:linkCopiedDesc'),
     });
   };
 
@@ -74,22 +90,23 @@ export default function FrequencyFinder() {
     <>
       <Alert>
         <Info className="h-4 w-4" />
-        <AlertTitle>Instructions</AlertTitle>
+        <AlertTitle>{t('frequencyFinder:instructions')}</AlertTitle>
         <AlertDescription className="text-sm">
-          Click PLAY and adjust the frequency slider until you find the tone that matches your tinnitus. 
-          Then select the waveform quality that most closely matches how your tinnitus sounds.
+          {t('frequencyFinder:instructionsText')}
         </AlertDescription>
       </Alert>
 
       <Card>
         <CardHeader>
-          <CardTitle>Frequency Control</CardTitle>
-          <CardDescription>Adjust the frequency from 50Hz to 20,000Hz</CardDescription>
+          <CardTitle>{t('frequencyFinder:frequencyControl')}</CardTitle>
+          <CardDescription>
+            {t('frequencyFinder:frequencyControlDesc')}
+          </CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">
           <div className="flex justify-center">
-            <AudioPlayer 
-              isPlaying={audioEngine.isPlaying} 
+            <AudioPlayer
+              isPlaying={audioEngine.isPlaying}
               onPlayPause={audioEngine.toggle}
             />
           </div>
@@ -97,17 +114,24 @@ export default function FrequencyFinder() {
           <div className="space-y-3">
             <div className="flex justify-between items-center">
               <div className="flex items-center gap-2">
-                <span className="text-sm text-muted-foreground">Frequency (Hz)</span>
+                <span className="text-sm text-muted-foreground">
+                  {t('frequencyFinder:frequencyHz')}
+                </span>
                 <Tooltip>
                   <TooltipTrigger asChild>
                     <HelpCircle className="h-4 w-4 text-muted-foreground cursor-help" />
                   </TooltipTrigger>
                   <TooltipContent className="max-w-xs">
-                    <p className="text-sm">Frequency is the pitch of sound measured in Hertz (Hz). Lower numbers = deeper sounds (like thunder), higher numbers = sharper sounds (like a whistle)</p>
+                    <p className="text-sm">
+                      {t('frequencyFinder:frequencyTooltip')}
+                    </p>
                   </TooltipContent>
                 </Tooltip>
               </div>
-              <span className="text-2xl font-display font-bold text-primary" data-testid="text-frequency">
+              <span
+                className="text-2xl font-display font-bold text-primary"
+                data-testid="text-frequency"
+              >
                 {frequency} Hz
               </span>
             </div>
@@ -131,13 +155,17 @@ export default function FrequencyFinder() {
 
           <div className="space-y-3">
             <div className="flex items-center gap-2">
-              <span className="text-sm text-muted-foreground">Tone Quality (Waveform)</span>
+              <span className="text-sm text-muted-foreground">
+                {t('frequencyFinder:toneQuality')}
+              </span>
               <Tooltip>
                 <TooltipTrigger asChild>
                   <HelpCircle className="h-4 w-4 text-muted-foreground cursor-help" />
                 </TooltipTrigger>
                 <TooltipContent className="max-w-xs">
-                  <p className="text-sm">Different waveforms create different sound qualities. Sine = pure tone, Square = buzzy, Triangle = hollow, Sawtooth = harsh, Filtered = softer, Noise = static-like</p>
+                  <p className="text-sm">
+                    {t('frequencyFinder:toneQualityTooltip')}
+                  </p>
                 </TooltipContent>
               </Tooltip>
             </div>
@@ -145,13 +173,23 @@ export default function FrequencyFinder() {
           </div>
 
           <div className="flex flex-wrap gap-3 pt-3 border-t">
-            <Button variant="outline" onClick={handleCopySettings} className="gap-2" data-testid="button-copy-settings">
+            <Button
+              variant="outline"
+              onClick={handleCopySettings}
+              className="gap-2"
+              data-testid="button-copy-settings"
+            >
               <Copy className="h-4 w-4" />
-              Copy Settings
+              {t('frequencyFinder:copySettings')}
             </Button>
-            <Button variant="outline" onClick={handleShare} className="gap-2" data-testid="button-share">
+            <Button
+              variant="outline"
+              onClick={handleShare}
+              className="gap-2"
+              data-testid="button-share"
+            >
               <Share2 className="h-4 w-4" />
-              Share Link
+              {t('frequencyFinder:shareLink')}
             </Button>
           </div>
         </CardContent>
@@ -164,7 +202,7 @@ export default function FrequencyFinder() {
       <Card className="bg-muted/50">
         <CardHeader>
           <CardTitle className="text-xl font-display font-bold text-primary">
-            Current Frequency
+            {t('frequencyFinder:currentFrequency')}
           </CardTitle>
         </CardHeader>
         <CardContent>
@@ -173,7 +211,7 @@ export default function FrequencyFinder() {
               {frequency} Hz
             </div>
             <div className="text-sm text-muted-foreground">
-              Waveform: {waveform}
+              {t('frequencyFinder:waveform')}: {waveform}
             </div>
           </div>
         </CardContent>
@@ -181,30 +219,27 @@ export default function FrequencyFinder() {
 
       <Card className="bg-muted/50">
         <CardHeader>
-          <CardTitle>About This Tool</CardTitle>
+          <CardTitle>{t('frequencyFinder:aboutTool')}</CardTitle>
         </CardHeader>
         <CardContent className="text-sm text-muted-foreground space-y-2">
-          <p>
-            This frequency finder helps you identify the specific pitch of your tinnitus. Most people 
-            experience tinnitus in the range of 3,000-8,000 Hz, but it can vary significantly.
-          </p>
-          <p>
-            Once you've identified your frequency, you can use this information with our other treatment 
-            tools like the Notched Noise Generator or discuss it with your healthcare provider.
-          </p>
+          <p>{t('frequencyFinder:aboutToolText1')}</p>
+          <p>{t('frequencyFinder:aboutToolText2')}</p>
         </CardContent>
       </Card>
     </>
   );
 
   return (
-    <TooltipProvider>
-      <ToolLayout
-        title="Tinnitus Frequency Finder"
-        description="Find the frequency that matches your tinnitus by adjusting the slider"
-        leftPanel={leftPanel}
-        rightPanel={rightPanel}
-      />
-    </TooltipProvider>
+    <>
+      <SEO pageName="frequencyFinder" path="/frequency-finder" />
+      <TooltipProvider>
+        <ToolLayout
+          title={t('frequencyFinder:title')}
+          description={t('frequencyFinder:description')}
+          leftPanel={leftPanel}
+          rightPanel={rightPanel}
+        />
+      </TooltipProvider>
+    </>
   );
 }

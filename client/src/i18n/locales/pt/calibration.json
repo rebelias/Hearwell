@@ -1,0 +1,13 @@
+{
+  "title": "Calibração de Áudio",
+  "description": "Calibre sua saída de áudio para testes auditivos precisos",
+  "instructions": "Instruções",
+  "instructionsText": "Ajuste o controle deslizante até que o tom seja apenas audível. Isso calibra o audiômetro ao seu dispositivo e fones de ouvido. Você pode recalibrar a qualquer momento nas configurações.",
+  "adjustVolume": "Ajustar Volume",
+  "adjustVolumeDesc": "Mova o controle deslizante até que você possa apenas ouvir o tom",
+  "playTone": "Reproduzir Tom",
+  "stopTone": "Parar Tom",
+  "calibrate": "Calibrar",
+  "calibrationComplete": "Calibração Completa",
+  "calibrationCompleteDesc": "Seu audiômetro agora está calibrado para testes precisos"
+}

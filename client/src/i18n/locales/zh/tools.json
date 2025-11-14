@@ -1,0 +1,22 @@
+{
+  "equalizerSettings": "均衡器设置",
+  "adjust8BandEqualizer": "调整8段均衡器以自定义您的噪声",
+  "coloredNoisePresets": "彩色噪声预设",
+  "presets": "预设",
+  "white": "白色",
+  "pink": "粉色",
+  "brown": "棕色",
+  "violet": "紫色",
+  "blue": "蓝色",
+  "grey": "灰色",
+  "saveSettings": "保存设置",
+  "startTool": "启动工具",
+  "howToUse": "使用方法",
+  "frequency": "频率",
+  "waveform": "波形",
+  "volume": "音量",
+  "earSelection": "耳朵选择",
+  "left": "左",
+  "right": "右",
+  "both": "两者"
+}

@@ -1,0 +1,47 @@
+{
+  "home": {
+    "title": "HearWell - Kostenlose Online-Hörtests & Tinnitus-Tools",
+    "description": "Kostenlose, professionelle Hörgesundheitstools. Online-Audiometer, Tinnitus-Frequenzfinder und therapeutische Klangerzeuger. 100% privat, browserbasiert, kein Konto erforderlich.",
+    "keywords": "Hörtest, Online-Audiometer, Tinnitus-Frequenzfinder, Klangtherapie, Hörverlust, Tinnitus-Linderung"
+  },
+  "audiometer": {
+    "title": "Online-Audiometer - Testen Sie Ihr Gehör",
+    "description": "Professioneller Online-Hörtest mit Echtzeit-Audiogramm-Visualisierung. Testen Sie Frequenzen von 250Hz bis 10kHz. Kostenloses, privates, browserbasiertes Audiometer.",
+    "keywords": "Audiometer, Hörtest, Audiogramm, Hörverlust, Hörbewertung, Reintonaudiometrie"
+  },
+  "frequencyFinder": {
+    "title": "Tinnitus-Frequenzfinder",
+    "description": "Finden Sie Ihre Tinnitus-Frequenz durch Anpassen von Tönen von 50Hz bis 20kHz. Mehrere Wellenformen verfügbar. Kostenloses Tinnitus-Matching-Tool.",
+    "keywords": "Tinnitus-Frequenz, Tinnitus-Tonhöhe, Tinnitus-Abgleich, Tinnitus-Klang, Hörfrequenz, Frequenzgenerator"
+  },
+  "tonalMasker": {
+    "title": "Tonal-Maskierer - Akustische Neuromodulationstherapie",
+    "description": "Akustische Neuromodulation für Tinnitus mit AM/FM-Modulation und koordinierter Reset-Therapie. Randomisierte Tonfolgen mit Hintergrundgeräuschen.",
+    "keywords": "Tonal-Maskierer, akustische Neuromodulation, koordinierter Reset, Tinnitus-Therapie, AM FM Modulation, Tinnitus-Behandlung"
+  },
+  "noiseGenerator": {
+    "title": "Rauschgenerator - Benutzerdefiniertes Farbiges Rauschen",
+    "description": "Erstellen Sie benutzerdefiniertes farbiges Rauschen mit 8-Band-Equalizer. Weißes, rosa, braunes, violettes, blaues und graues Rauschen. Kostenloses Klangtherapie-Tool.",
+    "keywords": "Rauschgenerator, weißes Rauschen, rosa Rauschen, braunes Rauschen, farbiges Rauschen, Klangtherapie, Entspannungsklänge, Equalizer"
+  },
+  "notchedNoise": {
+    "title": "Gekerbter Rauschgenerator - Tinnitus-Therapie",
+    "description": "Fortgeschrittener therapeutischer Rauschgenerator mit 10-Band-Equalizer für Tinnitus-Linderung. Mehrere Rauschtypen, Stereobreitenkontrolle und frequenzspezifisches Kerben.",
+    "keywords": "gekerbtes Rauschen, Tinnitus-Therapie, therapeutisches Rauschen, Frequenzkerben, Tinnitus-Linderung, Klangtherapie"
+  },
+  "learn": {
+    "title": "Lernen Sie über Hörgesundheit & Tinnitus",
+    "description": "Umfassender Leitfaden zu Hörgesundheit, Tinnitus-Ursachen, Symptomen und Behandlungen. Bildungsressourcen zum Verständnis von Hörverlust und Tinnitus-Management.",
+    "keywords": "Hörgesundheit, Tinnitus-Bildung, Hörverlust, Tinnitus-Ursachen, Tinnitus-Behandlung, Audiometrie, Hörschutz"
+  },
+  "about": {
+    "title": "Über HearWell",
+    "description": "Erfahren Sie mehr über HearWell, unsere Mission, kostenlose, zugängliche Hörgesundheitstools bereitzustellen. Open-Source-Projekt zur Verbesserung des Bewusstseins für Hörgesundheit.",
+    "keywords": "über hearwell, Hörgesundheitsmission, Open-Source-Hörtools, Barrierefreiheit"
+  },
+  "disclaimer": {
+    "title": "Medizinischer Haftungsausschluss & Rechtliche Bedingungen",
+    "description": "Wichtiger medizinischer Haftungsausschluss und rechtliche Bedingungen für die Nutzung von HearWell. Kein medizinisches Gerät, nicht FDA-zugelassen. Nur für Bildungs- und Informationszwecke.",
+    "keywords": "medizinischer Haftungsausschluss, rechtliche Bedingungen, Haftung, Hörtest-Haftungsausschluss, Tinnitus-Haftungsausschluss"
+  }
+}

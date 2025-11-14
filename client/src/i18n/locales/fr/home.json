@@ -1,0 +1,28 @@
+{
+  "title": "Outils Complets de Santé Auditive",
+  "subtitle": "Outils de niveau professionnel pour la gestion des acouphènes et l'évaluation auditive. Aucun téléchargement requis, juste des écouteurs et votre appareil.",
+  "getStarted": "Commencer",
+  "learnMore": "En Savoir Plus",
+  "medicalDisclaimer": "Avertissement Médical",
+  "disclaimerText": "Un test auditif en ligne effectué dans un environnement non contrôlé ne peut pas remplacer les tests calibrés effectués dans une cabine insonorisée avec un audiologiste professionnel. Ces informations ne doivent pas être considérées comme des conseils médicaux. Si vous avez un problème médical, veuillez contacter votre médecin local pour un diagnostic et un traitement.",
+  "frequencyFinder": {
+    "title": "Détecteur de Fréquence",
+    "description": "Trouvez la fréquence de vos acouphènes à l'aide d'un curseur interactif avec plusieurs options de forme d'onde"
+  },
+  "audiometer": {
+    "title": "Audiomètre en Ligne",
+    "description": "Test auditif complet avec graphique d'audiogramme interactif pour évaluations professionnelles"
+  },
+  "tonalMasker": {
+    "title": "Masqueur Tonal d'Acouphènes",
+    "description": "Outil de neuromodulation acoustique utilisant la modulation d'amplitude et de fréquence pour la thérapie des acouphènes"
+  },
+  "noiseGenerator": {
+    "title": "Générateur de Bruit",
+    "description": "Créez un bruit blanc personnalisé avec égaliseur 8 bandes et sons d'ambiance"
+  },
+  "notchedNoise": {
+    "title": "Bruit Entaillé",
+    "description": "Génère un bruit blanc thérapeutique entaillé pour le traitement des acouphènes"
+  }
+}

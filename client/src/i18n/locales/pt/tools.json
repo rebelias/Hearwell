@@ -1,0 +1,22 @@
+{
+  "equalizerSettings": "Configurações do Equalizador",
+  "adjust8BandEqualizer": "Ajuste o equalizador de 8 bandas para personalizar seu ruído",
+  "coloredNoisePresets": "Predefinições de Ruído Colorido",
+  "presets": "Predefinições",
+  "white": "Branco",
+  "pink": "Rosa",
+  "brown": "Marrom",
+  "violet": "Violeta",
+  "blue": "Azul",
+  "grey": "Cinza",
+  "saveSettings": "Salvar Configurações",
+  "startTool": "Iniciar Ferramenta",
+  "howToUse": "Como Usar",
+  "frequency": "Frequência",
+  "waveform": "Forma de Onda",
+  "volume": "Volume",
+  "earSelection": "Seleção de Ouvido",
+  "left": "Esquerdo",
+  "right": "Direito",
+  "both": "Ambos"
+}

@@ -1,0 +1,22 @@
+{
+  "equalizerSettings": "इक्वलाइज़र सेटिंग्स",
+  "adjust8BandEqualizer": "अपने शोर को अनुकूलित करने के लिए 8-बैंड इक्वलाइज़र समायोजित करें",
+  "coloredNoisePresets": "रंगीन शोर प्रीसेट",
+  "presets": "प्रीसेट",
+  "white": "सफेद",
+  "pink": "गुलाबी",
+  "brown": "भूरा",
+  "violet": "बैंगनी",
+  "blue": "नीला",
+  "grey": "धूसर",
+  "saveSettings": "सेटिंग्स सहेजें",
+  "startTool": "टूल शुरू करें",
+  "howToUse": "कैसे उपयोग करें",
+  "frequency": "आवृत्ति",
+  "waveform": "तरंग रूप",
+  "volume": "आवाज़",
+  "earSelection": "कान चयन",
+  "left": "बाएं",
+  "right": "दाएं",
+  "both": "दोनों"
+}

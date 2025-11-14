@@ -1,0 +1,21 @@
+{
+  "appName": "HearWell",
+  "loading": "読み込み中...",
+  "save": "保存",
+  "download": "ダウンロード",
+  "play": "再生",
+  "pause": "一時停止",
+  "stop": "停止",
+  "volume": "音量",
+  "settings": "設定",
+  "close": "閉じる",
+  "cancel": "キャンセル",
+  "confirm": "確認",
+  "accept": "受け入れる",
+  "reject": "拒否",
+  "copy": "コピー",
+  "share": "共有",
+  "clear": "クリア",
+  "reset": "リセット",
+  "apply": "適用"
+}

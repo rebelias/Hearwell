@@ -1,0 +1,28 @@
+{
+  "title": "Herramientas Integrales de Salud Auditiva",
+  "subtitle": "Herramientas de nivel profesional para el manejo del tinnitus y la evaluación auditiva. No se requieren descargas, solo auriculares y tu dispositivo.",
+  "getStarted": "Comenzar",
+  "learnMore": "Saber Más",
+  "medicalDisclaimer": "Descargo de Responsabilidad Médica",
+  "disclaimerText": "Una prueba auditiva en línea realizada en un entorno no controlado no puede reemplazar las pruebas calibradas realizadas en una cabina insonorizada con un audiólogo profesional. Esta información no debe considerarse asesoramiento médico. Si tiene un problema médico, comuníquese con su médico local para diagnóstico y tratamiento.",
+  "frequencyFinder": {
+    "title": "Buscador de Frecuencia",
+    "description": "Encuentra la frecuencia de tu tinnitus usando un control deslizante interactivo con múltiples opciones de forma de onda"
+  },
+  "audiometer": {
+    "title": "Audiómetro en Línea",
+    "description": "Prueba auditiva completa con gráfico de audiograma interactivo para evaluaciones profesionales"
+  },
+  "tonalMasker": {
+    "title": "Enmascarador Tonal de Tinnitus",
+    "description": "Herramienta de neuromodulación acústica que utiliza modulación de amplitud y frecuencia para terapia de tinnitus"
+  },
+  "noiseGenerator": {
+    "title": "Generador de Ruido",
+    "description": "Crea ruido blanco personalizado con ecualizador de 8 bandas y sonidos de fondo ambientales"
+  },
+  "notchedNoise": {
+    "title": "Ruido con Muesca",
+    "description": "Genera ruido blanco terapéutico con muesca para tratamiento de tinnitus"
+  }
+}
