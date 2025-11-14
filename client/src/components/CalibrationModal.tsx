@@ -14,7 +14,7 @@ import { useAudiometerEngine } from '@/hooks/useAudiometerEngine';
 
 interface CalibrationModalProps {
   open: boolean;
-  onCalibrationComplete: () => void;
+  onCalibrationComplete: (calibrationValue: number) => void;
 }
 
 export default function CalibrationModal({
@@ -202,13 +202,13 @@ export default function CalibrationModal({
     stopPlayback();
     localStorage.setItem('audiometer-calibration', volume.toString());
     localStorage.setItem('audiometer-calibrated', 'true');
-    onCalibrationComplete();
+    onCalibrationComplete(volume / 100);
   };
 
   const handleSkip = () => {
     stopPlayback();
     localStorage.setItem('audiometer-calibrated', 'false');
-    onCalibrationComplete();
+    onCalibrationComplete(1.0); // Default calibration offset
   };
 
   return (

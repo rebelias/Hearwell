@@ -671,6 +671,7 @@ export default function Audiometer() {
                   {frequencies.map(freq => {
                     const key = `${freq}-${vol}`;
                     const state = testResults[key] || 'untested';
+                    const isPlaying = state === 'playing';
                     const canMark =
                       state === 'played' ||
                       state === 'heard' ||
@@ -684,17 +685,17 @@ export default function Audiometer() {
                       >
                         <Button
                           onClick={() => handlePlaySound(freq, vol)}
-                          disabled={state === 'playing'}
-                          variant={state === 'playing' ? 'default' : 'outline'}
+                          disabled={isPlaying}
+                          variant={isPlaying ? 'default' : 'outline'}
                           size="sm"
                           className="flex-1 h-full px-0.5 text-[9px] sm:text-[10px] font-semibold"
                           title={t('audiometer:playSound')}
                         >
-                          {state === 'playing' ? '▶' : '▶'}
+                          {isPlaying ? '▶' : '▶'}
                         </Button>
                         <Button
                           onClick={() => handleMarkHeard(freq, vol)}
-                          disabled={!canMark || state === 'playing'}
+                          disabled={isPlaying || !canMark}
                           variant={state === 'heard' ? 'default' : 'outline'}
                           size="sm"
                           className={`flex-1 h-full px-0.5 text-[9px] sm:text-[10px] font-semibold ${
@@ -714,7 +715,7 @@ export default function Audiometer() {
                         </Button>
                         <Button
                           onClick={() => handleMarkNotHeard(freq, vol)}
-                          disabled={!canMark || state === 'playing'}
+                          disabled={isPlaying || !canMark}
                           variant={
                             state === 'not_heard' ? 'default' : 'outline'
                           }

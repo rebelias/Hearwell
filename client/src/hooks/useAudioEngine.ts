@@ -6,7 +6,8 @@ export type WaveformType =
   | 'square'
   | 'triangle'
   | 'sawtooth'
-  | 'filtered';
+  | 'filtered'
+  | 'noise';
 
 interface AudioEngineOptions {
   frequency?: number;
