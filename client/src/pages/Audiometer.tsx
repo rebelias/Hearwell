@@ -71,7 +71,6 @@ export default function Audiometer() {
     if (currentState === 'playing') return;
 
     const currentToken = cancelTokenRef.current;
-    setCurrentFrequency(freq);
     setTestResults(prev => ({ ...prev, [key]: 'playing' }));
     await audioEngine.playTone(
       freq,
@@ -86,7 +85,6 @@ export default function Audiometer() {
       // After playing, mark as 'played' (unless already 'heard')
       const newState = currentState === 'heard' ? 'heard' : 'played';
       setTestResults(prev => ({ ...prev, [key]: newState }));
-      setCurrentFrequency(null);
     }
   };
 

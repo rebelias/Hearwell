@@ -236,11 +236,12 @@ export function useNoiseGenerator() {
         isPlaying &&
         audioContextRef.current
       ) {
+        const ctx = audioContextRef.current;
         filterNodesRef.current.forEach((filter, index) => {
           if (index < eqValues.length) {
             filter.gain.setValueAtTime(
               (eqValues[index] - 50) * 0.4,
-              audioContextRef.current.currentTime
+              ctx.currentTime
             );
           }
         });

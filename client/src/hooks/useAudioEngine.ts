@@ -215,9 +215,9 @@ export function useAudioEngine(options: AudioEngineOptions = {}) {
         {
           hook: 'useAudioEngine',
           operation: 'play',
-          waveform,
-          frequency,
-          volume,
+          waveform: waveformRef.current,
+          frequency: frequencyRef.current,
+          volume: volumeRef.current,
         }
       );
       setIsPlaying(false);
