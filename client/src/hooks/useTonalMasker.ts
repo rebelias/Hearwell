@@ -682,34 +682,24 @@ export function useTonalMasker(options: TonalMaskerOptions = {}) {
       // Stop existing background sound
       stopBackgroundSound();
 
-      // Map sound types to filenames (try WAV first, then MP3)
-      const soundFiles: Record<string, string[]> = {
-        cicadas: ['cicadas.wav', 'cicadas.mp3'],
-        birds: ['birds.wav', 'birds.mp3'],
-        ocean: ['ocean.wav', 'ocean.mp3'],
-        rain: ['rain.wav', 'rain.mp3'],
+      // Map sound types to filenames (MP3 format)
+      const soundFiles: Record<string, string> = {
+        cicadas: 'cicadas.mp3',
+        birds: 'birds.mp3',
+        ocean: 'ocean.mp3',
+        rain: 'rain.mp3',
       };
 
       let buffer: AudioBuffer;
-      const filesToTry = soundFiles[backgroundSoundRef.current];
-      let loaded = false;
+      const filename = soundFiles[backgroundSoundRef.current];
 
-      // Try each file format until one works
-      for (const filename of filesToTry) {
-        try {
-          buffer = await loadAudioFile(filename);
-          loaded = true;
-          break;
-        } catch {
-          // Try next format
-          continue;
-        }
-      }
-
-      if (!loaded) {
-        // Fallback to procedural generation if no files found
+      // Try to load the audio file
+      try {
+        buffer = await loadAudioFile(filename);
+      } catch {
+        // Fallback to procedural generation if file not found
         console.warn(
-          `Audio files not found for ${backgroundSoundRef.current}, using procedural generation`
+          `Audio file not found: ${filename}, using procedural generation`
         );
         buffer = createBackgroundSoundBuffer(backgroundSoundRef.current, 10);
       }
