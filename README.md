@@ -1,302 +1,251 @@
-# HearWell
+# HearWell 🎧
 
-**Free, Open-Source Hearing Health Tools**
+> **Free, open-source hearing health toolkit. No ads, no tracking, no accounts required.**
 
-A comprehensive browser-based application providing professional-grade audio tools for hearing health assessment and tinnitus management. Built entirely client-side with React and TypeScript, using the Web Audio API for precise, real-time audio generation.
-
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![TypeScript](https://img.shields.io/badge/TypeScript-5.6-blue.svg)](https://www.typescriptlang.org/)
-[![React](https://img.shields.io/badge/React-18.3-blue.svg)](https://react.dev/)
+[![Live Demo](https://img.shields.io/badge/🌐_Live-hearwell.life-blue?style=for-the-badge)](https://hearwell.life)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square)](https://opensource.org/licenses/MIT)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.6-blue.svg?style=flat-square)](https://www.typescriptlang.org/)
+[![React](https://img.shields.io/badge/React-18.3-blue.svg?style=flat-square)](https://react.dev/)
 
 ---
 
-## 🌟 Features
+## 🌟 Why HearWell?
 
-HearWell provides five professional-grade audio tools, all running **100% client-side** in your browser:
+I've been living with chronic tinnitus for 8 years. During this time, I've discovered that the tools needed to manage tinnitus and monitor hearing health are either:
 
-### 1. **Tinnitus Frequency Finder**
+- Locked behind expensive paywalls ($50-200 per app)
+- Require creating accounts and sharing personal data
+- Not accessible in multiple languages
+- Lack proper scientific backing
 
-Identify the frequency of your tinnitus by adjusting tones from 50Hz to 20kHz. Supports multiple waveforms (sine, square, triangle, sawtooth, filtered).
+**HearWell exists to fix this.** It's completely free, runs entirely in your browser, and respects your privacy. No data collection, no accounts, no barriers—just tools that help.
 
-### 2. **Online Audiometer**
+---
 
-Professional hearing test with real-time audiogram visualization. Test frequencies from 250Hz to 10kHz (including 6kHz) at various volume levels. Intuitive three-button interface: Play sound, mark as heard, or mark as not heard. Supports left, right, or both ears. Comprehensive CSV report generation with test completion validation.
+## ✨ Features
 
-### 3. **Tonal Masker**
+### 🎵 **Online Audiometer**
 
-Acoustic neuromodulation therapy for tinnitus using amplitude modulation (AM), frequency modulation (FM), and Coordinated Reset (CR) randomized tone sequences. Features randomized modulation to prevent neural adaptation and optional background sounds for enhanced therapy.
+Professional-grade hearing test with real-time audiogram visualization. Test frequencies from 250Hz to 10kHz across 12 volume levels. Export comprehensive CSV reports for your records or to share with your audiologist.
 
-### 4. **Noise Generator**
+### 🔍 **Tinnitus Frequency Finder**
 
-Create custom colored noise using an 8-band equalizer. Presets include white, pink, brown, violet, blue, and grey noise for relaxation, masking, or sound therapy.
+Pinpoint the exact frequency of your tinnitus (50Hz - 20kHz) using multiple waveforms. Essential first step for personalized sound therapy.
 
-### 5. **Notched Noise Generator**
+### 🎼 **Tonal Masker (14 Modes)**
 
-Advanced therapeutic noise generator with 10-band equalizer, multiple noise types (white, pink, brown, purple, grey), stereo width control, and presets. Designed for comprehensive tinnitus therapy with precise frequency control.
+Advanced neuromodulation therapy using:
+
+- **Amplitude Modulation (AM)** - Varying intensity
+- **Frequency Modulation (FM)** - Wobbling tones
+- **Coordinated Reset (CR)** - Randomized sequences to prevent neural adaptation
+- **Background Sounds** - Nature sounds (rain, ocean, birds, cicadas)
+
+### 🌊 **Noise Generators**
+
+- **Colored Noise** - White, pink, brown, violet, blue, grey with 8-band EQ
+- **Notched Noise** - Advanced therapy with 10-band EQ and precise frequency control
+
+### 🌍 **9 Languages**
+
+English, Spanish, French, German, Portuguese, Turkish, Chinese, Hindi, Japanese
 
 ---
 
 ## 🚀 Quick Start
 
-### Prerequisites
+**🌐 Use it online:** [hearwell.life](https://hearwell.life) - No installation needed!
 
-- **Node.js** 18+ and npm
-- Modern web browser with Web Audio API support (Chrome, Firefox, Safari, Edge)
-
-### Installation
+**💻 Run locally:**
 
 ```bash
-# Clone the repository
 git clone https://github.com/rebelias/Hearwell.git
 cd Hearwell
-
-# Install dependencies
 npm install
-
-# Start development server
 npm run dev
 ```
 
-The application will be available at `http://localhost:5000` (or the port specified in your `PORT` environment variable).
-
-### Building for Production
-
-```bash
-# Build the application
-npm run build
-
-# Start production server
-npm start
-```
-
-### Development Commands
-
-```bash
-# Run development server
-npm run dev
-
-# Run linter
-npm run lint
-
-# Fix linting issues
-npm run lint:fix
-
-# Format code
-npm run format
-
-# Type check
-npm run type-check
-
-# Run unit tests
-npm run test
-
-# Run unit tests in watch mode
-npm run test:watch
-
-# Run unit tests with coverage
-npm run test:coverage
-
-# Run E2E tests (requires: npx playwright install)
-npm run test:e2e
-```
+Open `http://localhost:5000` in your browser.
 
 ---
 
-## 🛠️ Technology Stack
+## 🔒 Privacy First
 
-- **Frontend:** React 18, TypeScript 5.6, Vite 5
-- **Styling:** Tailwind CSS 3, Shadcn/ui components
-- **Routing:** Wouter (lightweight SPA router)
+- ✅ **100% Client-Side** - All processing happens in your browser
+- ✅ **No Data Collection** - Zero tracking, zero analytics
+- ✅ **No Accounts** - Start using immediately
+- ✅ **No Third-Party Scripts** - Your data stays yours
+- ✅ **GDPR Compliant** - Privacy by design
+
+Your hearing test results never leave your device unless you choose to export them.
+
+---
+
+## 🛠️ Tech Stack
+
+- **Frontend:** React 18 + TypeScript 5.6 + Vite 5
+- **Styling:** Tailwind CSS + Shadcn/ui
 - **Audio:** Web Audio API (native browser API)
-- **Charts:** Recharts (for audiogram visualization)
-- **Internationalization:** react-i18next (9 languages: EN, ES, FR, DE, PT, TR, ZH, HI, JA)
-- **Testing:** Vitest (unit tests), Playwright (E2E tests)
-- **Code Quality:** ESLint 8, Prettier, Husky (pre-commit hooks)
-- **CI/CD:** GitHub Actions, Cloudflare Pages deployment
-- **License:** MIT (free and open-source)
+- **i18n:** react-i18next (9 languages)
+- **Testing:** Vitest + Playwright
+- **CI/CD:** GitHub Actions + Cloudflare Pages
+
+---
+
+## 🎯 Use Cases
+
+- 🩺 **For Individuals:** Monitor your hearing health, manage tinnitus
+- 🏥 **For Clinics:** Free screening tool for resource-limited settings
+- 🎓 **For Students:** Learn about audiology and Web Audio API
+- 🔬 **For Researchers:** Collect hearing data in studies (with consent)
+- 🌍 **For Communities:** Accessible hearing health in any language
 
 ---
 
 ## 📖 Documentation
 
-- **[Complete Technical Documentation](./Hearwell%20Project.md)** - Comprehensive 1400+ line guide covering architecture, implementation, and extension
-- **[Design Guidelines](./design_guidelines.md)** - Complete design system and UI/UX specifications
+- **[Technical Documentation](./Hearwell%20Project.md)** - 1400+ line architecture guide
+- **[Design Guidelines](./design_guidelines.md)** - UI/UX specifications
+- **[Contributing Guide](./CONTRIBUTING.md)** - How to contribute
 
 ---
 
-## 🔒 Privacy & Data
+## 🤝 Contributing
 
-**No User Authentication Required**  
-HearWell operates entirely client-side. No user accounts, no login, no data collection.
+We welcome contributions! Whether you're fixing bugs, adding features, or translating to new languages:
 
-**No Backend Server**  
-All audio processing happens in your browser using the Web Audio API. No data is sent to any server.
-
-**No Data Collection**
-
-- No analytics tracking
-- No user data storage
-- No third-party scripts
-- Optional localStorage for user preferences only (stored locally on your device)
-
-**100% Private**  
-Your hearing test results, tinnitus frequency, and settings remain on your device. You can share settings via URL parameters if you choose, but nothing is stored server-side.
-
-**GDPR Compliant**  
-HearWell includes a comprehensive disclaimer modal shown on first visit, clearly stating that this is an educational tool and not a medical device. All liability is shifted to the user, ensuring full compliance with GDPR and EU regulations.
-
----
-
-## 🌐 Browser Compatibility
-
-- ✅ **Chrome/Edge** - Full support
-- ✅ **Firefox** - Full support
-- ✅ **Safari** - Full support (may require user interaction to start audio)
-- ✅ **Mobile browsers** - Supported (iOS Safari requires user gesture)
-
-## 🌍 Multi-Language Support
-
-HearWell is fully internationalized and supports **9 languages**:
-
-- 🇬🇧 English
-- 🇪🇸 Spanish
-- 🇫🇷 French
-- 🇩🇪 German
-- 🇵🇹 Portuguese
-- 🇹🇷 Turkish
-- 🇨🇳 Chinese (Mandarin)
-- 🇮🇳 Hindi
-- 🇯🇵 Japanese
-
-Language preference is automatically detected from your browser settings and can be changed via the language switcher in the navigation bar. All tool interfaces, educational content, and disclaimers are fully translated.
-
----
-
-## 📝 Contributing
-
-Contributions are welcome! This is an open-source project under the MIT license.
-
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+1. Fork the repo
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
 3. Commit your changes (`git commit -m 'Add amazing feature'`)
 4. Push to the branch (`git push origin feature/amazing-feature`)
 5. Open a Pull Request
 
-Please ensure your code follows the existing style and includes appropriate tests if applicable.
+**Ideas for contributions:**
+
+- 🌐 Add translations (more languages needed!)
+- 🎨 Improve UI/UX
+- 🐛 Fix bugs
+- 📚 Improve documentation
+- ✨ Add new therapeutic sound modes
 
 ---
 
-## 📄 License
+## 🧪 Testing
 
-This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) file for details.
+```bash
+npm run test              # Unit tests
+npm run test:coverage     # Coverage report
+npm run test:e2e          # End-to-end tests (requires: npx playwright install)
+npm run lint              # Linting
+```
+
+Target: 80%+ code coverage
 
 ---
 
-## ⚠️ IMPORTANT LEGAL DISCLAIMER
+## 🌐 Browser Support
 
-**PLEASE READ CAREFULLY BEFORE USING THIS SOFTWARE**
+| Browser     | Status            |
+| ----------- | ----------------- |
+| Chrome/Edge | ✅ Full support   |
+| Firefox     | ✅ Full support   |
+| Safari      | ✅ Full support\* |
+| Mobile      | ✅ Supported\*    |
 
-### Medical Disclaimer
+\*May require user interaction to start audio (browser security policy)
 
-**HearWell is an educational and informational tool only. It is NOT a medical device, medical service, or replacement for professional medical care.**
+---
 
-1. **Not Medical Advice:** This software does not provide medical diagnosis, treatment, or professional audiological services. The tools provided are for educational and informational purposes only.
+## 📦 Building for Production
 
-2. **Not FDA Approved:** This software is not approved, cleared, or regulated by the U.S. Food and Drug Administration (FDA) or any other medical device regulatory authority. It is not intended for diagnostic or therapeutic purposes.
+```bash
+npm run build   # Creates optimized production build
+npm start       # Serves production build
+```
 
-3. **Consult Healthcare Professionals:** Always consult qualified healthcare providers, audiologists, or otolaryngologists for:
-   - Professional hearing assessments
-   - Medical diagnosis of hearing conditions
-   - Treatment recommendations
-   - Tinnitus management strategies
-   - Any concerns about your hearing health
+Deploy to any static hosting (Cloudflare Pages, Vercel, Netlify, GitHub Pages).
 
-4. **No Warranty:** The software is provided "AS IS" without warranty of any kind, express or implied, including but not limited to the warranties of merchantability, fitness for a particular purpose, and non-infringement.
+---
 
-### Limitation of Liability
+## ⚠️ Medical Disclaimer
 
-**BY USING THIS SOFTWARE, YOU AGREE TO THE FOLLOWING:**
+**HearWell is an educational tool, NOT a medical device.**
 
-1. **No Liability:** The developers, contributors, and maintainers of HearWell (collectively, "the Software Providers") shall not be liable for any direct, indirect, incidental, special, consequential, or punitive damages arising out of your use of or inability to use this software.
+- ❌ Not a replacement for professional audiological evaluation
+- ❌ Not FDA approved or medically certified
+- ❌ Not for diagnosis or treatment decisions
 
-2. **No Medical Liability:** The Software Providers assume no responsibility or liability for:
-   - Any medical decisions made based on information from this software
-   - Any health outcomes related to use of this software
-   - Any misdiagnosis or failure to seek professional medical care
-   - Any adverse effects from using the audio tools
-   - Any hearing damage that may occur from improper use
+**Always consult qualified healthcare professionals for:**
 
-3. **User Responsibility:** You acknowledge that:
-   - You are solely responsible for your use of this software
-   - You will use the software at your own risk
-   - You will not hold the Software Providers liable for any consequences of your use
-   - You will seek professional medical advice for any hearing-related concerns
+- Professional hearing assessments
+- Medical diagnosis
+- Treatment recommendations
+- Any concerns about your hearing health
 
-4. **Indemnification:** You agree to indemnify, defend, and hold harmless the Software Providers from and against any and all claims, damages, losses, liabilities, costs, and expenses (including reasonable attorneys' fees) arising out of or relating to:
-   - Your use of the software
-   - Your violation of this disclaimer
-   - Your violation of any applicable laws or regulations
-   - Any medical decisions or actions you take based on information from this software
+**Audio Safety:** Use headphones at safe volumes. Stop immediately if you experience discomfort.
 
-5. **No Guarantees:** The Software Providers make no representations or warranties regarding:
-   - The accuracy of any hearing assessments
-   - The effectiveness of any tinnitus management tools
-   - The safety of prolonged use
-   - The compatibility with your specific hearing condition
-
-### Audio Safety Warning
-
-**IMPORTANT:** Always use headphones or earbuds at safe volume levels. Prolonged exposure to loud sounds can cause permanent hearing damage. If you experience any discomfort, pain, or changes in your hearing, stop using the software immediately and consult a healthcare professional.
-
-### Jurisdiction
-
-This disclaimer shall be governed by and construed in accordance with applicable laws. If any provision of this disclaimer is found to be unenforceable, the remaining provisions shall remain in full force and effect.
-
-### Acceptance
-
-**By accessing, downloading, installing, or using HearWell, you acknowledge that you have read, understood, and agree to be bound by this disclaimer and all applicable laws and regulations. If you do not agree with any part of this disclaimer, you must not use this software.**
+By using HearWell, you agree to use it at your own risk. See full [LICENSE](LICENSE) for details.
 
 ---
 
 ## 🙏 Acknowledgments
 
-- Built with [React](https://react.dev/) and [TypeScript](https://www.typescriptlang.org/)
-- UI components from [Shadcn/ui](https://ui.shadcn.com/) and [Radix UI](https://www.radix-ui.com/)
-- Audio processing using the [Web Audio API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API)
-- Charts powered by [Recharts](https://recharts.org/)
+Built with love by someone who knows what it's like to live with tinnitus.
+
+Special thanks to:
+
+- The open-source community
+- Web Audio API contributors
+- Everyone who suggested features and reported bugs
 
 ---
 
-## 📧 Support
+## 📬 Support
 
-For technical issues, feature requests, or contributions, please open an issue on [GitHub](https://github.com/rebelias/Hearwell/issues).
+- 🐛 **Bug Reports:** [Open an issue](https://github.com/rebelias/Hearwell/issues)
+- 💡 **Feature Requests:** [Start a discussion](https://github.com/rebelias/Hearwell/discussions)
+- 🌟 **Star the repo** if HearWell helps you!
+- 💬 **Spread the word** to anyone who might benefit
 
-**For medical or hearing health questions, please consult a qualified healthcare professional.**
+**For medical questions, please consult a healthcare professional.**
 
 ---
 
-**Last Updated:** November 12, 2025  
-**Version:** 1.1.0
+## 📊 Project Stats
 
-## 🧪 Testing
+![GitHub stars](https://img.shields.io/github/stars/rebelias/Hearwell?style=social)
+![GitHub forks](https://img.shields.io/github/forks/rebelias/Hearwell?style=social)
+![GitHub issues](https://img.shields.io/github/issues/rebelias/Hearwell)
+![GitHub pull requests](https://img.shields.io/github/issues-pr/rebelias/Hearwell)
 
-HearWell includes comprehensive testing infrastructure:
+---
 
-- **Unit Tests:** Vitest with React Testing Library (70%+ coverage target for audio hooks)
-- **E2E Tests:** Playwright for end-to-end testing across all 5 tools
-- **Code Quality:** ESLint + Prettier with pre-commit hooks
-- **CI/CD:** Automated testing via GitHub Actions, Cloudflare Pages deployment
-- **Error Handling:** React Error Boundaries with client-side error logging (no data transmission)
-- **Security:** Content Security Policy (CSP) headers and Helmet middleware
+## 📄 License
 
-Run `npm run test` for unit tests and `npm run test:e2e` for E2E tests.
+MIT License - see [LICENSE](LICENSE) file for details.
 
-## 🎨 User Interface Features
+**TL;DR:** Free to use, modify, and distribute. Just don't sue us. 😊
 
-- **Disclaimer Modal:** Medical and legal disclaimer shown on first visit, ensuring users understand the tool's limitations (fully translated)
-- **Footer:** Simplified footer with copyright and translated disclaimer link
-- **About Page:** Information about the project creator and mission
-- **Learn Page:** Comprehensive educational content about hearing health and tinnitus (fully translated)
-- **Language Switcher:** Easy access to change interface language in navigation bar
-- **AudioContext Management:** Automatic AudioContext resume on user interaction for reliable audio playback across all browsers
-- **Responsive Design:** Optimized for 5K resolution screens with full-view test panels while maintaining mobile device compatibility
+---
+
+## 🌱 Roadmap
+
+- [ ] Add more therapeutic sound modes
+- [ ] Implement frequency-specific volume testing
+- [ ] Add data export options (JSON, PDF)
+- [ ] Create mobile apps (React Native)
+- [ ] Add more languages (Arabic, Korean, Italian, etc.)
+- [ ] Implement sound quality presets
+- [ ] Add calibration for different headphone types
+
+Want to help? Pick an item and open a PR!
+
+---
+
+<div align="center">
+
+**Made with ❤️ by someone who lives with tinnitus, for everyone who does.**
+
+[⭐ Star this repo](https://github.com/rebelias/Hearwell) • [🌐 Try it now](https://hearwell.life) • [📣 Share with others](https://twitter.com/intent/tweet?text=Check%20out%20HearWell%20-%20free%20hearing%20health%20tools!&url=https://hearwell.life)
+
+</div>
