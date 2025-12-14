@@ -13,7 +13,6 @@ interface SEOProps {
     | 'about'
     | 'disclaimer';
   path: string;
-  structuredData?: object;
 }
 
 // Language to locale mapping for Open Graph
@@ -29,7 +28,7 @@ const languageToLocale: Record<string, string> = {
   ja: 'ja_JP',
 };
 
-export default function SEO({ pageName, path, structuredData }: SEOProps) {
+export default function SEO({ pageName, path }: SEOProps) {
   const { t, i18n } = useTranslation('seo');
   const currentLanguage = i18n.language || 'en';
 
@@ -97,13 +96,6 @@ export default function SEO({ pageName, path, structuredData }: SEOProps) {
       <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={description} />
       <meta name="twitter:image" content={defaultTwitterImage} />
-
-      {/* Structured Data */}
-      {structuredData && (
-        <script type="application/ld+json">
-          {JSON.stringify(structuredData)}
-        </script>
-      )}
     </Helmet>
   );
 }

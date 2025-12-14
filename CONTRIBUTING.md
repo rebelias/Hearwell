@@ -239,7 +239,6 @@ Hearwell/
 │   │   │   └── config.ts    # i18next configuration
 │   │   └── App.tsx          # Main application component
 │   └── public/              # Static assets
-├── server/                  # Express server (minimal, mostly static)
 ├── .github/workflows/       # CI/CD configuration
 └── package.json
 ```

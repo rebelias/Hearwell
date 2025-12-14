@@ -13,29 +13,6 @@ import SEO from '@/components/SEO';
 
 export default function Home() {
   const { t } = useTranslation(['home', 'common']);
-
-  const structuredData = {
-    '@context': 'https://schema.org',
-    '@type': 'WebApplication',
-    name: 'HearWell',
-    applicationCategory: 'HealthApplication',
-    description:
-      'Free, professional-grade hearing health tools. Online audiometer, tinnitus frequency finder, and therapeutic sound generators.',
-    url: 'https://hearwell.life',
-    operatingSystem: 'Web Browser',
-    offers: {
-      '@type': 'Offer',
-      price: '0',
-      priceCurrency: 'USD',
-    },
-    featureList: [
-      'Online Audiometer',
-      'Tinnitus Frequency Finder',
-      'Tonal Masker',
-      'Noise Generator',
-      'Notched Noise Generator',
-    ],
-  };
   const tools = [
     {
       title: t('home:frequencyFinder.title'),
@@ -76,7 +53,7 @@ export default function Home() {
 
   return (
     <>
-      <SEO pageName="home" path="/" structuredData={structuredData} />
+      <SEO pageName="home" path="/" />
       <div className="min-h-screen bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 md:py-12">
           {/* Hero Section */}

@@ -12,7 +12,7 @@ import { Copy, Share2, Info, HelpCircle } from 'lucide-react';
 import WaveformSelector, { WaveformType } from '@/components/WaveformSelector';
 import AudioPlayer from '@/components/AudioPlayer';
 import { useToast } from '@/hooks/use-toast';
-import { useAudioEngine } from '@/hooks/useAudioEngine';
+import { useAudioEngine, type EarSelection } from '@/hooks/useAudioEngine';
 import { useTranslation } from 'react-i18next';
 import SEO from '@/components/SEO';
 import {
@@ -25,7 +25,7 @@ import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import ToolLayout from '@/components/ToolLayout';
 
 export default function FrequencyFinder() {
-  const { t } = useTranslation(['frequencyFinder', 'common']);
+  const { t } = useTranslation(['frequencyFinder', 'common', 'tools']);
   const [frequency, setFrequency] = useState(() => {
     const params = new URLSearchParams(window.location.search);
     const freq = params.get('freq');
@@ -52,9 +52,27 @@ export default function FrequencyFinder() {
     return 'sine';
   });
 
+  const [earSelection, setEarSelection] = useState<EarSelection>(() => {
+    const params = new URLSearchParams(window.location.search);
+    const ear = params.get('ear');
+    if (ear === 'left' || ear === 'right' || ear === 'both') {
+      return ear;
+    }
+    const stored = localStorage.getItem('frequency-finder-ear');
+    if (stored === 'left' || stored === 'right' || stored === 'both') {
+      return stored;
+    }
+    return 'both';
+  });
+
   const { toast } = useToast();
 
-  const audioEngine = useAudioEngine({ frequency, waveform, volume: 50 });
+  const audioEngine = useAudioEngine({
+    frequency,
+    waveform,
+    volume: 50,
+    earSelection,
+  });
 
   useEffect(() => {
     audioEngine.updateFrequency(frequency);
@@ -64,8 +82,20 @@ export default function FrequencyFinder() {
     audioEngine.updateWaveform(waveform);
   }, [waveform]);
 
+  useEffect(() => {
+    audioEngine.updateEarSelection(earSelection);
+    localStorage.setItem('frequency-finder-ear', earSelection);
+  }, [earSelection]);
+
   const handleCopySettings = () => {
-    const settings = `Frequency: ${frequency}Hz, Waveform: ${waveform}`;
+    const earLabel = t(
+      earSelection === 'both'
+        ? 'frequencyFinder:earLabelBoth'
+        : earSelection === 'left'
+          ? 'frequencyFinder:earLabelLeft'
+          : 'frequencyFinder:earLabelRight'
+    );
+    const settings = `Frequency: ${frequency}Hz, Waveform: ${waveform}, Ear: ${earLabel}`;
     navigator.clipboard.writeText(settings);
     // Save frequency to localStorage for Tonal Masker tool
     localStorage.setItem('tinnitus-frequency', frequency.toString());
@@ -76,7 +106,7 @@ export default function FrequencyFinder() {
   };
 
   const handleShare = () => {
-    const url = `${window.location.origin}/frequency-finder?freq=${frequency}&wave=${waveform}`;
+    const url = `${window.location.origin}/frequency-finder?freq=${frequency}&wave=${waveform}&ear=${earSelection}`;
     navigator.clipboard.writeText(url);
     // Save frequency to localStorage for Tonal Masker tool
     localStorage.setItem('tinnitus-frequency', frequency.toString());
@@ -170,6 +200,40 @@ export default function FrequencyFinder() {
               </Tooltip>
             </div>
             <WaveformSelector value={waveform} onChange={setWaveform} />
+          </div>
+
+          <div className="space-y-3">
+            <div className="flex items-center gap-2">
+              <span className="text-sm text-muted-foreground">
+                {t('tools:earSelection')}
+              </span>
+            </div>
+            <div className="flex gap-2">
+              <Button
+                variant={earSelection === 'left' ? 'default' : 'outline'}
+                size="sm"
+                onClick={() => setEarSelection('left')}
+                data-testid="button-ear-left"
+              >
+                {t('tools:left')}
+              </Button>
+              <Button
+                variant={earSelection === 'both' ? 'default' : 'outline'}
+                size="sm"
+                onClick={() => setEarSelection('both')}
+                data-testid="button-ear-both"
+              >
+                {t('tools:both')}
+              </Button>
+              <Button
+                variant={earSelection === 'right' ? 'default' : 'outline'}
+                size="sm"
+                onClick={() => setEarSelection('right')}
+                data-testid="button-ear-right"
+              >
+                {t('tools:right')}
+              </Button>
+            </div>
           </div>
 
           <div className="flex flex-wrap gap-3 pt-3 border-t">

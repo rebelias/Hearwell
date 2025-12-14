@@ -155,22 +155,24 @@ export default function AudiogramChart({
             cy?: number;
             payload?: { threshold: number | null };
           }) => {
-            // Only show dot if there's a threshold value
-            if (
-              props.payload?.threshold !== null &&
+            const cx = props.cx ?? 0;
+            const cy = props.cy ?? 0;
+            const threshold = props.payload?.threshold;
+
+            const visible =
+              threshold !== null &&
+              threshold !== undefined &&
               props.cx !== undefined &&
-              props.cy !== undefined
-            ) {
-              return (
-                <circle
-                  cx={props.cx}
-                  cy={props.cy}
-                  r={4}
-                  fill="hsl(var(--primary))"
-                />
-              );
-            }
-            return null;
+              props.cy !== undefined;
+
+            return (
+              <circle
+                cx={cx}
+                cy={cy}
+                r={visible ? 4 : 0}
+                fill={visible ? 'hsl(var(--primary))' : 'transparent'}
+              />
+            );
           }}
           activeDot={{ r: 6 }}
           name={t('audiometer:hearingThreshold', 'Hearing Threshold')}

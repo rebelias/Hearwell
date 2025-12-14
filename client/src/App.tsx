@@ -1,7 +1,5 @@
 import { useState } from 'react';
 import { Switch, Route } from 'wouter';
-import { queryClient } from './lib/queryClient';
-import { QueryClientProvider } from '@tanstack/react-query';
 import { HelmetProvider } from 'react-helmet-async';
 import { Toaster } from '@/components/ui/toaster';
 import { TooltipProvider } from '@/components/ui/tooltip';
@@ -70,43 +68,9 @@ function App() {
     return (
       <ErrorBoundary>
         <HelmetProvider>
-          <QueryClientProvider client={queryClient}>
-            <TooltipProvider>
-              <DisclaimerModal onAccept={handleDisclaimerAccept} />
-              <div className="min-h-screen flex flex-col opacity-50 pointer-events-none select-none">
-                <Navigation />
-                <main className="flex-1">
-                  <Router />
-                </main>
-                <Footer />
-              </div>
-              <Toaster />
-            </TooltipProvider>
-          </QueryClientProvider>
-        </HelmetProvider>
-      </ErrorBoundary>
-    );
-  }
-
-  return (
-    <ErrorBoundary>
-      <HelmetProvider>
-        <QueryClientProvider client={queryClient}>
           <TooltipProvider>
             <DisclaimerModal onAccept={handleDisclaimerAccept} />
-            {showCalibration && (
-              <>
-                <CalibrationModal
-                  open={showCalibration}
-                  onCalibrationComplete={handleCalibrationComplete}
-                />
-                {/* Block site interaction while calibration is open */}
-                <div className="fixed inset-0 z-[99] bg-background/80 pointer-events-auto" />
-              </>
-            )}
-            <div
-              className={`min-h-screen flex flex-col ${showCalibration ? 'opacity-50 pointer-events-none select-none' : ''}`}
-            >
+            <div className="min-h-screen flex flex-col opacity-50 pointer-events-none select-none">
               <Navigation />
               <main className="flex-1">
                 <Router />
@@ -115,7 +79,37 @@ function App() {
             </div>
             <Toaster />
           </TooltipProvider>
-        </QueryClientProvider>
+        </HelmetProvider>
+      </ErrorBoundary>
+    );
+  }
+
+  return (
+    <ErrorBoundary>
+      <HelmetProvider>
+        <TooltipProvider>
+          <DisclaimerModal onAccept={handleDisclaimerAccept} />
+          {showCalibration && (
+            <>
+              <CalibrationModal
+                open={showCalibration}
+                onCalibrationComplete={handleCalibrationComplete}
+              />
+              {/* Block site interaction while calibration is open */}
+              <div className="fixed inset-0 z-[99] bg-background/80 pointer-events-auto" />
+            </>
+          )}
+          <div
+            className={`min-h-screen flex flex-col ${showCalibration ? 'opacity-50 pointer-events-none select-none' : ''}`}
+          >
+            <Navigation />
+            <main className="flex-1">
+              <Router />
+            </main>
+            <Footer />
+          </div>
+          <Toaster />
+        </TooltipProvider>
       </HelmetProvider>
     </ErrorBoundary>
   );

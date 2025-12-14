@@ -1,12 +1,21 @@
 import { Button } from '@/components/ui/button';
-import { Square, Triangle, Zap, Filter, Waves, LucideIcon } from 'lucide-react';
+import {
+  Square,
+  Triangle,
+  Zap,
+  Filter,
+  Waves,
+  Volume2,
+  LucideIcon,
+} from 'lucide-react';
 
 export type WaveformType =
   | 'sine'
   | 'square'
   | 'triangle'
   | 'sawtooth'
-  | 'filtered';
+  | 'filtered'
+  | 'noise';
 
 interface WaveformSelectorProps {
   value: WaveformType;
@@ -23,6 +32,7 @@ export default function WaveformSelector({
     { type: 'triangle', icon: Triangle, label: 'Triangle' },
     { type: 'sawtooth', icon: Zap, label: 'Sawtooth' },
     { type: 'filtered', icon: Filter, label: 'Filtered' },
+    { type: 'noise', icon: Volume2, label: 'Noise' },
   ];
 
   return (

@@ -2,56 +2,6 @@ import { describe, it, expect, beforeEach, vi } from 'vitest';
 import { renderHook, act } from '@testing-library/react';
 import { useTonalMasker } from '../useTonalMasker';
 
-// Mock AudioContext and related APIs
-global.AudioContext = vi.fn().mockImplementation(() => ({
-  createOscillator: vi.fn().mockReturnValue({
-    frequency: { value: 0 },
-    connect: vi.fn(),
-    start: vi.fn(),
-    stop: vi.fn(),
-  }),
-  createGain: vi.fn().mockReturnValue({
-    gain: { value: 0 },
-    connect: vi.fn(),
-  }),
-  createStereoPanner: vi.fn().mockReturnValue({
-    pan: { value: 0 },
-    connect: vi.fn(),
-  }),
-  createBiquadFilter: vi.fn().mockReturnValue({
-    frequency: { value: 0 },
-    Q: { value: 0 },
-    gain: { value: 0 },
-    connect: vi.fn(),
-  }),
-  createConstantSource: vi.fn().mockReturnValue({
-    offset: { value: 0 },
-    connect: vi.fn(),
-    start: vi.fn(),
-    stop: vi.fn(),
-  }),
-  destination: {},
-  currentTime: 0,
-  state: 'running',
-  resume: vi.fn().mockResolvedValue(undefined),
-  close: vi.fn(),
-}));
-
-// Mock AudioBufferSourceNode
-global.AudioBufferSourceNode = vi.fn().mockImplementation(() => ({
-  buffer: null,
-  loop: false,
-  connect: vi.fn(),
-  start: vi.fn(),
-  stop: vi.fn(),
-  disconnect: vi.fn(),
-}));
-
-// Mock AudioBuffer
-global.AudioBuffer = vi.fn().mockImplementation(() => ({
-  getChannelData: vi.fn().mockReturnValue(new Float32Array(44100)),
-}));
-
 describe('useTonalMasker', () => {
   beforeEach(() => {
     vi.clearAllMocks();

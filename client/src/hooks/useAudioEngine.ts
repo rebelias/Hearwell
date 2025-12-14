@@ -9,10 +9,13 @@ export type WaveformType =
   | 'filtered'
   | 'noise';
 
+export type EarSelection = 'both' | 'left' | 'right';
+
 interface AudioEngineOptions {
   frequency?: number;
   waveform?: WaveformType;
   volume?: number;
+  earSelection?: EarSelection;
 }
 
 export function useAudioEngine(options: AudioEngineOptions = {}) {
@@ -20,6 +23,7 @@ export function useAudioEngine(options: AudioEngineOptions = {}) {
   const audioContextRef = useRef<AudioContext | null>(null);
   const oscillatorRef = useRef<OscillatorNode | null>(null);
   const gainNodeRef = useRef<GainNode | null>(null);
+  const pannerNodeRef = useRef<StereoPannerNode | null>(null);
   const noiseNodeRef = useRef<AudioBufferSourceNode | null>(null);
   const filterNodeRef = useRef<BiquadFilterNode | null>(null);
 
@@ -27,11 +31,13 @@ export function useAudioEngine(options: AudioEngineOptions = {}) {
   const frequencyRef = useRef<number>(options.frequency ?? 1000);
   const waveformRef = useRef<WaveformType>(options.waveform ?? 'sine');
   const volumeRef = useRef<number>(options.volume ?? 50);
+  const earSelectionRef = useRef<EarSelection>(options.earSelection ?? 'both');
 
   const {
     frequency: initialFrequency = 1000,
     waveform: initialWaveform = 'sine',
     volume: initialVolume = 50,
+    earSelection: initialEarSelection = 'both',
   } = options;
 
   // Initialize refs with initial values
@@ -39,7 +45,8 @@ export function useAudioEngine(options: AudioEngineOptions = {}) {
     frequencyRef.current = initialFrequency;
     waveformRef.current = initialWaveform;
     volumeRef.current = initialVolume;
-  }, [initialFrequency, initialWaveform, initialVolume]);
+    earSelectionRef.current = initialEarSelection;
+  }, [initialFrequency, initialWaveform, initialVolume, initialEarSelection]);
 
   useEffect(() => {
     return () => {
@@ -71,6 +78,20 @@ export function useAudioEngine(options: AudioEngineOptions = {}) {
         }
       );
       throw error;
+    }
+  };
+
+  const applyEarSelection = (selection: EarSelection) => {
+    if (!pannerNodeRef.current) {
+      return;
+    }
+
+    if (selection === 'left') {
+      pannerNodeRef.current.pan.value = -1;
+    } else if (selection === 'right') {
+      pannerNodeRef.current.pan.value = 1;
+    } else {
+      pannerNodeRef.current.pan.value = 0;
     }
   };
 
@@ -154,10 +175,29 @@ export function useAudioEngine(options: AudioEngineOptions = {}) {
 
       if (!gainNodeRef.current) {
         gainNodeRef.current = ctx.createGain();
-        gainNodeRef.current.connect(ctx.destination);
       }
 
+      if (!pannerNodeRef.current) {
+        pannerNodeRef.current = ctx.createStereoPanner();
+      }
+
+      try {
+        gainNodeRef.current.disconnect();
+      } catch {
+        // ignore if not connected
+      }
+
+      try {
+        pannerNodeRef.current.disconnect();
+      } catch {
+        // ignore if not connected
+      }
+
+      gainNodeRef.current.connect(pannerNodeRef.current);
+      pannerNodeRef.current.connect(ctx.destination);
+
       gainNodeRef.current.gain.value = volumeRef.current / 100;
+      applyEarSelection(earSelectionRef.current);
 
       if (waveformRef.current === 'noise') {
         if (noiseNodeRef.current) {
@@ -252,6 +292,22 @@ export function useAudioEngine(options: AudioEngineOptions = {}) {
       filterNodeRef.current = null;
     }
 
+    if (gainNodeRef.current) {
+      try {
+        gainNodeRef.current.disconnect();
+      } catch {
+        // Already disconnected
+      }
+    }
+
+    if (pannerNodeRef.current) {
+      try {
+        pannerNodeRef.current.disconnect();
+      } catch {
+        // Already disconnected
+      }
+    }
+
     setIsPlaying(false);
   };
 
@@ -313,6 +369,11 @@ export function useAudioEngine(options: AudioEngineOptions = {}) {
     }
   };
 
+  const updateEarSelection = (selection: EarSelection) => {
+    earSelectionRef.current = selection;
+    applyEarSelection(selection);
+  };
+
   return {
     isPlaying,
     play,
@@ -321,5 +382,6 @@ export function useAudioEngine(options: AudioEngineOptions = {}) {
     updateFrequency,
     updateVolume,
     updateWaveform,
+    updateEarSelection,
   };
 }

@@ -2,6 +2,47 @@ import '@testing-library/jest-dom';
 import { cleanup } from '@testing-library/react';
 import { afterEach, vi } from 'vitest';
 
+/**
+ * Node 18 compatibility shims for newer jsdom/webidl expectations.
+ * These are no-ops on Node versions that already support them (e.g. Node 20+).
+ */
+const defineBooleanGetterIfMissing = (
+  target: object,
+  property: string,
+  value: boolean
+) => {
+  const descriptor = Object.getOwnPropertyDescriptor(target, property);
+  if (!descriptor) {
+    Object.defineProperty(target, property, {
+      configurable: true,
+      enumerable: false,
+      get: () => value,
+    });
+  }
+};
+
+const defineNumberGetterIfMissing = (
+  target: object,
+  property: string,
+  value: number
+) => {
+  const descriptor = Object.getOwnPropertyDescriptor(target, property);
+  if (!descriptor) {
+    Object.defineProperty(target, property, {
+      configurable: true,
+      enumerable: false,
+      get: () => value,
+    });
+  }
+};
+
+defineBooleanGetterIfMissing(ArrayBuffer.prototype, 'resizable', false);
+defineNumberGetterIfMissing(ArrayBuffer.prototype, 'maxByteLength', 0);
+if (typeof SharedArrayBuffer !== 'undefined') {
+  defineBooleanGetterIfMissing(SharedArrayBuffer.prototype, 'growable', false);
+  defineNumberGetterIfMissing(SharedArrayBuffer.prototype, 'maxByteLength', 0);
+}
+
 // Cleanup after each test
 afterEach(() => {
   cleanup();
@@ -63,6 +104,16 @@ global.AudioContext = class MockAudioContext {
     } as unknown as AudioBufferSourceNode;
   }
 
+  createConstantSource() {
+    return {
+      offset: { value: 0 },
+      connect: vi.fn(),
+      disconnect: vi.fn(),
+      start: vi.fn(),
+      stop: vi.fn(),
+    } as unknown as ConstantSourceNode;
+  }
+
   createBuffer(channels: number, length: number, sampleRate: number) {
     return {
       numberOfChannels: channels,
@@ -70,6 +121,10 @@ global.AudioContext = class MockAudioContext {
       sampleRate,
       getChannelData: () => new Float32Array(length),
     } as AudioBuffer;
+  }
+
+  decodeAudioData(_arrayBuffer: ArrayBuffer) {
+    return Promise.resolve(this.createBuffer(2, 44100, this.sampleRate));
   }
 
   resume() {

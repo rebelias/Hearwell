@@ -25,9 +25,9 @@ import {
 import ToolLayout from '@/components/ToolLayout';
 
 export default function NoiseGenerator() {
-  const { t } = useTranslation(['noiseGenerator', 'common']);
+  const { t } = useTranslation(['noiseGenerator', 'common', 'tools']);
   const [eqValues, setEqValues] = useState([50, 50, 50, 50, 50, 50, 50, 50]);
-  const [selectedPreset, setSelectedPreset] = useState<string | null>(null);
+  const [selectedPreset, setSelectedPreset] = useState<NoiseColor | null>(null);
   const [noiseColor, setNoiseColor] = useState<NoiseColor>('white');
   const [volume, setVolume] = useState(50);
   const { toast } = useToast();
@@ -35,32 +35,28 @@ export default function NoiseGenerator() {
 
   const frequencies = ['32', '64', '125', '250', '500', '1k', '2k', '4k'];
 
-  const presets: Array<{ name: string; values: number[]; color: NoiseColor }> =
-    [
-      {
-        name: 'White',
-        values: [50, 50, 50, 50, 50, 50, 50, 50],
-        color: 'white',
-      },
-      { name: 'Pink', values: [70, 65, 60, 55, 50, 45, 40, 35], color: 'pink' },
-      {
-        name: 'Brown',
-        values: [80, 70, 60, 50, 40, 30, 20, 10],
-        color: 'brown',
-      },
-      {
-        name: 'Violet',
-        values: [30, 35, 40, 45, 50, 55, 60, 70],
-        color: 'violet',
-      },
-      { name: 'Blue', values: [35, 40, 45, 50, 55, 60, 65, 70], color: 'blue' },
-      { name: 'Grey', values: [50, 45, 50, 45, 50, 45, 50, 45], color: 'grey' },
-    ];
+  const presets: Array<{ color: NoiseColor; values: number[] }> = [
+    {
+      color: 'white',
+      values: [50, 50, 50, 50, 50, 50, 50, 50],
+    },
+    { color: 'pink', values: [70, 65, 60, 55, 50, 45, 40, 35] },
+    {
+      color: 'brown',
+      values: [80, 70, 60, 50, 40, 30, 20, 10],
+    },
+    {
+      color: 'violet',
+      values: [30, 35, 40, 45, 50, 55, 60, 70],
+    },
+    { color: 'blue', values: [35, 40, 45, 50, 55, 60, 65, 70] },
+    { color: 'grey', values: [50, 45, 50, 45, 50, 45, 50, 45] },
+  ];
 
   const applyPreset = (preset: (typeof presets)[0]) => {
     setEqValues(preset.values);
     setNoiseColor(preset.color);
-    setSelectedPreset(preset.name);
+    setSelectedPreset(preset.color);
     if (noiseEngine.isPlaying) {
       noiseEngine.stop();
       setTimeout(
@@ -337,15 +333,15 @@ export default function NoiseGenerator() {
             <div className="grid grid-cols-1 gap-2">
               {presets.map(preset => (
                 <Button
-                  key={preset.name}
+                  key={preset.color}
                   variant={
-                    selectedPreset === preset.name ? 'default' : 'outline'
+                    selectedPreset === preset.color ? 'default' : 'outline'
                   }
                   onClick={() => applyPreset(preset)}
                   className="w-full justify-start"
-                  data-testid={`button-preset-${preset.name.toLowerCase()}`}
+                  data-testid={`button-preset-${preset.color}`}
                 >
-                  {preset.name}
+                  {t(`tools:${preset.color}`)}
                 </Button>
               ))}
             </div>

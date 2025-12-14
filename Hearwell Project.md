@@ -139,8 +139,7 @@ Example flow for tone generation:
 
 ### Development Tools
 
-- **tsx** - TypeScript execution
-- **Express** - Development server (serves Vite frontend)
+- **Vite** - Development server and build tool
 - **PostCSS** - CSS processing with Tailwind
 
 ---
@@ -979,16 +978,9 @@ hearwell/
 │   ├── index.html                   # HTML entry point
 │   └── public/                      # Static assets
 │
-├── server/                          # Backend (minimal, serves frontend)
-│   ├── index.ts                     # Express server entry
-│   ├── vite.ts                      # Vite dev middleware
-│   └── routes.ts                    # API routes (none for audio)
-│
-├── shared/                          # Shared types (currently unused)
-│   └── schema.ts
+├── shared/                          # Reserved for shared types (currently unused)
 │
 ├── design_guidelines.md             # Complete design system spec
-├── replit.md                        # Project summary
 ├── Hearwell Project.md              # THIS FILE - comprehensive docs
 │
 ├── package.json                     # Dependencies
@@ -996,7 +988,7 @@ hearwell/
 ├── tailwind.config.ts               # Tailwind CSS config
 ├── vite.config.ts                   # Vite build config
 ├── postcss.config.js                # PostCSS with Tailwind
-└── .replit                          # Replit configuration
+└── .github/workflows/               # CI/CD pipelines (GitHub Actions)
 ```
 
 ### Key Directories Explained
@@ -1451,23 +1443,18 @@ Creates optimized production bundle in `dist/`.
 
 ### Environment Variables
 
-None required for audio functionality. Optional:
-
-- `VITE_ANALYTICS_ID` - Analytics tracking
-- `VITE_API_URL` - If backend is added
+None required. HearWell is a static, client-side application.
 
 ### Hosting Recommendations
 
 - **Vercel**: Zero config, excellent performance
 - **Netlify**: Good for static sites
 - **Cloudflare Pages**: Fast edge network
-- **Replit**: Current hosting, works well
 
 ### Production Checklist
 
 - [ ] Remove console.logs
 - [ ] Test all tools in production build
-- [ ] Verify analytics tracking
 - [ ] Test on real mobile devices
 - [ ] Check bundle size (should be < 500KB)
 - [ ] Enable gzip compression

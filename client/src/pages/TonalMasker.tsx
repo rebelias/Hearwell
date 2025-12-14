@@ -32,7 +32,7 @@ import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import ToolLayout from '@/components/ToolLayout';
 
 export default function TonalMasker() {
-  const { t } = useTranslation(['tonalMasker', 'common']);
+  const { t } = useTranslation(['tonalMasker', 'common', 'tools']);
   const [frequency, setFrequency] = useState(() => {
     const savedFrequency = localStorage.getItem('tinnitus-frequency');
     if (savedFrequency) {
@@ -524,8 +524,7 @@ export default function TonalMasker() {
                       </TooltipTrigger>
                       <TooltipContent className="max-w-xs">
                         <p className="text-sm">
-                          How far above and below your tinnitus frequency the 4
-                          tones are spread. Higher values create more variation.
+                          {t('tonalMasker:frequencySpreadTooltip')}
                         </p>
                       </TooltipContent>
                     </Tooltip>
@@ -560,7 +559,7 @@ export default function TonalMasker() {
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
                     <span className="text-sm font-medium">
-                      Randomize Modulation
+                      {t('tonalMasker:randomizedModulation')}
                     </span>
                     <Tooltip>
                       <TooltipTrigger asChild>
@@ -568,8 +567,7 @@ export default function TonalMasker() {
                       </TooltipTrigger>
                       <TooltipContent className="max-w-xs">
                         <p className="text-sm">
-                          Randomly vary modulation rate and depth within
-                          specified ranges to prevent neural adaptation.
+                          {t('tonalMasker:randomizedModulationDesc')}
                         </p>
                       </TooltipContent>
                     </Tooltip>
@@ -579,7 +577,9 @@ export default function TonalMasker() {
                     size="sm"
                     onClick={() => setRandomizeModulation(!randomizeModulation)}
                   >
-                    {randomizeModulation ? 'Enabled' : 'Disabled'}
+                    {randomizeModulation
+                      ? t('common:enabled')
+                      : t('common:disabled')}
                   </Button>
                 </div>
 
@@ -589,18 +589,20 @@ export default function TonalMasker() {
                       <div className="flex justify-between items-center">
                         <div className="flex items-center gap-2">
                           <span className="text-sm text-muted-foreground">
-                            Rate Range (Hz)
+                            {t('tonalMasker:modulationRateRange')}
                           </span>
                         </div>
                         <span className="text-sm font-semibold text-primary">
-                          {modulationRateRange[0].toFixed(1)} -{' '}
-                          {modulationRateRange[1].toFixed(1)} Hz
+                          {t('tonalMasker:modulationRateRangeValue', {
+                            min: modulationRateRange[0].toFixed(1),
+                            max: modulationRateRange[1].toFixed(1),
+                          })}
                         </span>
                       </div>
                       <div className="grid grid-cols-2 gap-2">
                         <div>
                           <span className="text-xs text-muted-foreground mb-1 block">
-                            Min
+                            {t('common:min')}
                           </span>
                           <Slider
                             value={[modulationRateRange[0]]}
@@ -618,7 +620,7 @@ export default function TonalMasker() {
                         </div>
                         <div>
                           <span className="text-xs text-muted-foreground mb-1 block">
-                            Max
+                            {t('common:max')}
                           </span>
                           <Slider
                             value={[modulationRateRange[1]]}
@@ -641,17 +643,20 @@ export default function TonalMasker() {
                       <div className="flex justify-between items-center">
                         <div className="flex items-center gap-2">
                           <span className="text-sm text-muted-foreground">
-                            Depth Range (%)
+                            {t('tonalMasker:modulationDepthRange')}
                           </span>
                         </div>
                         <span className="text-sm font-semibold text-primary">
-                          {modulationDepthRange[0]} - {modulationDepthRange[1]}%
+                          {t('tonalMasker:modulationDepthRangeValue', {
+                            min: modulationDepthRange[0],
+                            max: modulationDepthRange[1],
+                          })}
                         </span>
                       </div>
                       <div className="grid grid-cols-2 gap-2">
                         <div>
                           <span className="text-xs text-muted-foreground mb-1 block">
-                            Min
+                            {t('common:min')}
                           </span>
                           <Slider
                             value={[modulationDepthRange[0]]}
@@ -669,7 +674,7 @@ export default function TonalMasker() {
                         </div>
                         <div>
                           <span className="text-xs text-muted-foreground mb-1 block">
-                            Max
+                            {t('common:max')}
                           </span>
                           <Slider
                             value={[modulationDepthRange[1]]}
@@ -692,11 +697,13 @@ export default function TonalMasker() {
                       <div className="flex justify-between items-center">
                         <div className="flex items-center gap-2">
                           <span className="text-sm text-muted-foreground">
-                            Randomization Interval (ms)
+                            {t('tonalMasker:randomizationInterval')}
                           </span>
                         </div>
                         <span className="text-sm font-semibold text-primary">
-                          {randomizationInterval} ms
+                          {t('tonalMasker:randomizationIntervalValue', {
+                            value: randomizationInterval,
+                          })}
                         </span>
                       </div>
                       <Slider
@@ -710,9 +717,15 @@ export default function TonalMasker() {
                         className="w-full"
                       />
                       <div className="flex justify-between text-xs text-muted-foreground">
-                        <span>1s</span>
-                        <span>5s</span>
-                        <span>10s</span>
+                        <span>
+                          {t('tonalMasker:secondsValue', { value: 1 })}
+                        </span>
+                        <span>
+                          {t('tonalMasker:secondsValue', { value: 5 })}
+                        </span>
+                        <span>
+                          {t('tonalMasker:secondsValue', { value: 10 })}
+                        </span>
                       </div>
                     </div>
                   </>
@@ -724,15 +737,16 @@ export default function TonalMasker() {
           {/* Background Sounds */}
           <div className="pt-4 border-t space-y-3">
             <div className="flex items-center gap-2">
-              <span className="text-sm font-medium">Background Sound</span>
+              <span className="text-sm font-medium">
+                {t('tonalMasker:backgroundSound')}
+              </span>
               <Tooltip>
                 <TooltipTrigger asChild>
                   <HelpCircle className="h-4 w-4 text-muted-foreground cursor-help" />
                 </TooltipTrigger>
                 <TooltipContent className="max-w-xs">
                   <p className="text-sm">
-                    Optional nature sounds to enhance relaxation and mask
-                    environmental noise.
+                    {t('tonalMasker:backgroundSoundTooltip')}
                   </p>
                 </TooltipContent>
               </Tooltip>
@@ -746,7 +760,7 @@ export default function TonalMasker() {
                     size="sm"
                     onClick={() => setBackgroundSound(sound)}
                   >
-                    {sound.charAt(0).toUpperCase() + sound.slice(1)}
+                    {t(`tonalMasker:${sound}`)}
                   </Button>
                 )
               )}
@@ -755,10 +769,12 @@ export default function TonalMasker() {
               <div className="space-y-3">
                 <div className="flex justify-between items-center">
                   <span className="text-sm text-muted-foreground">
-                    Background Volume
+                    {t('tonalMasker:backgroundVolume')}
                   </span>
                   <span className="text-sm font-semibold text-primary">
-                    {backgroundVolume}%
+                    {t('tonalMasker:backgroundVolumeValue', {
+                      value: backgroundVolume,
+                    })}
                   </span>
                 </div>
                 <Slider
@@ -778,12 +794,7 @@ export default function TonalMasker() {
       <Card>
         <CardHeader>
           <CardTitle>{t('tonalMasker:toneSettings')}</CardTitle>
-          <CardDescription>
-            {t(
-              'tonalMasker:toneSettingsDesc',
-              'Configure the base tone parameters'
-            )}
-          </CardDescription>
+          <CardDescription>{t('tonalMasker:toneSettingsDesc')}</CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">
           <div className="space-y-3">
@@ -833,16 +844,15 @@ export default function TonalMasker() {
 
           <div className="space-y-3">
             <div className="flex items-center gap-2">
-              <span className="text-sm text-muted-foreground">Waveform</span>
+              <span className="text-sm text-muted-foreground">
+                {t('tonalMasker:waveform')}
+              </span>
               <Tooltip>
                 <TooltipTrigger asChild>
                   <HelpCircle className="h-4 w-4 text-muted-foreground cursor-help" />
                 </TooltipTrigger>
                 <TooltipContent className="max-w-xs">
-                  <p className="text-sm">
-                    The waveform shape of the carrier tone. Sine is typically
-                    recommended for tinnitus therapy.
-                  </p>
+                  <p className="text-sm">{t('tonalMasker:waveformTooltip')}</p>
                 </TooltipContent>
               </Tooltip>
             </div>
@@ -852,7 +862,7 @@ export default function TonalMasker() {
           <div className="space-y-3">
             <div className="flex items-center gap-2">
               <span className="text-sm text-muted-foreground">
-                Ear Selection
+                {t('tonalMasker:earSelection')}
               </span>
               <Tooltip>
                 <TooltipTrigger asChild>
@@ -860,8 +870,7 @@ export default function TonalMasker() {
                 </TooltipTrigger>
                 <TooltipContent className="max-w-xs">
                   <p className="text-sm">
-                    Select which ear(s) to play the tone to. Use this if your
-                    tinnitus is primarily in one ear.
+                    {t('tonalMasker:earSelectionTooltip')}
                   </p>
                 </TooltipContent>
               </Tooltip>
@@ -873,7 +882,7 @@ export default function TonalMasker() {
                 onClick={() => setEarSelection('left')}
                 data-testid="button-ear-left"
               >
-                Left
+                {t('tools:left')}
               </Button>
               <Button
                 variant={earSelection === 'both' ? 'default' : 'outline'}
@@ -881,7 +890,7 @@ export default function TonalMasker() {
                 onClick={() => setEarSelection('both')}
                 data-testid="button-ear-both"
               >
-                Both
+                {t('tools:both')}
               </Button>
               <Button
                 variant={earSelection === 'right' ? 'default' : 'outline'}
@@ -889,7 +898,7 @@ export default function TonalMasker() {
                 onClick={() => setEarSelection('right')}
                 data-testid="button-ear-right"
               >
-                Right
+                {t('tools:right')}
               </Button>
             </div>
           </div>
@@ -903,60 +912,98 @@ export default function TonalMasker() {
       <Card className="bg-muted/50">
         <CardHeader>
           <CardTitle className="text-xl font-display font-bold text-primary">
-            Current Settings
+            {t('tonalMasker:currentSettings')}
           </CardTitle>
         </CardHeader>
         <CardContent className="space-y-3">
           <div className="text-sm">
             <div className="flex justify-between mb-2">
-              <span className="text-muted-foreground">Frequency:</span>
-              <span className="font-semibold">{frequency} Hz</span>
+              <span className="text-muted-foreground">
+                {t('tonalMasker:baseFrequency')}
+              </span>
+              <span className="font-semibold">
+                {t('tonalMasker:frequencyValue', { value: frequency })}
+              </span>
             </div>
             <div className="flex justify-between mb-2">
-              <span className="text-muted-foreground">Modulation:</span>
+              <span className="text-muted-foreground">
+                {t('tonalMasker:modulationType')}
+              </span>
               <span className="font-semibold">
-                {modulationType.toUpperCase()}
+                {t(`tonalMasker:${modulationType}`)}
               </span>
             </div>
             {modulationType !== 'cr' && (
               <>
                 <div className="flex justify-between mb-2">
-                  <span className="text-muted-foreground">Rate:</span>
+                  <span className="text-muted-foreground">
+                    {t('tonalMasker:modulationRate')}
+                  </span>
                   <span className="font-semibold">
-                    {modulationRate.toFixed(1)} Hz
+                    {t('tonalMasker:modulationRateValue', {
+                      value: modulationRate.toFixed(1),
+                    })}
                   </span>
                 </div>
                 <div className="flex justify-between mb-2">
-                  <span className="text-muted-foreground">Depth:</span>
-                  <span className="font-semibold">{modulationDepth}%</span>
+                  <span className="text-muted-foreground">
+                    {t('tonalMasker:modulationDepth')}
+                  </span>
+                  <span className="font-semibold">
+                    {t('tonalMasker:percentageValue', {
+                      value: modulationDepth,
+                    })}
+                  </span>
                 </div>
               </>
             )}
             {modulationType === 'cr' && (
               <>
                 <div className="flex justify-between mb-2">
-                  <span className="text-muted-foreground">Tone Duration:</span>
-                  <span className="font-semibold">{crToneDuration} ms</span>
-                </div>
-                <div className="flex justify-between mb-2">
-                  <span className="text-muted-foreground">Gap Duration:</span>
-                  <span className="font-semibold">{crGapDuration} ms</span>
+                  <span className="text-muted-foreground">
+                    {t('tonalMasker:toneDuration')}
+                  </span>
+                  <span className="font-semibold">
+                    {t('tonalMasker:millisecondsValue', {
+                      value: crToneDuration,
+                    })}
+                  </span>
                 </div>
                 <div className="flex justify-between mb-2">
                   <span className="text-muted-foreground">
-                    Frequency Spread:
+                    {t('tonalMasker:gapDuration')}
                   </span>
-                  <span className="font-semibold">{crFrequencySpread}%</span>
+                  <span className="font-semibold">
+                    {t('tonalMasker:millisecondsValue', {
+                      value: crGapDuration,
+                    })}
+                  </span>
+                </div>
+                <div className="flex justify-between mb-2">
+                  <span className="text-muted-foreground">
+                    {t('tonalMasker:frequencySpread')}
+                  </span>
+                  <span className="font-semibold">
+                    {t('tonalMasker:percentageValue', {
+                      value: crFrequencySpread,
+                    })}
+                  </span>
                 </div>
               </>
             )}
             <div className="flex justify-between mb-2">
-              <span className="text-muted-foreground">Waveform:</span>
+              <span className="text-muted-foreground">
+                {t('tonalMasker:waveform')}
+              </span>
               <span className="font-semibold capitalize">{waveform}</span>
             </div>
             <div className="flex justify-between">
-              <span className="text-muted-foreground">Ear:</span>
-              <span className="font-semibold capitalize">{earSelection}</span>
+              <span className="text-muted-foreground">
+                {t('tonalMasker:earSelection')}
+              </span>
+              <span className="font-semibold capitalize">
+                {t(`tools:${earSelection}`)}
+              </span>
             </div>
           </div>
         </CardContent>
@@ -969,42 +1016,31 @@ export default function TonalMasker() {
         <CardContent className="space-y-3 text-sm text-muted-foreground">
           <p>{t('tonalMasker:aboutNeuromodulationText')}</p>
           <div className="space-y-2">
-            <h4 className="font-semibold text-foreground">Modulation Types:</h4>
+            <h4 className="font-semibold text-foreground">
+              {t('tonalMasker:modulationTypesTitle')}
+            </h4>
             <ul className="list-disc list-inside space-y-1 ml-2 text-xs">
-              <li>
-                <strong>AM (Amplitude):</strong> Varies volume to create pulsing
-                effect
-              </li>
-              <li>
-                <strong>FM (Frequency):</strong> Varies pitch to create warble
-                effect
-              </li>
-              <li>
-                <strong>Both:</strong> Combines AM and FM modulation
-              </li>
-              <li>
-                <strong>CR (Coordinated Reset):</strong> Randomized sequence of
-                4 tones to desynchronize neural activity (based on clinical
-                research)
-              </li>
+              <li>{t('tonalMasker:modulationTypeAmDescription')}</li>
+              <li>{t('tonalMasker:modulationTypeFmDescription')}</li>
+              <li>{t('tonalMasker:modulationTypeBothDescription')}</li>
+              <li>{t('tonalMasker:modulationTypeCrDescription')}</li>
             </ul>
           </div>
           <div className="space-y-2">
-            <h4 className="font-semibold text-foreground">Usage Tips:</h4>
+            <h4 className="font-semibold text-foreground">
+              {t('tonalMasker:usageTipsTitle')}
+            </h4>
             <ul className="list-disc list-inside space-y-1 ml-2 text-xs">
-              <li>Use at comfortable volume levels (30-50%)</li>
-              <li>For AM/FM: Start with lower modulation rates (0.5-2 Hz)</li>
-              <li>
-                For CR: Use default settings (200ms tone, 50ms gap, 10% spread)
-              </li>
-              <li>Use for 15-30 minutes daily</li>
-              <li>Results may take several weeks to appear</li>
+              <li>{t('tonalMasker:usageTipComfortableVolume')}</li>
+              <li>{t('tonalMasker:usageTipStartLowerRates')}</li>
+              <li>{t('tonalMasker:usageTipCrDefaults')}</li>
+              <li>{t('tonalMasker:usageTipDuration')}</li>
+              <li>{t('tonalMasker:usageTipPatience')}</li>
             </ul>
           </div>
           <p className="text-xs pt-2 border-t">
-            <strong>Note:</strong> This tool is for research and educational
-            purposes. Consult with a healthcare professional before using as a
-            treatment for tinnitus.
+            <strong>{t('tonalMasker:noteLabel')}</strong>{' '}
+            {t('tonalMasker:noteText')}
           </p>
         </CardContent>
       </Card>

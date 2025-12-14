@@ -73,11 +73,23 @@ Open `http://localhost:5000` in your browser.
 
 - ✅ **100% Client-Side** - All processing happens in your browser
 - ✅ **No Data Collection** - Zero tracking, zero analytics
-- ✅ **No Accounts** - Start using immediately
-- ✅ **No Third-Party Scripts** - Your data stays yours
+- ✅ **No Accounts / No Backend** - Static site; nothing to sign up for
+- ✅ **No Third-Party Scripts** - Your data stays yours (no analytics/ads)
 - ✅ **GDPR Compliant** - Privacy by design
 
 Your hearing test results never leave your device unless you choose to export them.
+
+### What data is stored locally?
+
+- **LocalStorage only** (on your device) for:
+  - Disclaimer acceptance (`hearwell-disclaimer-accepted`)
+  - Calibration settings (`audiometer-calibration`, `audiometer-calibrated`)
+  - UI preferences (theme, language, and some tool settings)
+  - Optional local error logs for debugging (`hearwell_errors`)
+
+### Third-party requests
+
+- **Google Fonts** are loaded from `fonts.googleapis.com` / `fonts.gstatic.com` for typography. This makes a network request to Google’s CDN (no analytics scripts are used).
 
 ---
 

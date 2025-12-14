@@ -1,5 +1,5 @@
 import { describe, it, expect, vi } from 'vitest';
-import { render, screen } from '@testing-library/react';
+import { render, screen, fireEvent } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import AudioPlayer from '../AudioPlayer';
 
@@ -57,7 +57,6 @@ describe('AudioPlayer', () => {
   });
 
   it('should call onVolumeChange when volume slider changes', async () => {
-    const user = userEvent.setup();
     const onPlayPause = vi.fn();
     const onVolumeChange = vi.fn();
     render(
@@ -71,8 +70,8 @@ describe('AudioPlayer', () => {
     );
 
     const volumeSlider = screen.getByTestId('slider-volume');
-    await user.type(volumeSlider, '75');
+    fireEvent.change(volumeSlider, { target: { value: '75' } });
 
-    expect(onVolumeChange).toHaveBeenCalled();
+    expect(onVolumeChange).toHaveBeenCalledWith(75);
   });
 });
