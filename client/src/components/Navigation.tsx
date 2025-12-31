@@ -31,6 +31,7 @@ export default function Navigation() {
     { path: '/notched-noise', label: t('notchedNoise') },
     { path: '/learn', label: t('learn') },
     { path: '/about', label: t('about') },
+    { path: '/feedback', label: t('feedback') },
   ];
 
   return (

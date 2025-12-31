@@ -22,5 +22,6 @@
   "clear": "Clear",
   "reset": "Reset",
   "apply": "Apply",
-  "cancel": "Cancel"
+  "cancel": "Cancel",
+  "feedback": "Feedback"
 }

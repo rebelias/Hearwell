@@ -43,5 +43,10 @@
     "title": "Avertissement Médical et Conditions Légales",
     "description": "Avertissement médical important et conditions légales pour utiliser HearWell. Pas un dispositif médical, pas approuvé par la FDA. À des fins éducatives et informatives uniquement.",
     "keywords": "avertissement médical, conditions légales, responsabilité, avertissement de test auditif, avertissement d'acouphènes"
+  },
+  "feedback": {
+    "title": "Partagez Votre Avis - HearWell",
+    "description": "Aidez-nous à améliorer HearWell en partageant votre expérience. Tous les commentaires sont anonymes et aident à améliorer les outils de santé auditive pour tous.",
+    "keywords": "commentaires, témoignages, expérience utilisateur, avis hearwell, évaluation app acouphène"
   }
 }

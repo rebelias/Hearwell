@@ -6,5 +6,6 @@
   "frequencyFinder": "Frequenzfinder",
   "noiseGenerator": "Rauschgenerator",
   "notchedNoise": "Kerbenrauschen",
-  "learn": "Lernen"
+  "learn": "Lernen",
+  "feedback": "Feedback"
 }

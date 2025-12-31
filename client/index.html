@@ -39,16 +39,62 @@
     <meta name="mobile-web-app-capable" content="yes">
     
     <!-- Content Security Policy -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; form-action 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' data: https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; media-src 'self';" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; form-action 'self' https://formspree.io; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' data: https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self' https://formspree.io; media-src 'self';" />
     
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="/favicon.png" />
     <link rel="apple-touch-icon" href="/favicon.png" />
     
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="/manifest.json" />
+    
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@600;700&display=swap" rel="stylesheet">
+    
+    <!-- SEO Enhancement - Additional Meta Tags -->
+    <meta name="classification" content="Health & Wellness, Medical Tools, Accessibility">
+    <meta name="coverage" content="Worldwide">
+    <meta name="distribution" content="Global">
+    <meta name="rating" content="General">
+    <meta name="revisit-after" content="7 days">
+    
+    <!-- JSON-LD Structured Data for SEO -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "HearWell",
+      "url": "https://hearwell.life",
+      "description": "Free, professional-grade hearing health tools. Online audiometer, tinnitus frequency finder, and therapeutic sound generators.",
+      "applicationCategory": "HealthApplication",
+      "operatingSystem": "Any (Web-based)",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "author": {
+        "@type": "Person",
+        "name": "Mehmet Kemal Ertuğ"
+      },
+      "audience": {
+        "@type": "MedicalAudience",
+        "audienceType": ["Patient", "Healthcare Professional", "Student"]
+      },
+      "featureList": [
+        "Online Audiometer",
+        "Tinnitus Frequency Finder",
+        "Tonal Masker (14 modes)",
+        "Noise Generators",
+        "Notched Noise Therapy",
+        "9 Languages Support",
+        "100% Privacy-Focused"
+      ],
+      "inLanguage": ["en", "es", "fr", "de", "pt", "tr", "zh", "hi", "ja"]
+    }
+    </script>
   </head>
   <body>
     <div id="root"></div>

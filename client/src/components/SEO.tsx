@@ -11,7 +11,8 @@ interface SEOProps {
     | 'notchedNoise'
     | 'learn'
     | 'about'
-    | 'disclaimer';
+    | 'disclaimer'
+    | 'feedback';
   path: string;
 }
 

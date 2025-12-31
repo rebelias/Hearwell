@@ -1,0 +1,20 @@
+{
+  "seoTitle": "Partagez Votre Avis - HearWell",
+  "seoDescription": "Aidez-nous à améliorer HearWell en partageant votre expérience. Tous les commentaires sont anonymes et aident à améliorer les outils de santé auditive pour tous.",
+  "title": "Partagez Votre Expérience",
+  "subtitle": "Vos commentaires aident à améliorer HearWell pour tous. Complètement anonyme, aucune donnée personnelle collectée.",
+  "formTitle": "Racontez-Nous Votre Histoire",
+  "formDescription": "Partagez comment HearWell vous a aidé, ou faites-nous savoir comment nous pouvons nous améliorer. Chaque voix compte.",
+  "privacyNotice": "🔒 Ce formulaire ne collecte AUCUNE information personnelle. Vos commentaires sont complètement anonymes. Nous ne stockons pas d'adresses IP, de cookies ou de données d'identification.",
+  "messageLabel": "Vos Commentaires",
+  "messagePlaceholder": "Exemple: \"HearWell m'a aidé à identifier la fréquence de mon acouphène et à commencer une thérapie sonore. L'audiomètre gratuit m'a donné des informations avant ma visite chez le médecin...\"",
+  "submit": "Envoyer les Commentaires",
+  "submitting": "Envoi en cours...",
+  "successMessage": "Merci! Vos commentaires ont été reçus et aideront à améliorer HearWell.",
+  "submitError": "Une erreur s'est produite. Veuillez réessayer ou nous contacter directement.",
+  "whyFeedbackTitle": "Pourquoi Partager des Commentaires?",
+  "benefit1": "Nous aide à prioriser les fonctionnalités qui comptent le plus pour les utilisateurs",
+  "benefit2": "Identifie les bugs et problèmes d'utilisabilité que nous aurions pu manquer",
+  "benefit3": "Inspire d'autres personnes souffrant d'acouphènes à essayer HearWell",
+  "benefit4": "Complètement anonyme - nous ne demandons jamais d'informations personnelles"
+}

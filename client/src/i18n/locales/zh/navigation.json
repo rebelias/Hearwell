@@ -6,5 +6,6 @@
   "frequencyFinder": "频率查找器",
   "noiseGenerator": "噪声发生器",
   "notchedNoise": "陷波噪声",
-  "learn": "学习"
+  "learn": "学习",
+  "feedback": "反馈"
 }

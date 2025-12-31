@@ -43,5 +43,10 @@
     "title": "Aviso Médico e Termos Legais",
     "description": "Aviso médico importante e termos legais para usar o HearWell. Não é um dispositivo médico, não aprovado pela FDA. Apenas para fins educacionais e informativos.",
     "keywords": "aviso médico, termos legais, responsabilidade, aviso de teste auditivo, aviso de zumbido"
+  },
+  "feedback": {
+    "title": "Compartilhe Seu Feedback - HearWell",
+    "description": "Ajude-nos a melhorar o HearWell compartilhando sua experiência. Todos os comentários são anônimos e ajudam a melhorar as ferramentas de saúde auditiva para todos.",
+    "keywords": "feedback, depoimentos, experiência do usuário, feedback hearwell, avaliação app zumbido"
   }
 }

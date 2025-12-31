@@ -6,5 +6,6 @@
   "frequencyFinder": "Détecteur de Fréquence",
   "noiseGenerator": "Générateur de Bruit",
   "notchedNoise": "Bruit Entaillé",
-  "learn": "Apprendre"
+  "learn": "Apprendre",
+  "feedback": "Commentaires"
 }

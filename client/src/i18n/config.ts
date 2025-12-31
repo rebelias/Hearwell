@@ -19,6 +19,7 @@ import enNotFound from './locales/en/notFound.json';
 import enLearn from './locales/en/learn.json';
 import enAbout from './locales/en/about.json';
 import enSeo from './locales/en/seo.json';
+import enFeedback from './locales/en/feedback.json';
 
 // Spanish
 import esCommon from './locales/es/common.json';
@@ -37,6 +38,7 @@ import esNotFound from './locales/es/notFound.json';
 import esLearn from './locales/es/learn.json';
 import esAbout from './locales/es/about.json';
 import esSeo from './locales/es/seo.json';
+import esFeedback from './locales/es/feedback.json';
 
 // French
 import frCommon from './locales/fr/common.json';
@@ -55,6 +57,7 @@ import frNotFound from './locales/fr/notFound.json';
 import frLearn from './locales/fr/learn.json';
 import frAbout from './locales/fr/about.json';
 import frSeo from './locales/fr/seo.json';
+import frFeedback from './locales/fr/feedback.json';
 
 // German
 import deCommon from './locales/de/common.json';
@@ -73,6 +76,7 @@ import deNotFound from './locales/de/notFound.json';
 import deLearn from './locales/de/learn.json';
 import deAbout from './locales/de/about.json';
 import deSeo from './locales/de/seo.json';
+import deFeedback from './locales/de/feedback.json';
 
 // Portuguese
 import ptCommon from './locales/pt/common.json';
@@ -91,6 +95,7 @@ import ptNotFound from './locales/pt/notFound.json';
 import ptLearn from './locales/pt/learn.json';
 import ptAbout from './locales/pt/about.json';
 import ptSeo from './locales/pt/seo.json';
+import ptFeedback from './locales/pt/feedback.json';
 
 // Turkish
 import trCommon from './locales/tr/common.json';
@@ -109,6 +114,7 @@ import trNotFound from './locales/tr/notFound.json';
 import trLearn from './locales/tr/learn.json';
 import trAbout from './locales/tr/about.json';
 import trSeo from './locales/tr/seo.json';
+import trFeedback from './locales/tr/feedback.json';
 
 // Chinese
 import zhCommon from './locales/zh/common.json';
@@ -127,6 +133,7 @@ import zhNotFound from './locales/zh/notFound.json';
 import zhLearn from './locales/zh/learn.json';
 import zhAbout from './locales/zh/about.json';
 import zhSeo from './locales/zh/seo.json';
+import zhFeedback from './locales/zh/feedback.json';
 
 // Hindi
 import hiCommon from './locales/hi/common.json';
@@ -145,6 +152,7 @@ import hiNotFound from './locales/hi/notFound.json';
 import hiLearn from './locales/hi/learn.json';
 import hiAbout from './locales/hi/about.json';
 import hiSeo from './locales/hi/seo.json';
+import hiFeedback from './locales/hi/feedback.json';
 
 // Japanese
 import jaCommon from './locales/ja/common.json';
@@ -163,6 +171,7 @@ import jaNotFound from './locales/ja/notFound.json';
 import jaLearn from './locales/ja/learn.json';
 import jaAbout from './locales/ja/about.json';
 import jaSeo from './locales/ja/seo.json';
+import jaFeedback from './locales/ja/feedback.json';
 
 i18n
   .use(LanguageDetector)
@@ -200,6 +209,7 @@ i18n
         learn: enLearn,
         about: enAbout,
         seo: enSeo,
+        feedback: enFeedback,
       },
       es: {
         common: esCommon,
@@ -218,6 +228,7 @@ i18n
         learn: esLearn,
         about: esAbout,
         seo: esSeo,
+        feedback: esFeedback,
       },
       fr: {
         common: frCommon,
@@ -236,6 +247,7 @@ i18n
         learn: frLearn,
         about: frAbout,
         seo: frSeo,
+        feedback: frFeedback,
       },
       de: {
         common: deCommon,
@@ -254,6 +266,7 @@ i18n
         learn: deLearn,
         about: deAbout,
         seo: deSeo,
+        feedback: deFeedback,
       },
       pt: {
         common: ptCommon,
@@ -272,6 +285,7 @@ i18n
         learn: ptLearn,
         about: ptAbout,
         seo: ptSeo,
+        feedback: ptFeedback,
       },
       tr: {
         common: trCommon,
@@ -290,6 +304,7 @@ i18n
         learn: trLearn,
         about: trAbout,
         seo: trSeo,
+        feedback: trFeedback,
       },
       zh: {
         common: zhCommon,
@@ -308,6 +323,7 @@ i18n
         learn: zhLearn,
         about: zhAbout,
         seo: zhSeo,
+        feedback: zhFeedback,
       },
       hi: {
         common: hiCommon,
@@ -326,6 +342,7 @@ i18n
         learn: hiLearn,
         about: hiAbout,
         seo: hiSeo,
+        feedback: hiFeedback,
       },
       ja: {
         common: jaCommon,
@@ -344,6 +361,7 @@ i18n
         learn: jaLearn,
         about: jaAbout,
         seo: jaSeo,
+        feedback: jaFeedback,
       },
     },
 
@@ -365,6 +383,7 @@ i18n
       'learn',
       'about',
       'seo',
+      'feedback',
     ],
   });
 

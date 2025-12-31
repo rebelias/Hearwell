@@ -1,5 +1,8 @@
 {
   "title": "Sobre",
   "description": "Conheça o HearWell e sua missão",
-  "intro": "Olá, sou Mehmet Kemal — desenvolvedor de software e advogado. Convivo com zumbido crônico há cerca de 8 anos.\n\nO zumbido é uma condição benigna, mas incrivelmente desafiadora, que a medicina moderna ainda não resolveu completamente. É um zumbido, apito ou chiado constante nos ouvidos que nunca para. Para lidar com isso, você precisa de acesso a testes auditivos e ferramentas de terapia sonora. Mas esses recursos costumam ser caros ou simplesmente inacessíveis.\n\nPor isso criei o HearWell. Um conjunto de ferramentas gratuito e de código aberto para saúde auditiva, acessível a todos. A saúde auditiva deve ser acessível — não trancada atrás de muros de pagamento.\n\nDedico o HearWell.life a todos que continuam ouvindo, mesmo através do ruído."
+  "intro": "Olá, sou Mehmet Kemal — desenvolvedor de software e advogado. Convivo com zumbido crônico há cerca de 8 anos.\n\nO zumbido é uma condição benigna, mas incrivelmente desafiadora, que a medicina moderna ainda não resolveu completamente. É um zumbido, apito ou chiado constante nos ouvidos que nunca para. Para lidar com isso, você precisa de acesso a testes auditivos e ferramentas de terapia sonora. Mas esses recursos costumam ser caros ou simplesmente inacessíveis.\n\nPor isso criei o HearWell. Um conjunto de ferramentas gratuito e de código aberto para saúde auditiva, acessível a todos. A saúde auditiva deve ser acessível — não trancada atrás de muros de pagamento.\n\nDedico o HearWell.life a todos que continuam ouvindo, mesmo através do ruído.",
+  "openSource": "Projeto de Código Aberto",
+  "openSourceDesc": "O HearWell é totalmente gratuito e de código aberto. Contribua, sugira recursos ou relate problemas no GitHub.",
+  "viewOnGitHub": "Ver no GitHub"
 }

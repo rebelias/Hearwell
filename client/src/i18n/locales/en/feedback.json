@@ -1,0 +1,20 @@
+{
+  "seoTitle": "Share Your Feedback - HearWell",
+  "seoDescription": "Help us improve HearWell by sharing your experience. All feedback is anonymous and helps make hearing health tools better for everyone.",
+  "title": "Share Your Experience",
+  "subtitle": "Your feedback helps improve HearWell for everyone. Completely anonymous, no personal data collected.",
+  "formTitle": "Tell Us Your Story",
+  "formDescription": "Share how HearWell has helped you, or let us know how we can improve. Every voice matters.",
+  "privacyNotice": "🔒 This form collects NO personal information. Your feedback is completely anonymous. We do not store IP addresses, cookies, or any identifying data.",
+  "messageLabel": "Your Feedback",
+  "messagePlaceholder": "Example: \"HearWell helped me identify my tinnitus frequency and start sound therapy. The free audiometer gave me insights before my doctor visit...\"",
+  "submit": "Send Feedback",
+  "submitting": "Sending...",
+  "successMessage": "Thank you! Your feedback has been received and will help improve HearWell.",
+  "submitError": "Something went wrong. Please try again or contact us directly.",
+  "whyFeedbackTitle": "Why Share Feedback?",
+  "benefit1": "Helps us prioritize features that matter most to users",
+  "benefit2": "Identifies bugs and usability issues we might have missed",
+  "benefit3": "Inspires others with tinnitus to try HearWell",
+  "benefit4": "Completely anonymous - we never ask for personal info"
+}

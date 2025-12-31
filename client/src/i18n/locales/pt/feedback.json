@@ -1,0 +1,20 @@
+{
+  "seoTitle": "Compartilhe Seu Feedback - HearWell",
+  "seoDescription": "Ajude-nos a melhorar o HearWell compartilhando sua experiência. Todos os comentários são anônimos e ajudam a melhorar as ferramentas de saúde auditiva para todos.",
+  "title": "Compartilhe Sua Experiência",
+  "subtitle": "Seu feedback ajuda a melhorar o HearWell para todos. Completamente anônimo, nenhum dado pessoal coletado.",
+  "formTitle": "Conte-nos Sua História",
+  "formDescription": "Compartilhe como o HearWell te ajudou, ou nos diga como podemos melhorar. Cada voz importa.",
+  "privacyNotice": "🔒 Este formulário NÃO coleta informações pessoais. Seu feedback é completamente anônimo. Não armazenamos endereços IP, cookies ou dados identificadores.",
+  "messageLabel": "Seu Feedback",
+  "messagePlaceholder": "Exemplo: \"HearWell me ajudou a identificar a frequência do meu zumbido e iniciar terapia sonora. O audiômetro gratuito me deu insights antes da minha consulta médica...\"",
+  "submit": "Enviar Feedback",
+  "submitting": "Enviando...",
+  "successMessage": "Obrigado! Seu feedback foi recebido e ajudará a melhorar o HearWell.",
+  "submitError": "Algo deu errado. Por favor, tente novamente ou entre em contato diretamente.",
+  "whyFeedbackTitle": "Por Que Compartilhar Feedback?",
+  "benefit1": "Ajuda-nos a priorizar recursos que mais importam aos usuários",
+  "benefit2": "Identifica bugs e problemas de usabilidade que possamos ter perdido",
+  "benefit3": "Inspira outras pessoas com zumbido a experimentar o HearWell",
+  "benefit4": "Completamente anônimo - nunca pedimos informações pessoais"
+}

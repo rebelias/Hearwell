@@ -6,6 +6,16 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square)](https://opensource.org/licenses/MIT)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.6-blue.svg?style=flat-square)](https://www.typescriptlang.org/)
 [![React](https://img.shields.io/badge/React-18.3-blue.svg?style=flat-square)](https://react.dev/)
+[![GitHub issues](https://img.shields.io/github/issues/rebelias/Hearwell?style=flat-square)](https://github.com/rebelias/Hearwell/issues)
+[![GitHub pull requests](https://img.shields.io/github/issues-pr/rebelias/Hearwell?style=flat-square)](https://github.com/rebelias/Hearwell/pulls)
+
+## 🌟 Featured On
+
+<!-- This section will be updated as HearWell gets mentioned in various platforms -->
+
+- 🚀 Product Hunt - Coming soon!
+- 🔥 Hacker News - Coming soon!
+- 📰 Dev.to - Coming soon!
 
 ---
 
@@ -216,6 +226,7 @@ Special thanks to:
 
 - 🐛 **Bug Reports:** [Open an issue](https://github.com/rebelias/Hearwell/issues)
 - 💡 **Feature Requests:** [Start a discussion](https://github.com/rebelias/Hearwell/discussions)
+- 💬 **Share Your Experience:** [Leave feedback](https://hearwell.life/feedback)
 - 🌟 **Star the repo** if HearWell helps you!
 - 💬 **Spread the word** to anyone who might benefit
 
@@ -223,12 +234,33 @@ Special thanks to:
 
 ---
 
-## 📊 Project Stats
+## 🏆 Recognition
 
-![GitHub stars](https://img.shields.io/github/stars/rebelias/Hearwell?style=social)
-![GitHub forks](https://img.shields.io/github/forks/rebelias/Hearwell?style=social)
-![GitHub issues](https://img.shields.io/github/issues/rebelias/Hearwell)
-![GitHub pull requests](https://img.shields.io/github/issues-pr/rebelias/Hearwell)
+- ⭐ GitHub Stars: ![GitHub stars](https://img.shields.io/github/stars/rebelias/Hearwell?style=social)
+- 🍴 Forks: ![GitHub forks](https://img.shields.io/github/forks/rebelias/Hearwell?style=social)
+- 🌍 Available in **9 languages**
+- 🎯 **100% privacy-focused** - No tracking, no data collection
+
+## ⭐ Star History
+
+[![Star History Chart](https://api.star-history.com/svg?repos=rebelias/Hearwell&type=Date)](https://star-history.com/#rebelias/Hearwell&Date)
+
+---
+
+## 🔗 Links & Resources
+
+- 🌐 **Live Application:** [hearwell.life](https://hearwell.life)
+- 📦 **GitHub Repository:** [github.com/rebelias/Hearwell](https://github.com/rebelias/Hearwell)
+- 💬 **Discussions:** [GitHub Discussions](https://github.com/rebelias/Hearwell/discussions)
+- 🐛 **Bug Reports:** [GitHub Issues](https://github.com/rebelias/Hearwell/issues)
+- 🔒 **Security Policy:** [SECURITY.md](https://github.com/rebelias/Hearwell/blob/main/.github/SECURITY.md)
+- 🤝 **Contributing Guide:** [CONTRIBUTING.md](https://github.com/rebelias/Hearwell/blob/main/CONTRIBUTING.md)
+
+## 🔍 Keywords & Search Terms
+
+**For SEO and discoverability:**
+
+tinnitus relief tools, online hearing test, free audiometer, tinnitus frequency finder, sound therapy, hearing loss test, notched noise therapy, coordinated reset, tinnitus management, hearing health, web-based audiometer, browser hearing test, tinnitus masking, acoustic neuromodulation, hearing assessment, tinnitus treatment, sound masking, white noise generator, pink noise, brown noise, hearing test app, audiogram online, pure tone audiometry, hearing conservation, tinnitus therapy, open source medical tools
 
 ---
 

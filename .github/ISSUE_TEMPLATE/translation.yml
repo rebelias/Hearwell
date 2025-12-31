@@ -1,0 +1,58 @@
+name: 🌍 Translation Request/Improvement
+description: Add or improve translations
+title: "[i18n]: "
+labels: ["translation", "good first issue"]
+body:
+  - type: dropdown
+    id: language
+    attributes:
+      label: Language
+      options:
+        - Arabic (new)
+        - Korean (new)
+        - Italian (new)
+        - Dutch (new)
+        - Russian (new)
+        - Polish (new)
+        - Swedish (new)
+        - Norwegian (new)
+        - Danish (new)
+        - Finnish (new)
+        - English (improve)
+        - Spanish (improve)
+        - French (improve)
+        - German (improve)
+        - Portuguese (improve)
+        - Turkish (improve)
+        - Chinese (improve)
+        - Hindi (improve)
+        - Japanese (improve)
+    validations:
+      required: true
+
+  - type: dropdown
+    id: type
+    attributes:
+      label: Type
+      options:
+        - New language (full translation)
+        - Improve existing translation
+        - Fix translation error
+    validations:
+      required: true
+
+  - type: textarea
+    id: details
+    attributes:
+      label: Details
+      description: Describe what needs to be translated or improved
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: native-speaker
+    attributes:
+      label: Language Proficiency
+      options:
+        - label: I am a native speaker
+        - label: I am fluent in this language

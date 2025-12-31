@@ -17,6 +17,7 @@ import TonalMasker from '@/pages/TonalMasker';
 import Learn from '@/pages/Learn';
 import Disclaimer from '@/pages/Disclaimer';
 import About from '@/pages/About';
+import Feedback from '@/pages/Feedback';
 import NotFound from '@/pages/not-found';
 
 function Router() {
@@ -31,6 +32,7 @@ function Router() {
       <Route path="/learn" component={Learn} />
       <Route path="/disclaimer" component={Disclaimer} />
       <Route path="/about" component={About} />
+      <Route path="/feedback" component={Feedback} />
       <Route component={NotFound} />
     </Switch>
   );

@@ -1,0 +1,20 @@
+{
+  "seoTitle": "Comparte Tu Opinión - HearWell",
+  "seoDescription": "Ayúdanos a mejorar HearWell compartiendo tu experiencia. Todos los comentarios son anónimos y ayudan a mejorar las herramientas de salud auditiva para todos.",
+  "title": "Comparte Tu Experiencia",
+  "subtitle": "Tus comentarios ayudan a mejorar HearWell para todos. Completamente anónimo, no se recopilan datos personales.",
+  "formTitle": "Cuéntanos Tu Historia",
+  "formDescription": "Comparte cómo HearWell te ha ayudado, o déjanos saber cómo podemos mejorar. Cada voz importa.",
+  "privacyNotice": "🔒 Este formulario NO recopila información personal. Tus comentarios son completamente anónimos. No almacenamos direcciones IP, cookies ni ningún dato identificativo.",
+  "messageLabel": "Tus Comentarios",
+  "messagePlaceholder": "Ejemplo: \"HearWell me ayudó a identificar la frecuencia de mi tinnitus y comenzar terapia de sonido. El audiómetro gratuito me dio información antes de mi visita al médico...\"",
+  "submit": "Enviar Comentarios",
+  "submitting": "Enviando...",
+  "successMessage": "¡Gracias! Tus comentarios han sido recibidos y ayudarán a mejorar HearWell.",
+  "submitError": "Algo salió mal. Por favor, inténtalo de nuevo o contáctanos directamente.",
+  "whyFeedbackTitle": "¿Por Qué Compartir Comentarios?",
+  "benefit1": "Nos ayuda a priorizar las funciones que más importan a los usuarios",
+  "benefit2": "Identifica errores y problemas de usabilidad que podríamos haber pasado por alto",
+  "benefit3": "Inspira a otros con tinnitus a probar HearWell",
+  "benefit4": "Completamente anónimo - nunca pedimos información personal"
+}

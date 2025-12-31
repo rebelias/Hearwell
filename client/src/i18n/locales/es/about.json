@@ -1,5 +1,8 @@
 {
   "title": "Acerca de",
   "description": "Conoce HearWell y su misión",
-  "intro": "Hola, soy Mehmet Kemal — desarrollador de software y abogado. Vivo con tinnitus crónico desde hace unos 8 años.\n\nEl tinnitus es una condición benigna pero increíblemente difícil de sobrellevar que la medicina moderna aún no ha resuelto por completo. Es un zumbido, silbido o pitido constante en tus oídos que nunca se detiene. Para manejarlo, necesitas acceso a pruebas auditivas y herramientas de terapia sonora. Pero estos recursos suelen ser costosos o simplemente inaccesibles.\n\nPor eso creé HearWell. Un conjunto de herramientas gratuitas y de código abierto para la salud auditiva, accesible para todos. La salud auditiva debe ser accesible, no estar bloqueada tras muros de pago.\n\nDedico HearWell.life a todos los que siguen escuchando, incluso a través del ruido."
+  "intro": "Hola, soy Mehmet Kemal — desarrollador de software y abogado. Vivo con tinnitus crónico desde hace unos 8 años.\n\nEl tinnitus es una condición benigna pero increíblemente difícil de sobrellevar que la medicina moderna aún no ha resuelto por completo. Es un zumbido, silbido o pitido constante en tus oídos que nunca se detiene. Para manejarlo, necesitas acceso a pruebas auditivas y herramientas de terapia sonora. Pero estos recursos suelen ser costosos o simplemente inaccesibles.\n\nPor eso creé HearWell. Un conjunto de herramientas gratuitas y de código abierto para la salud auditiva, accesible para todos. La salud auditiva debe ser accesible, no estar bloqueada tras muros de pago.\n\nDedico HearWell.life a todos los que siguen escuchando, incluso a través del ruido.",
+  "openSource": "Proyecto de Código Abierto",
+  "openSourceDesc": "HearWell es completamente gratuito y de código abierto. Contribuye, sugiere funciones o reporta problemas en GitHub.",
+  "viewOnGitHub": "Ver en GitHub"
 }

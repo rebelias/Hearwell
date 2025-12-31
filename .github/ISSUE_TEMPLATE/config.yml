@@ -1,0 +1,11 @@
+blank_issues_enabled: true
+contact_links:
+  - name: 💬 GitHub Discussions
+    url: https://github.com/rebelias/Hearwell/discussions
+    about: Ask questions and discuss ideas with the community
+  - name: 📖 Documentation
+    url: https://github.com/rebelias/Hearwell/blob/main/README.md
+    about: Read the project documentation
+  - name: 🔒 Security Issue
+    url: https://github.com/rebelias/Hearwell/security/advisories/new
+    about: Report a security vulnerability privately

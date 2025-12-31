@@ -1,0 +1,20 @@
+{
+  "seoTitle": "分享您的反馈 - HearWell",
+  "seoDescription": "通过分享您的经验帮助我们改进HearWell。所有反馈都是匿名的，有助于为所有人改善听力健康工具。",
+  "title": "分享您的体验",
+  "subtitle": "您的反馈有助于为所有人改进HearWell。完全匿名，不收集个人数据。",
+  "formTitle": "告诉我们您的故事",
+  "formDescription": "分享HearWell如何帮助您，或让我们知道如何改进。每一个声音都很重要。",
+  "privacyNotice": "🔒 此表单不收集任何个人信息。您的反馈完全匿名。我们不存储IP地址、cookie或任何识别数据。",
+  "messageLabel": "您的反馈",
+  "messagePlaceholder": "示例：\"HearWell帮助我识别了我的耳鸣频率并开始声音治疗。免费的听力计在我看医生之前给了我见解...\"",
+  "submit": "发送反馈",
+  "submitting": "发送中...",
+  "successMessage": "谢谢！您的反馈已收到，将有助于改进HearWell。",
+  "submitError": "出了点问题。请重试或直接联系我们。",
+  "whyFeedbackTitle": "为什么要分享反馈？",
+  "benefit1": "帮助我们优先考虑对用户最重要的功能",
+  "benefit2": "识别我们可能遗漏的错误和可用性问题",
+  "benefit3": "激励其他耳鸣患者尝试HearWell",
+  "benefit4": "完全匿名 - 我们从不要求个人信息"
+}

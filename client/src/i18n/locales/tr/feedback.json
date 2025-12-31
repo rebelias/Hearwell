@@ -1,0 +1,20 @@
+{
+  "seoTitle": "Geri Bildiriminizi Paylaşın - HearWell",
+  "seoDescription": "Deneyiminizi paylaşarak HearWell'i geliştirmemize yardımcı olun. Tüm geri bildirimler anonimdir ve işitme sağlığı araçlarını herkes için daha iyi hale getirmeye yardımcı olur.",
+  "title": "Deneyiminizi Paylaşın",
+  "subtitle": "Geri bildiriminiz HearWell'i herkes için geliştirmeye yardımcı olur. Tamamen anonim, kişisel veri toplanmaz.",
+  "formTitle": "Hikayenizi Anlatın",
+  "formDescription": "HearWell'in size nasıl yardımcı olduğunu paylaşın veya nasıl geliştirebileceğimizi bize bildirin. Her ses önemlidir.",
+  "privacyNotice": "🔒 Bu form HİÇBİR kişisel bilgi toplamaz. Geri bildiriminiz tamamen anonimdir. IP adresleri, çerezler veya tanımlayıcı veriler saklamıyoruz.",
+  "messageLabel": "Geri Bildiriminiz",
+  "messagePlaceholder": "Örnek: \"HearWell tinnitus frekansımı belirlememde ve ses terapisine başlamamda yardımcı oldu. Ücretsiz odyometre doktor ziyaretimden önce bana fikir verdi...\"",
+  "submit": "Geri Bildirim Gönder",
+  "submitting": "Gönderiliyor...",
+  "successMessage": "Teşekkürler! Geri bildiriminiz alındı ve HearWell'i geliştirmeye yardımcı olacak.",
+  "submitError": "Bir şeyler yanlış gitti. Lütfen tekrar deneyin veya doğrudan bizimle iletişime geçin.",
+  "whyFeedbackTitle": "Neden Geri Bildirim Paylaşmalısınız?",
+  "benefit1": "Kullanıcılar için en önemli özellikleri önceliklendirmemize yardımcı olur",
+  "benefit2": "Gözden kaçırmış olabileceğimiz hataları ve kullanılabilirlik sorunlarını tanımlar",
+  "benefit3": "Tinnitus'u olan diğer kişileri HearWell'i denemeye teşvik eder",
+  "benefit4": "Tamamen anonim - asla kişisel bilgi istemeyiz"
+}
