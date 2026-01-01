@@ -2,6 +2,10 @@ import { test, expect } from '@playwright/test';
 
 test.describe('Tonal Masker', () => {
   test.beforeEach(async ({ page }) => {
+    // Accept disclaimer before each test
+    await page.addInitScript(() => {
+      localStorage.setItem('hearwell-disclaimer-accepted', 'true');
+    });
     await page.goto('/tonal-masker');
   });
 

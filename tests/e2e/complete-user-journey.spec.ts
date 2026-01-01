@@ -4,16 +4,13 @@ test.describe('Complete User Journey', () => {
   test('new user flow: disclaimer → frequency finder → audiometer → therapy', async ({
     page,
   }) => {
+    // Accept disclaimer before test
+    await page.addInitScript(() => {
+      localStorage.setItem('hearwell-disclaimer-accepted', 'true');
+    });
+
     // Step 1: Visit homepage
     await page.goto('/');
-
-    // Step 2: Dismiss disclaimer (first visit)
-    const disclaimerAccept = page.getByRole('button', {
-      name: /accept|agree/i,
-    });
-    if (await disclaimerAccept.isVisible()) {
-      await disclaimerAccept.click();
-    }
 
     // Verify homepage loaded
     await expect(page).toHaveTitle(/HearWell.*Free.*Hearing/i);
@@ -63,15 +60,11 @@ test.describe('Complete User Journey', () => {
   });
 
   test('language switching persists across pages', async ({ page }) => {
-    await page.goto('/');
-
-    // Dismiss disclaimer if present
-    const disclaimerAccept = page.getByRole('button', {
-      name: /accept|agree/i,
+    // Accept disclaimer before test
+    await page.addInitScript(() => {
+      localStorage.setItem('hearwell-disclaimer-accepted', 'true');
     });
-    if (await disclaimerAccept.isVisible()) {
-      await disclaimerAccept.click();
-    }
+    await page.goto('/');
 
     // Open language selector
     const languageSelector = page.getByRole('button', {
@@ -96,15 +89,11 @@ test.describe('Complete User Journey', () => {
   });
 
   test('theme switching works across all pages', async ({ page }) => {
-    await page.goto('/');
-
-    // Dismiss disclaimer if present
-    const disclaimerAccept = page.getByRole('button', {
-      name: /accept|agree/i,
+    // Accept disclaimer before test
+    await page.addInitScript(() => {
+      localStorage.setItem('hearwell-disclaimer-accepted', 'true');
     });
-    if (await disclaimerAccept.isVisible()) {
-      await disclaimerAccept.click();
-    }
+    await page.goto('/');
 
     // Toggle to dark mode
     const themeToggle = page.getByRole('button', { name: /theme|dark|light/i });
@@ -122,15 +111,11 @@ test.describe('Complete User Journey', () => {
   });
 
   test('feedback form submission works', async ({ page }) => {
-    await page.goto('/feedback');
-
-    // Dismiss disclaimer if present
-    const disclaimerAccept = page.getByRole('button', {
-      name: /accept|agree/i,
+    // Accept disclaimer before test
+    await page.addInitScript(() => {
+      localStorage.setItem('hearwell-disclaimer-accepted', 'true');
     });
-    if (await disclaimerAccept.isVisible()) {
-      await disclaimerAccept.click();
-    }
+    await page.goto('/feedback');
 
     // Fill feedback form
     const feedbackTextarea = page.locator('textarea#feedback');
@@ -147,15 +132,11 @@ test.describe('Complete User Journey', () => {
   });
 
   test('all navigation links work', async ({ page }) => {
-    await page.goto('/');
-
-    // Dismiss disclaimer if present
-    const disclaimerAccept = page.getByRole('button', {
-      name: /accept|agree/i,
+    // Accept disclaimer before test
+    await page.addInitScript(() => {
+      localStorage.setItem('hearwell-disclaimer-accepted', 'true');
     });
-    if (await disclaimerAccept.isVisible()) {
-      await disclaimerAccept.click();
-    }
+    await page.goto('/');
 
     // Test all nav links
     const navLinks = [
@@ -177,17 +158,14 @@ test.describe('Complete User Journey', () => {
   });
 
   test('mobile menu works correctly', async ({ page }) => {
+    // Accept disclaimer before test
+    await page.addInitScript(() => {
+      localStorage.setItem('hearwell-disclaimer-accepted', 'true');
+    });
+
     // Set mobile viewport
     await page.setViewportSize({ width: 375, height: 667 });
     await page.goto('/');
-
-    // Dismiss disclaimer if present
-    const disclaimerAccept = page.getByRole('button', {
-      name: /accept|agree/i,
-    });
-    if (await disclaimerAccept.isVisible()) {
-      await disclaimerAccept.click();
-    }
 
     // Open mobile menu
     const menuButton = page.getByRole('button', { name: /menu/i });
