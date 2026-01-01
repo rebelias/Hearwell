@@ -6,7 +6,7 @@ test.describe('Notched Noise', () => {
   });
 
   test('should load the notched noise page', async ({ page }) => {
-    await expect(page).toHaveTitle(/HearWell/i);
+    await expect(page).toHaveTitle(/Notched Noise|Tinnitus Therapy/i);
   });
 
   test('should have play/pause button', async ({ page }) => {

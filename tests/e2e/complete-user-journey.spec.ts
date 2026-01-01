@@ -16,7 +16,7 @@ test.describe('Complete User Journey', () => {
     }
 
     // Verify homepage loaded
-    await expect(page).toHaveTitle(/HearWell/i);
+    await expect(page).toHaveTitle(/HearWell.*Free.*Hearing/i);
 
     // Step 3: Navigate to Frequency Finder
     await page.getByRole('link', { name: /frequency finder/i }).click();
@@ -59,7 +59,7 @@ test.describe('Complete User Journey', () => {
     await therapyPlayButton.click();
 
     // Journey complete - no crashes!
-    await expect(page).toHaveTitle(/HearWell/);
+    await expect(page).toHaveTitle(/Tonal Masker|Neuromodulation/i);
   });
 
   test('language switching persists across pages', async ({ page }) => {

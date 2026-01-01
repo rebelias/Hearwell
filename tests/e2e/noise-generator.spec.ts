@@ -6,7 +6,7 @@ test.describe('Noise Generator', () => {
   });
 
   test('should load the noise generator page', async ({ page }) => {
-    await expect(page).toHaveTitle(/HearWell/i);
+    await expect(page).toHaveTitle(/Noise Generator|Colored Noise/i);
   });
 
   test('should have play/pause button', async ({ page }) => {

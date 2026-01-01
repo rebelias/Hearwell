@@ -6,7 +6,7 @@ test.describe('Audiometer', () => {
   });
 
   test('should load the audiometer page', async ({ page }) => {
-    await expect(page).toHaveTitle(/HearWell/i);
+    await expect(page).toHaveTitle(/Online Audiometer|Test Your Hearing/i);
   });
 
   test('should have test grid', async ({ page }) => {

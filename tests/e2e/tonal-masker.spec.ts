@@ -6,7 +6,7 @@ test.describe('Tonal Masker', () => {
   });
 
   test('should load the tonal masker page', async ({ page }) => {
-    await expect(page).toHaveTitle(/HearWell/i);
+    await expect(page).toHaveTitle(/Tonal Masker|Neuromodulation/i);
   });
 
   test('should have play/pause button', async ({ page }) => {

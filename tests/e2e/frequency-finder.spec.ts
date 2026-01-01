@@ -6,7 +6,7 @@ test.describe('Frequency Finder', () => {
   });
 
   test('should load the frequency finder page', async ({ page }) => {
-    await expect(page).toHaveTitle(/HearWell/i);
+    await expect(page).toHaveTitle(/Tinnitus Frequency Finder/i);
   });
 
   test('should have play/pause button', async ({ page }) => {
