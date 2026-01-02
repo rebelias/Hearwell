@@ -49,6 +49,11 @@ function App() {
   });
 
   const [disclaimerAccepted, setDisclaimerAccepted] = useState(() => {
+    // Automatically accept in test mode
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    if (typeof window !== 'undefined' && (window as any).__TEST_MODE__) {
+      return true;
+    }
     return localStorage.getItem('hearwell-disclaimer-accepted') === 'true';
   });
 

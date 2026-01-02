@@ -7,6 +7,8 @@ test.describe('Complete User Journey', () => {
     // Accept disclaimer before test
     await page.addInitScript(() => {
       localStorage.setItem('hearwell-disclaimer-accepted', 'true');
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      (window as any).__TEST_MODE__ = true;
     });
 
     // Step 1: Visit homepage
@@ -63,6 +65,8 @@ test.describe('Complete User Journey', () => {
     // Accept disclaimer before test
     await page.addInitScript(() => {
       localStorage.setItem('hearwell-disclaimer-accepted', 'true');
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      (window as any).__TEST_MODE__ = true;
     });
     await page.goto('/');
 
@@ -92,6 +96,8 @@ test.describe('Complete User Journey', () => {
     // Accept disclaimer before test
     await page.addInitScript(() => {
       localStorage.setItem('hearwell-disclaimer-accepted', 'true');
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      (window as any).__TEST_MODE__ = true;
     });
     await page.goto('/');
 
@@ -114,6 +120,8 @@ test.describe('Complete User Journey', () => {
     // Accept disclaimer before test
     await page.addInitScript(() => {
       localStorage.setItem('hearwell-disclaimer-accepted', 'true');
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      (window as any).__TEST_MODE__ = true;
     });
     await page.goto('/feedback');
 
@@ -135,6 +143,8 @@ test.describe('Complete User Journey', () => {
     // Accept disclaimer before test
     await page.addInitScript(() => {
       localStorage.setItem('hearwell-disclaimer-accepted', 'true');
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      (window as any).__TEST_MODE__ = true;
     });
     await page.goto('/');
 
@@ -161,6 +171,8 @@ test.describe('Complete User Journey', () => {
     // Accept disclaimer before test
     await page.addInitScript(() => {
       localStorage.setItem('hearwell-disclaimer-accepted', 'true');
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      (window as any).__TEST_MODE__ = true;
     });
 
     // Set mobile viewport

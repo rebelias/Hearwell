@@ -19,6 +19,11 @@ export default function DisclaimerModal({ onAccept }: DisclaimerModalProps) {
   const { t } = useTranslation(['disclaimer', 'common']);
   // Initialize from localStorage to avoid setState in useEffect
   const [open, setOpen] = useState(() => {
+    // Check if we're in test mode (E2E tests)
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    if (typeof window !== 'undefined' && (window as any).__TEST_MODE__) {
+      return false;
+    }
     const hasAccepted = localStorage.getItem('hearwell-disclaimer-accepted');
     return !hasAccepted;
   });

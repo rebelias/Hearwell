@@ -5,6 +5,8 @@ test.describe('Noise Generator', () => {
     // Accept disclaimer before each test
     await page.addInitScript(() => {
       localStorage.setItem('hearwell-disclaimer-accepted', 'true');
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      (window as any).__TEST_MODE__ = true;
     });
     await page.goto('/noise-generator');
   });
