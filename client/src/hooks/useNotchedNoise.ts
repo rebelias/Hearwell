@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { logError } from '@/lib/errorLogger';
-
+import { createNoiseBuffer as sharedCreateNoiseBuffer } from '@/lib/noiseUtils';
 export type NotchNoiseType = 'white' | 'pink' | 'brown' | 'purple' | 'grey';
 export type StereoWidth = 'mono' | 'narrow' | 'normal' | 'wide';
 
@@ -67,66 +67,13 @@ export function useNotchedNoise() {
     }
   };
 
-  const createNoiseBuffer = (type: NotchNoiseType = 'white') => {
+  const getNoiseBuffer = (type: NotchNoiseType = 'white') => {
     try {
       const ctx = audioContextRef.current;
       if (!ctx) {
         throw new Error('AudioContext not initialized');
       }
-      const bufferSize = ctx.sampleRate * 2;
-      const buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
-      const output = buffer.getChannelData(0);
-
-      if (type === 'white') {
-        for (let i = 0; i < bufferSize; i++) {
-          output[i] = Math.random() * 2 - 1;
-        }
-      } else if (type === 'pink') {
-        let b0 = 0,
-          b1 = 0,
-          b2 = 0,
-          b3 = 0,
-          b4 = 0,
-          b5 = 0,
-          b6 = 0;
-        for (let i = 0; i < bufferSize; i++) {
-          const white = Math.random() * 2 - 1;
-          b0 = 0.99886 * b0 + white * 0.0555179;
-          b1 = 0.99332 * b1 + white * 0.0750759;
-          b2 = 0.969 * b2 + white * 0.153852;
-          b3 = 0.8665 * b3 + white * 0.3104856;
-          b4 = 0.55 * b4 + white * 0.5329522;
-          b5 = -0.7616 * b5 - white * 0.016898;
-          output[i] = b0 + b1 + b2 + b3 + b4 + b5 + b6 + white * 0.5362;
-          output[i] *= 0.11;
-          b6 = white * 0.115926;
-        }
-      } else if (type === 'brown') {
-        let lastOut = 0;
-        for (let i = 0; i < bufferSize; i++) {
-          const white = Math.random() * 2 - 1;
-          output[i] = (lastOut + 0.02 * white) / 1.02;
-          lastOut = output[i];
-          output[i] *= 3.5;
-        }
-      } else if (type === 'purple') {
-        let lastOut = 0;
-        for (let i = 0; i < bufferSize; i++) {
-          const white = Math.random() * 2 - 1;
-          const current = white - lastOut;
-          output[i] = current;
-          lastOut = white;
-          output[i] *= 0.3;
-        }
-      } else if (type === 'grey') {
-        // Grey noise is white noise with equal loudness curve applied
-        // Simplified version - white noise with slight filtering
-        for (let i = 0; i < bufferSize; i++) {
-          output[i] = Math.random() * 2 - 1;
-        }
-      }
-
-      return buffer;
+      return sharedCreateNoiseBuffer(ctx, type);
     } catch (error) {
       logError(
         error instanceof Error
@@ -134,7 +81,7 @@ export function useNotchedNoise() {
           : new Error('Failed to create noise buffer'),
         {
           hook: 'useNotchedNoise',
-          operation: 'createNoiseBuffer',
+          operation: 'getNoiseBuffer',
           noiseType: type,
         }
       );
@@ -199,7 +146,7 @@ export function useNotchedNoise() {
 
       // Create noise source
       noiseNodeRef.current = ctx.createBufferSource();
-      noiseNodeRef.current.buffer = createNoiseBuffer(options.noiseType);
+      noiseNodeRef.current.buffer = getNoiseBuffer(options.noiseType);
       noiseNodeRef.current.loop = true;
 
       // Build the filter chain: noise -> band filters -> notch filters -> panner -> gain -> destination
@@ -368,7 +315,7 @@ export function useNotchedNoise() {
       const oldNode = noiseNodeRef.current;
 
       const newNode = ctx.createBufferSource();
-      newNode.buffer = createNoiseBuffer(options.noiseType);
+      newNode.buffer = getNoiseBuffer(options.noiseType);
       newNode.loop = true;
 
       if (bandFiltersRef.current.length > 0) {

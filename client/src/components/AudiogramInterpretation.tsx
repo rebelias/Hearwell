@@ -2,6 +2,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { Info, AlertTriangle, CheckCircle2 } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 interface AudiogramInterpretationProps {
   testResults: Record<string, string>;
@@ -60,10 +61,12 @@ export default function AudiogramInterpretation({
   frequencies,
   volumes,
 }: AudiogramInterpretationProps) {
+  const { t } = useTranslation(['audiometer', 'common']);
+
   const getLowestTestedVolume = (freq: number): number | null => {
     for (const vol of volumes) {
       const key = `${freq}-${vol}`;
-      if (testResults[key] === 'tested') {
+      if (testResults[key] === 'heard') {
         return vol;
       }
     }
@@ -71,13 +74,13 @@ export default function AudiogramInterpretation({
   };
 
   const categorizeHearing = (threshold: number | null): string => {
-    if (threshold === null) return 'Not tested';
-    if (threshold <= 25) return 'Normal';
-    if (threshold <= 40) return 'Mild';
-    if (threshold <= 55) return 'Moderate';
-    if (threshold <= 70) return 'Moderate-Severe';
-    if (threshold <= 90) return 'Severe';
-    return 'Profound';
+    if (threshold === null) return t('audiometer:interp.notTested');
+    if (threshold <= 25) return t('audiometer:interp.normal');
+    if (threshold <= 40) return t('audiometer:interp.mild');
+    if (threshold <= 55) return t('audiometer:interp.moderate');
+    if (threshold <= 70) return t('audiometer:interp.moderateSevere');
+    if (threshold <= 90) return t('audiometer:interp.severe');
+    return t('audiometer:interp.profound');
   };
 
   const getOverallAssessment = (): {
@@ -89,7 +92,7 @@ export default function AudiogramInterpretation({
       .filter(t => t !== null) as number[];
 
     if (thresholds.length === 0) {
-      return { category: 'No test results', severity: 'normal' };
+      return { category: t('audiometer:interp.noResults'), severity: 'normal' };
     }
 
     const avgThreshold =
@@ -101,7 +104,7 @@ export default function AudiogramInterpretation({
     } else if (maxThreshold > 25) {
       return { category: categorizeHearing(avgThreshold), severity: 'caution' };
     }
-    return { category: 'Normal hearing range', severity: 'normal' };
+    return { category: t('audiometer:interp.normalRange'), severity: 'normal' };
   };
 
   const getFrequencySpecificInsights = (): string[] => {
@@ -117,18 +120,14 @@ export default function AudiogramInterpretation({
       highFreqAvg.length > 0 &&
       highFreqAvg.reduce((a, b) => a + b, 0) / highFreqAvg.length > 40
     ) {
-      insights.push(
-        'High-frequency hearing loss detected (common with age and noise exposure)'
-      );
+      insights.push(t('audiometer:interp.highFreqLoss'));
     }
 
     if (
       lowFreqAvg.length > 0 &&
       lowFreqAvg.reduce((a, b) => a + b, 0) / lowFreqAvg.length > 40
     ) {
-      insights.push(
-        'Low-frequency hearing loss detected (less common, may indicate specific conditions)'
-      );
+      insights.push(t('audiometer:interp.lowFreqLoss'));
     }
 
     const allThresholds = frequencies
@@ -142,13 +141,9 @@ export default function AudiogramInterpretation({
         }, 0) / allThresholds.length;
 
       if (variance < 100) {
-        insights.push(
-          'Relatively flat hearing profile across tested frequencies'
-        );
+        insights.push(t('audiometer:interp.flatProfile'));
       } else {
-        insights.push(
-          'Significant variation across frequencies - consider full audiological evaluation'
-        );
+        insights.push(t('audiometer:interp.variableProfile'));
       }
     }
 
@@ -167,13 +162,12 @@ export default function AudiogramInterpretation({
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <Info className="h-5 w-5" />
-            Audiogram Interpretation
+            {t('audiometer:interp.title')}
           </CardTitle>
         </CardHeader>
         <CardContent>
           <p className="text-sm text-muted-foreground">
-            Complete your hearing test to see personalized interpretation and
-            guidance.
+            {t('audiometer:interp.completeTest')}
           </p>
         </CardContent>
       </Card>
@@ -198,14 +192,16 @@ export default function AudiogramInterpretation({
         {assessment.severity === 'warning' && (
           <AlertTriangle className="h-4 w-4" />
         )}
-        <AlertTitle>Overall Assessment: {assessment.category}</AlertTitle>
+        <AlertTitle>
+          {t('audiometer:interp.overallAssessment')}: {assessment.category}
+        </AlertTitle>
         <AlertDescription className="text-sm">
           {assessment.severity === 'normal' &&
-            'Your hearing appears to be in the normal range. Continue monitoring and protect your hearing from loud noise exposure.'}
+            t('audiometer:interp.normalMessage')}
           {assessment.severity === 'caution' &&
-            'Mild hearing changes detected. Consider consulting an audiologist for a comprehensive evaluation.'}
+            t('audiometer:interp.cautionMessage')}
           {assessment.severity === 'warning' &&
-            'Significant hearing loss detected. We strongly recommend scheduling an appointment with an audiologist or ENT specialist for professional evaluation and treatment options.'}
+            t('audiometer:interp.warningMessage')}
         </AlertDescription>
       </Alert>
 
@@ -213,7 +209,7 @@ export default function AudiogramInterpretation({
         <Card className="bg-muted/50">
           <CardHeader>
             <CardTitle className="text-base">
-              Frequency-Specific Insights
+              {t('audiometer:interp.frequencyInsights')}
             </CardTitle>
           </CardHeader>
           <CardContent className="space-y-2">
@@ -229,7 +225,9 @@ export default function AudiogramInterpretation({
 
       <Card className="bg-muted/50">
         <CardHeader>
-          <CardTitle className="text-base">Hearing Loss Categories</CardTitle>
+          <CardTitle className="text-base">
+            {t('audiometer:interp.hearingCategories')}
+          </CardTitle>
         </CardHeader>
         <CardContent>
           <div className="space-y-2">
@@ -256,7 +254,7 @@ export default function AudiogramInterpretation({
       <Card className="bg-muted/50">
         <CardHeader>
           <CardTitle className="text-base">
-            Individual Frequency Results
+            {t('audiometer:interp.individualResults')}
           </CardTitle>
         </CardHeader>
         <CardContent>
@@ -283,7 +281,7 @@ export default function AudiogramInterpretation({
                     </>
                   ) : (
                     <div className="text-sm text-muted-foreground">
-                      Not tested
+                      {t('audiometer:interp.notTested')}
                     </div>
                   )}
                 </div>
@@ -296,11 +294,8 @@ export default function AudiogramInterpretation({
       <Alert>
         <Info className="h-4 w-4" />
         <AlertDescription className="text-xs">
-          <strong>Important:</strong> This online tool is for screening purposes
-          only and cannot replace professional audiological testing. Results may
-          be affected by background noise, headphone quality, and calibration.
-          For medical diagnosis or hearing aid fitting, please consult a
-          licensed audiologist.
+          <strong>{t('audiometer:interp.important')}:</strong>{' '}
+          {t('audiometer:interp.disclaimer')}
         </AlertDescription>
       </Alert>
     </div>

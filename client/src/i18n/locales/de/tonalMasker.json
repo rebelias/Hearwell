@@ -67,5 +67,8 @@
   "usageTipDuration": "Täglich 15-30 Minuten einsetzen.",
   "usageTipPatience": "Ergebnisse können mehrere Wochen auf sich warten lassen.",
   "noteLabel": "Hinweis:",
-  "noteText": "Dieses Tool dient Forschungs- und Bildungszwecken. Konsultieren Sie vor einer therapeutischen Nutzung medizinisches Fachpersonal."
+  "noteText": "Dieses Tool dient Forschungs- und Bildungszwecken. Konsultieren Sie vor einer therapeutischen Nutzung medizinisches Fachpersonal.",
+  "crTooltip": "Koordinierter Reset: Zufällige Abfolge von 4 Tönen zur Desynchronisierung der neuronalen Aktivität.",
+  "toneDurationTooltip": "Wie lange jeder Ton spielt, bevor zum nächsten gewechselt wird. Typischer Bereich: 100-500ms.",
+  "gapDurationTooltip": "Stille zwischen den Tönen. Hilft, klare Tongrenzen für bessere Desynchronisierung zu schaffen."
 }

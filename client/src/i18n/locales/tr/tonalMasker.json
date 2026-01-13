@@ -67,5 +67,8 @@
   "usageTipDuration": "Günde 15-30 dakika kullanın.",
   "usageTipPatience": "Sonuçlar ortaya çıkması birkaç hafta sürebilir.",
   "noteLabel": "Not:",
-  "noteText": "Bu araç araştırma ve eğitim amaçlıdır. Tinnitus tedavisi olarak kullanmadan önce bir sağlık profesyoneline danışın."
+  "noteText": "Bu araç araştırma ve eğitim amaçlıdır. Tinnitus tedavisi olarak kullanmadan önce bir sağlık profesyoneline danışın.",
+  "crTooltip": "Koordineli Sıfırlama: Nöral aktiviteyi eşzamansızlaştırmak için rastgele 4 ton dizisi.",
+  "toneDurationTooltip": "Her tonun bir sonrakine geçmeden önce ne kadar süre çaldığı. Tipik aralık: 100-500ms.",
+  "gapDurationTooltip": "Tonlar arasındaki sessizlik. Daha iyi eşzamansızlaştırma için belirgin ton sınırları oluşturmaya yardımcı olur."
 }

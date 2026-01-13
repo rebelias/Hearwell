@@ -32,7 +32,13 @@ type ToneType = 'pure' | 'warble';
 export default function Audiometer() {
   const { t } = useTranslation(['audiometer', 'common']);
   const [earSelection, setEarSelection] = useState<EarSelection>('both');
-  const [testResults, setTestResults] = useState<Record<string, CellState>>({});
+  const [testResults, setTestResults] = useState<
+    Record<EarSelection, Record<string, CellState>>
+  >({
+    both: {},
+    left: {},
+    right: {},
+  });
   const [toneType, setToneType] = useState<ToneType>('pure');
   const [showCalibration, setShowCalibration] = useState(() => {
     const calibrated = localStorage.getItem('audiometer-calibrated');
@@ -65,13 +71,16 @@ export default function Audiometer() {
 
   const handlePlaySound = async (freq: number, vol: number) => {
     const key = `${freq}-${vol}`;
-    const currentState = testResults[key] || 'untested';
+    const currentState = testResults[earSelection][key] || 'untested';
 
     // Don't play if already playing
     if (currentState === 'playing') return;
 
     const currentToken = cancelTokenRef.current;
-    setTestResults(prev => ({ ...prev, [key]: 'playing' }));
+    setTestResults(prev => ({
+      ...prev,
+      [earSelection]: { ...prev[earSelection], [key]: 'playing' },
+    }));
     await audioEngine.playTone(
       freq,
       vol,
@@ -84,34 +93,43 @@ export default function Audiometer() {
     if (cancelTokenRef.current === currentToken) {
       // After playing, mark as 'played' (unless already 'heard')
       const newState = currentState === 'heard' ? 'heard' : 'played';
-      setTestResults(prev => ({ ...prev, [key]: newState }));
+      setTestResults(prev => ({
+        ...prev,
+        [earSelection]: { ...prev[earSelection], [key]: newState },
+      }));
     }
   };
 
   const handleMarkHeard = (freq: number, vol: number) => {
     const key = `${freq}-${vol}`;
-    const currentState = testResults[key] || 'untested';
+    const currentState = testResults[earSelection][key] || 'untested';
 
     // Toggle: if already heard, unmark it (but keep as played)
     if (currentState === 'heard') {
-      setTestResults(prev => ({ ...prev, [key]: 'played' }));
+      setTestResults(prev => ({
+        ...prev,
+        [earSelection]: { ...prev[earSelection], [key]: 'played' },
+      }));
       return;
     }
 
     // Mark as heard
-    setTestResults(prev => ({ ...prev, [key]: 'heard' }));
+    setTestResults(prev => ({
+      ...prev,
+      [earSelection]: { ...prev[earSelection], [key]: 'heard' },
+    }));
 
     // Clear quieter volumes that were marked as played but not heard
     const volIndex = volumes.indexOf(vol);
     for (let i = 0; i < volIndex; i++) {
       const lowerVolKey = `${freq}-${volumes[i]}`;
-      const lowerState = testResults[lowerVolKey];
+      const lowerState = testResults[earSelection][lowerVolKey];
       // Only clear if it was just 'played' (not 'heard')
       if (lowerState === 'played') {
         setTestResults(prev => {
-          const newResults = { ...prev };
-          delete newResults[lowerVolKey];
-          return newResults;
+          const newEarResults = { ...prev[earSelection] };
+          delete newEarResults[lowerVolKey];
+          return { ...prev, [earSelection]: newEarResults };
         });
       }
     }
@@ -119,16 +137,22 @@ export default function Audiometer() {
 
   const handleMarkNotHeard = (freq: number, vol: number) => {
     const key = `${freq}-${vol}`;
-    const currentState = testResults[key] || 'untested';
+    const currentState = testResults[earSelection][key] || 'untested';
 
     // Toggle: if already not_heard, unmark it (but keep as played)
     if (currentState === 'not_heard') {
-      setTestResults(prev => ({ ...prev, [key]: 'played' }));
+      setTestResults(prev => ({
+        ...prev,
+        [earSelection]: { ...prev[earSelection], [key]: 'played' },
+      }));
       return;
     }
 
     // Mark as not heard
-    setTestResults(prev => ({ ...prev, [key]: 'not_heard' }));
+    setTestResults(prev => ({
+      ...prev,
+      [earSelection]: { ...prev[earSelection], [key]: 'not_heard' },
+    }));
   };
 
   const handleCalibrationComplete = (calibrationValue: number) => {
@@ -148,7 +172,10 @@ export default function Audiometer() {
   const clearResults = () => {
     cancelTokenRef.current++;
     audioEngine.stop();
-    setTestResults({});
+    setTestResults(prev => ({
+      ...prev,
+      [earSelection]: {},
+    }));
     toast({
       title: t('audiometer:resultsCleared'),
       description: t('audiometer:resultsClearedDesc'),
@@ -169,9 +196,10 @@ export default function Audiometer() {
       return;
     }
     const getLowestHeardVolume = (freq: number): number | null => {
+      const earResults = testResults[earSelection];
       for (const vol of volumes) {
         const key = `${freq}-${vol}`;
-        if (testResults[key] === 'heard') {
+        if (earResults[key] === 'heard') {
           return vol;
         }
       }
@@ -179,22 +207,24 @@ export default function Audiometer() {
     };
 
     const wasTested = (freq: number): boolean => {
+      const earResults = testResults[earSelection];
       return volumes.some(vol => {
         const key = `${freq}-${vol}`;
-        const state = testResults[key];
+        const state = earResults[key];
         return state === 'heard' || state === 'not_heard' || state === 'played';
       });
     };
 
     const wasNotHeard = (freq: number): boolean => {
+      const earResults = testResults[earSelection];
       // Check if user marked any volume as "not heard" and didn't mark any as "heard"
       const hasNotHeard = volumes.some(vol => {
         const key = `${freq}-${vol}`;
-        return testResults[key] === 'not_heard';
+        return earResults[key] === 'not_heard';
       });
       const hasHeard = volumes.some(vol => {
         const key = `${freq}-${vol}`;
-        return testResults[key] === 'heard';
+        return earResults[key] === 'heard';
       });
       return hasNotHeard && !hasHeard;
     };
@@ -394,11 +424,12 @@ export default function Audiometer() {
 
   // Calculate progress - a frequency is "completed" if user has marked it as heard OR not_heard
   const getProgress = () => {
+    const earResults = testResults[earSelection];
     const completedFrequencies = frequencies.filter(freq => {
       // Check if user has marked any volume as "heard" OR "not_heard" for this frequency
       return volumes.some(vol => {
         const key = `${freq}-${vol}`;
-        return testResults[key] === 'heard' || testResults[key] === 'not_heard';
+        return earResults[key] === 'heard' || earResults[key] === 'not_heard';
       });
     }).length;
     return {
@@ -410,10 +441,11 @@ export default function Audiometer() {
 
   // Check if test is complete - all frequencies must be tested (heard or not_heard)
   const isTestComplete = () => {
+    const earResults = testResults[earSelection];
     return frequencies.every(freq => {
       return volumes.some(vol => {
         const key = `${freq}-${vol}`;
-        return testResults[key] === 'heard' || testResults[key] === 'not_heard';
+        return earResults[key] === 'heard' || earResults[key] === 'not_heard';
       });
     });
   };
@@ -637,7 +669,7 @@ export default function Audiometer() {
           </Tooltip>
         </div>
         <CardDescription className="text-xs">
-          Use Play (▶), Heard (✓), and Not Heard (✗) buttons
+          {t('audiometer:testingBoardDesc')}
         </CardDescription>
       </CardHeader>
       <CardContent className="p-3 sm:p-4 lg:p-6">
@@ -670,7 +702,7 @@ export default function Audiometer() {
                   </div>
                   {frequencies.map(freq => {
                     const key = `${freq}-${vol}`;
-                    const state = testResults[key] || 'untested';
+                    const state = testResults[earSelection][key] || 'untested';
                     const isPlaying = state === 'playing';
                     const canMark =
                       state === 'played' ||
@@ -745,7 +777,9 @@ export default function Audiometer() {
         </div>
 
         <div className="space-y-2 mt-3 pt-3 border-t">
-          <div className="text-xs font-medium mb-1.5">How to Use</div>
+          <div className="text-xs font-medium mb-1.5">
+            {t('audiometer:howToUse')}
+          </div>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-1.5 text-[10px] sm:text-xs">
             <div className="flex items-center gap-1.5">
               <Button
@@ -756,7 +790,7 @@ export default function Audiometer() {
               >
                 ▶
               </Button>
-              <span>Play sound</span>
+              <span>{t('audiometer:playSound')}</span>
             </div>
             <div className="flex items-center gap-1.5">
               <Button
@@ -767,7 +801,7 @@ export default function Audiometer() {
               >
                 ✓
               </Button>
-              <span>Mark as heard (green)</span>
+              <span>{t('audiometer:markHeard')}</span>
             </div>
             <div className="flex items-center gap-1.5">
               <Button
@@ -778,7 +812,7 @@ export default function Audiometer() {
               >
                 ✗
               </Button>
-              <span>Mark as not heard (red)</span>
+              <span>{t('audiometer:markNotHeard')}</span>
             </div>
           </div>
         </div>
@@ -852,12 +886,12 @@ export default function Audiometer() {
               </p>
             </div>
             <AudiogramChart
-              testResults={testResults}
+              testResults={testResults[earSelection]}
               frequencies={frequencies}
               volumes={volumes}
             />
             <AudiogramInterpretation
-              testResults={testResults}
+              testResults={testResults[earSelection]}
               frequencies={frequencies}
               volumes={volumes}
             />
@@ -865,8 +899,7 @@ export default function Audiometer() {
         ) : (
           <div className="h-64 bg-muted/30 rounded-lg flex items-center justify-center">
             <p className="text-muted-foreground text-center">
-              Start testing by clicking the ▶ button on cells above. Mark cells
-              as ✓ (heard) or ✗ (not heard) after playing each sound.
+              {t('audiometer:startTestingPrompt')}
             </p>
           </div>
         )}

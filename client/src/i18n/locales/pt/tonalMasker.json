@@ -67,5 +67,8 @@
   "usageTipDuration": "Use por 15-30 minutos diariamente.",
   "usageTipPatience": "Os resultados podem levar várias semanas para aparecer.",
   "noteLabel": "Observação:",
-  "noteText": "Esta ferramenta é para pesquisa e educação. Consulte um profissional de saúde antes de usá-la como tratamento para zumbido."
+  "noteText": "Esta ferramenta é para pesquisa e educação. Consulte um profissional de saúde antes de usá-la como tratamento para zumbido.",
+  "crTooltip": "Reinício Coordenado: Sequência aleatória de 4 tons para dessincronizar a atividade neuronal.",
+  "toneDurationTooltip": "Por quanto tempo cada tom toca antes de mudar para o próximo. Faixa típica: 100-500ms.",
+  "gapDurationTooltip": "Silêncio entre os tons. Ajuda a criar limites de tom distintos para melhor dessincronização."
 }

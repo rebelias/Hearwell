@@ -338,10 +338,7 @@ export default function TonalMasker() {
                         <HelpCircle className="h-3 w-3 ml-1 inline text-muted-foreground cursor-help" />
                       </TooltipTrigger>
                       <TooltipContent className="max-w-xs">
-                        <p className="text-sm">
-                          Coordinated Reset: Randomized sequence of 4 tones to
-                          desynchronize neural activity.
-                        </p>
+                        <p className="text-sm">{t('tonalMasker:crTooltip')}</p>
                       </TooltipContent>
                     </Tooltip>
                   </Label>
@@ -446,8 +443,7 @@ export default function TonalMasker() {
                       </TooltipTrigger>
                       <TooltipContent className="max-w-xs">
                         <p className="text-sm">
-                          How long each tone plays before switching to the next.
-                          Typical range: 100-500ms.
+                          {t('tonalMasker:toneDurationTooltip')}
                         </p>
                       </TooltipContent>
                     </Tooltip>
@@ -485,8 +481,7 @@ export default function TonalMasker() {
                       </TooltipTrigger>
                       <TooltipContent className="max-w-xs">
                         <p className="text-sm">
-                          Silence between tones. Helps create distinct tone
-                          boundaries for better desynchronization.
+                          {t('tonalMasker:gapDurationTooltip')}
                         </p>
                       </TooltipContent>
                     </Tooltip>

@@ -67,5 +67,8 @@
   "usageTipDuration": "Use for 15-30 minutes daily.",
   "usageTipPatience": "Results may take several weeks to appear.",
   "noteLabel": "Note:",
-  "noteText": "This tool is for research and educational purposes. Consult a healthcare professional before using it as tinnitus treatment."
+  "noteText": "This tool is for research and educational purposes. Consult a healthcare professional before using it as tinnitus treatment.",
+  "crTooltip": "Coordinated Reset: Randomized sequence of 4 tones to desynchronize neural activity.",
+  "toneDurationTooltip": "How long each tone plays before switching to the next. Typical range: 100-500ms.",
+  "gapDurationTooltip": "Silence between tones. Helps create distinct tone boundaries for better desynchronization."
 }

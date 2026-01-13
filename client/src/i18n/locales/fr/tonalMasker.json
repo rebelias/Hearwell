@@ -67,5 +67,8 @@
   "usageTipDuration": "Utilisez-le 15 à 30 minutes par jour.",
   "usageTipPatience": "Les résultats peuvent prendre plusieurs semaines à apparaître.",
   "noteLabel": "Remarque :",
-  "noteText": "Cet outil est destiné à la recherche et à l'éducation. Consultez un professionnel de santé avant de l'utiliser comme traitement des acouphènes."
+  "noteText": "Cet outil est destiné à la recherche et à l'éducation. Consultez un professionnel de santé avant de l'utiliser comme traitement des acouphènes.",
+  "crTooltip": "Réinitialisation Coordonnée: Séquence aléatoire de 4 tons pour désynchroniser l'activité neuronale.",
+  "toneDurationTooltip": "Durée de chaque ton avant de passer au suivant. Plage typique: 100-500ms.",
+  "gapDurationTooltip": "Silence entre les tons. Aide à créer des limites de sons distinctes pour une meilleure désynchronisation."
 }

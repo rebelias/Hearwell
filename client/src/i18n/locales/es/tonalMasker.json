@@ -67,5 +67,8 @@
   "usageTipDuration": "Úsalo 15-30 minutos al día.",
   "usageTipPatience": "Los resultados pueden tardar varias semanas en aparecer.",
   "noteLabel": "Nota:",
-  "noteText": "Esta herramienta es para investigación y educación. Consulta a un profesional de la salud antes de usarla como tratamiento del tinnitus."
+  "noteText": "Esta herramienta es para investigación y educación. Consulta a un profesional de la salud antes de usarla como tratamiento del tinnitus.",
+  "crTooltip": "Reinicio Coordinado: Secuencia aleatoria de 4 tonos para desincronizar la actividad neuronal.",
+  "toneDurationTooltip": "Cuánto tiempo suena cada tono antes de pasar al siguiente. Rango típico: 100-500ms.",
+  "gapDurationTooltip": "Silencio entre tonos. Ayuda a crear límites de tono distintos para una mejor desincronización."
 }
