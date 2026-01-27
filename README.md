@@ -13,7 +13,7 @@
 
 <!-- This section will be updated as HearWell gets mentioned in various platforms -->
 
-- 🚀 Product Hunt - Coming soon!
+- 🚀 Product Hunt - https://www.producthunt.com/products/hearwell-free-hearing-health-tools
 - 🔥 Hacker News - Coming soon!
 - 📰 Dev.to - Coming soon!
 
